@@ -1,0 +1,22 @@
+@(title: String, subTitle: String, appName: String, vappVersion: String, nav: String)
+
+@main(title, subTitle, nav) {
+    
+<div class="jumbotron">
+  <h1>
+  	@title
+  	<br />
+  	<small>@subTitle</small>
+  </h1>
+  <p>short description ...</p>
+  <p><a class="btn btn-primary btn-lg" href="@routes.Application.about()" role="button">Learn more</a></p>
+</div>
+
+<div ng-controller="MyController as ctrl" class="alert alert-info" role="alert">
+	<div ng-hide="ctrl.data.hide">
+		<h1>{{ctrl.data.name}}</h1>
+		<p>{{ctrl.data.description}}</p>
+		<button class="btn btn-default" ng-show="ctrl.data.button">Add a button</button>
+	</div>
+</div>
+}
