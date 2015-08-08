@@ -74,14 +74,14 @@ Deploy your own Web User Interface application:
 
 ## Contribute
 
-- Issue Tracker: https://github.com/josanly/wui-play-angularjs-bootstrap-archetype/issues
-- Source Code: https://github.com/josanly/wui-play-angularjs-bootstrap-archetype
+- Issue Tracker: https://github.com/josanly/wui-pab-archetype/issues
+- Source Code: https://github.com/josanly/wui-pab-archetype
 
 ## Support
 
 If you are having issues, please let us know.
 
-We have a mailing list located at: wui-play-angularjs-bootstrap-project@google-groups.com
+We have a mailing list located at: wui-pab-project@google-groups.com
 
 -------------------
 
