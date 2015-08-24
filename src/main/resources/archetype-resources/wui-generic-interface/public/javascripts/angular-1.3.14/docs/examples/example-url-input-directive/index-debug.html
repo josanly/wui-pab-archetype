@@ -1,0 +1,39 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-url-input-directive-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="urlExample">
+  <script>
+  angular.module('urlExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.url = {
+        text: 'http://google.com'
+      };
+    }]);
+</script>
+<form name="myForm" ng-controller="ExampleController">
+  URL: <input type="url" name="input" ng-model="url.text" required>
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.required">
+    Required!</span>
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.url">
+    Not valid url!</span>
+  <tt>text = {{url.text}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}valid = {{myForm.input.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}error = {{myForm.input.${symbol_dollar}error}}</tt><br/>
+  <tt>myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}</tt><br/>
+  <tt>myForm.${symbol_dollar}error.url = {{!!myForm.${symbol_dollar}error.url}}</tt><br/>
+ </form>
+</body>
+</html>

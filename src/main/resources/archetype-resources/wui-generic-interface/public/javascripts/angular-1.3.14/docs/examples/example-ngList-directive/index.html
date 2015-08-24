@@ -1,0 +1,30 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-ngList-directive</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  <script src="app.js"></script>
+  
+
+  
+</head>
+<body ng-app="listExample">
+  <form name="myForm" ng-controller="ExampleController">
+  List: <input name="namesInput" ng-model="names" ng-list required>
+  <span class="error" ng-show="myForm.namesInput.${symbol_dollar}error.required">
+    Required!</span>
+  <br>
+  <tt>names = {{names}}</tt><br/>
+  <tt>myForm.namesInput.${symbol_dollar}valid = {{myForm.namesInput.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.namesInput.${symbol_dollar}error = {{myForm.namesInput.${symbol_dollar}error}}</tt><br/>
+  <tt>myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}</tt><br/>
+ </form>
+</body>
+</html>

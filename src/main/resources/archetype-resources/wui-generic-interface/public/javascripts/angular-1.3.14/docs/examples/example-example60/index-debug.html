@@ -1,0 +1,30 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example60-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="bindExample">
+  <script>
+  angular.module('bindExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.salutation = 'Hello';
+      ${symbol_dollar}scope.name = 'World';
+    }]);
+</script>
+<div ng-controller="ExampleController">
+ Salutation: <input type="text" ng-model="salutation"><br>
+ Name: <input type="text" ng-model="name"><br>
+ <pre ng-bind-template="{{salutation}} {{name}}!"></pre>
+</div>
+</body>
+</html>

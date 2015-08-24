@@ -1,0 +1,37 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-location-hashbang-mode-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  <script src="app.js"></script>
+  <script src="fakeBrowser.js"></script>
+  <script src="addressBar.js"></script>
+  
+
+  
+</head>
+<body ng-app="hashbang-mode">
+  <div ng-controller="LocationController">
+  <div ng-address-bar></div><br><br>
+  <div>
+    ${symbol_dollar}location.protocol() = <span ng-bind="${symbol_dollar}location.protocol()"></span> <br>
+    ${symbol_dollar}location.host() = <span ng-bind="${symbol_dollar}location.host()"></span> <br>
+    ${symbol_dollar}location.port() = <span ng-bind="${symbol_dollar}location.port()"></span> <br>
+    ${symbol_dollar}location.path() = <span ng-bind="${symbol_dollar}location.path()"></span> <br>
+    ${symbol_dollar}location.search() = <span ng-bind="${symbol_dollar}location.search()"></span> <br>
+    ${symbol_dollar}location.hash() = <span ng-bind="${symbol_dollar}location.hash()"></span> <br>
+  </div>
+  <div id="navigation">
+    <a href="http://www.example.com/base/first?a=b">/base/first?a=b</a> |
+    <a href="http://www.example.com/base/sec/ond?flag${symbol_pound}hash">sec/ond?flag${symbol_pound}hash</a> |
+    <a href="/other-base/another?search">external</a>
+  </div>
+</div>
+</body>
+</html>

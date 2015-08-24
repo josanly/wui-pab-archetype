@@ -1,0 +1,30 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/error/${symbol_dollar}controller/noscp.ngdoc?message=docs(error%2Fnoscp)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+<h1>Error: error:noscp
+  <div><span class='hint'>Missing ${symbol_dollar}scope object</span></div>
+</h1>
+
+<div>
+    <pre class="minerr-errmsg" error-display="Cannot export controller '{0}' as '{1}'! No ${symbol_dollar}scope object provided via `locals`.">Cannot export controller '{0}' as '{1}'! No ${symbol_dollar}scope object provided via `locals`.</pre>
+</div>
+
+<h2>Description</h2>
+<div class="description">
+  <p>This error occurs when <a href="api/ng/service/${symbol_dollar}controller">${symbol_dollar}controller</a> service is called in order to instantiate a new controller but no scope is provided via <code>${symbol_dollar}scope</code> property of the locals map.</p>
+<p>Example of incorrect usage that leads to this error:</p>
+<pre><code>${symbol_dollar}controller(MyController);
+//or
+${symbol_dollar}controller(MyController, {scope: newScope});
+</code></pre>
+<p>To fix the example above please provide a scope (using the <code>${symbol_dollar}scope</code> property in the locals object) to the ${symbol_dollar}controller call:</p>
+<pre><code>${symbol_dollar}controller(MyController, {${symbol_dollar}scope: newScope});
+</code></pre>
+<p>Please consult the <a href="api/ng/service/${symbol_dollar}controller">${symbol_dollar}controller</a> service api docs to learn more.</p>
+
+</div>
+
+

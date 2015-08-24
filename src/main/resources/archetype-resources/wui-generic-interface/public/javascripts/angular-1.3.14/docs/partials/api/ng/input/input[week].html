@@ -1,0 +1,228 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(input[week])%3A%20describe%20your%20change...${symbol_pound}L396' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/input.js${symbol_pound}L396' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">input[week]</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - input in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Input with week-of-the-year validation and transformation to Date. In browsers that do not yet support
+the HTML5 week input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
+week format (yyyy-W${symbol_pound}${symbol_pound}), for example: <code>2013-W02</code>.</p>
+<p>The model must always be a Date object, otherwise Angular will throw an error.
+Invalid <code>Date</code> objects (dates whose <code>getTime()</code> is <code>NaN</code>) will be rendered as an empty string.</p>
+<p>The timezone to be used to read/write the <code>Date</code> instance in the model can be defined using
+<a href="api/ng/directive/ngModelOptions">ngModelOptions</a>. By default, this is the timezone of the browser.</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    
+    <li>This directive executes at priority level 0.</li>
+  </ul>
+
+  
+  <h2>Usage</h2>
+  <pre><code>&lt;input type=&quot;week&quot;&${symbol_pound}10;       ng-model=&quot;&quot;&${symbol_pound}10;       [name=&quot;&quot;]&${symbol_pound}10;       [min=&quot;&quot;]&${symbol_pound}10;       [max=&quot;&quot;]&${symbol_pound}10;       [required=&quot;&quot;]&${symbol_pound}10;       [ng-required=&quot;&quot;]&${symbol_pound}10;       [ng-change=&quot;&quot;]&gt;</code></pre>
+
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        ngModel
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Assignable angular expression to data-bind to.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        name
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Property name of the form under which the control is published.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        min
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Sets the <code>min</code> validation error key if the value entered is less than <code>min</code>. This must be a
+valid ISO week format (yyyy-W${symbol_pound}${symbol_pound}).</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        max
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Sets the <code>max</code> validation error key if the value entered is greater than <code>max</code>. This must be
+a valid ISO week format (yyyy-W${symbol_pound}${symbol_pound}).</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        required
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Sets <code>required</code> validation error key if the value is not entered.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        ngRequired
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Adds <code>required</code> attribute and <code>required</code> validation constraint to
+   the element when the ngRequired expression evaluates to true. Use <code>ngRequired</code> instead of
+   <code>required</code> when you want to data-bind to the <code>required</code> attribute.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        ngChange
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Angular expression to be executed when input changes due to user
+   interaction with the input element.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+  
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-week-input-directive', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-week-input-directive"
+      name="week-input-directive"
+      module="weekExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;script&gt;&${symbol_pound}10;angular.module(&${symbol_pound}39;weekExample&${symbol_pound}39;, [])&${symbol_pound}10;  .controller(&${symbol_pound}39;DateController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;    ${symbol_dollar}scope.example = {&${symbol_pound}10;      value: new Date(2013, 0, 3)&${symbol_pound}10;    };&${symbol_pound}10;  }]);&${symbol_pound}10;&lt;/script&gt;&${symbol_pound}10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;DateController as dateCtrl&quot;&gt;&${symbol_pound}10;  Pick a date between in 2013:&${symbol_pound}10;  &lt;input id=&quot;exampleInput&quot; type=&quot;week&quot; name=&quot;input&quot; ng-model=&quot;example.value&quot;&${symbol_pound}10;      placeholder=&quot;YYYY-W${symbol_pound}${symbol_pound}&quot; min=&quot;2012-W32&quot; max=&quot;2013-W52&quot; required /&gt;&${symbol_pound}10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.${symbol_dollar}error.required&quot;&gt;&${symbol_pound}10;      Required!&lt;/span&gt;&${symbol_pound}10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.${symbol_dollar}error.week&quot;&gt;&${symbol_pound}10;      Not a valid date!&lt;/span&gt;&${symbol_pound}10;  &lt;tt&gt;value = {{example.value | date: &quot;yyyy-Www&quot;}}&lt;/tt&gt;&lt;br/&gt;&${symbol_pound}10;  &lt;tt&gt;myForm.input.${symbol_dollar}valid = {{myForm.input.${symbol_dollar}valid}}&lt;/tt&gt;&lt;br/&gt;&${symbol_pound}10;  &lt;tt&gt;myForm.input.${symbol_dollar}error = {{myForm.input.${symbol_dollar}error}}&lt;/tt&gt;&lt;br/&gt;&${symbol_pound}10;  &lt;tt&gt;myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}&lt;/tt&gt;&lt;br/&gt;&${symbol_pound}10;  &lt;tt&gt;myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}&lt;/tt&gt;&lt;br/&gt;&${symbol_pound}10;&lt;/form&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>var value = element(by.binding(&${symbol_pound}39;example.value | date: &quot;yyyy-Www&quot;&${symbol_pound}39;));&${symbol_pound}10;var valid = element(by.binding(&${symbol_pound}39;myForm.input.${symbol_dollar}valid&${symbol_pound}39;));&${symbol_pound}10;var input = element(by.model(&${symbol_pound}39;example.value&${symbol_pound}39;));&${symbol_pound}10;&${symbol_pound}10;// currently protractor/webdriver does not support&${symbol_pound}10;// sending keys to all known HTML5 input controls&${symbol_pound}10;// for various browsers (https://github.com/angular/protractor/issues/562).&${symbol_pound}10;function setInput(val) {&${symbol_pound}10;  // set the value of the element and force validation.&${symbol_pound}10;  var scr = &quot;var ipt = document.getElementById(&${symbol_pound}39;exampleInput&${symbol_pound}39;); &quot; +&${symbol_pound}10;  &quot;ipt.value = &${symbol_pound}39;&quot; + val + &quot;&${symbol_pound}39;;&quot; +&${symbol_pound}10;  &quot;angular.element(ipt).scope().${symbol_dollar}apply(function(s) { s.myForm[ipt.name].${symbol_dollar}setViewValue(&${symbol_pound}39;&quot; + val + &quot;&${symbol_pound}39;); });&quot;;&${symbol_pound}10;  browser.executeScript(scr);&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should initialize to model&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(value.getText()).toContain(&${symbol_pound}39;2013-W01&${symbol_pound}39;);&${symbol_pound}10;  expect(valid.getText()).toContain(&${symbol_pound}39;myForm.input.${symbol_dollar}valid = true&${symbol_pound}39;);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should be invalid if empty&${symbol_pound}39;, function() {&${symbol_pound}10;  setInput(&${symbol_pound}39;&${symbol_pound}39;);&${symbol_pound}10;  expect(value.getText()).toEqual(&${symbol_pound}39;value =&${symbol_pound}39;);&${symbol_pound}10;  expect(valid.getText()).toContain(&${symbol_pound}39;myForm.input.${symbol_dollar}valid = false&${symbol_pound}39;);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should be invalid if over max&${symbol_pound}39;, function() {&${symbol_pound}10;  setInput(&${symbol_pound}39;2015-W01&${symbol_pound}39;);&${symbol_pound}10;  expect(value.getText()).toContain(&${symbol_pound}39;&${symbol_pound}39;);&${symbol_pound}10;  expect(valid.getText()).toContain(&${symbol_pound}39;myForm.input.${symbol_dollar}valid = false&${symbol_pound}39;);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-week-input-directive/index.html" name="example-week-input-directive"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

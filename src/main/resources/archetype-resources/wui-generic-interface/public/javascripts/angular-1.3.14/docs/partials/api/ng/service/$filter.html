@@ -1,0 +1,140 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/filter.js?message=docs(${symbol_dollar}filter)%3A%20describe%20your%20change...${symbol_pound}L64' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/filter.js${symbol_pound}L64' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}filter</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  <li>
+    <a href="api/ng/provider/${symbol_dollar}filterProvider">- ${symbol_dollar}filterProvider</a>
+  </li>
+
+    <li>
+      - service in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Filters are used for formatting data displayed to the user.</p>
+<p>The general syntax in templates is as follows:</p>
+<pre><code>{{ expression [| filter_name[:parameter_value] ... ] }}
+</code></pre>
+
+</div>
+
+
+
+
+<div>
+  
+
+    
+
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>${symbol_dollar}filter(name);</code></p>
+
+
+    
+
+    
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        name
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">String</a>
+      </td>
+      <td>
+        <p>Name of the filter function to retrieve</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+    
+    <h3>Returns</h3>
+<table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-function">Function</a></td>
+    <td><p>the filter function</p>
+</td>
+  </tr>
+</table>
+
+  
+  
+  
+
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-${symbol_dollar}filter', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-${symbol_dollar}filter"
+      name="${symbol_dollar}filter"
+      module="filterExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&${symbol_pound}10; &lt;h3&gt;{{ originalText }}&lt;/h3&gt;&${symbol_pound}10; &lt;h3&gt;{{ filteredText }}&lt;/h3&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;filterExample&${symbol_pound}39;, [])&${symbol_pound}10;.controller(&${symbol_pound}39;MainCtrl&${symbol_pound}39;, function(${symbol_dollar}scope, ${symbol_dollar}filter) {&${symbol_pound}10;  ${symbol_dollar}scope.originalText = &${symbol_pound}39;hello&${symbol_pound}39;;&${symbol_pound}10;  ${symbol_dollar}scope.filteredText = ${symbol_dollar}filter(&${symbol_pound}39;uppercase&${symbol_pound}39;)(${symbol_dollar}scope.originalText);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-${symbol_dollar}filter/index.html" name="example-${symbol_dollar}filter"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

@@ -1,0 +1,24 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example26-production</title>
+  
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+  <script src="script.js"></script>
+  
+
+  
+</head>
+<body ng-app="eventExampleApp">
+  <div ng-controller="EventController">
+  <button ng-click="clickMe(${symbol_dollar}event)">Event</button>
+  <p><code>${symbol_dollar}event</code>: <pre> {{${symbol_dollar}event | json}}</pre></p>
+  <p><code>clickEvent</code>: <pre>{{clickEvent | json}}</pre></p>
+</div>
+</body>
+</html>

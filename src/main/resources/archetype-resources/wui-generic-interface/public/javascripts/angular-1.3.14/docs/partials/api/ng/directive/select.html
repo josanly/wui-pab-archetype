@@ -1,0 +1,289 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/select.js?message=docs(select)%3A%20describe%20your%20change...${symbol_pound}L4' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/select.js${symbol_pound}L4' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">select</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>HTML <code>SELECT</code> element with angular data-binding.</p>
+<h1 id="-ngoptions-"><code>ngOptions</code></h1>
+<p>The <code>ngOptions</code> attribute can be used to dynamically generate a list of <code>&lt;option&gt;</code>
+elements for the <code>&lt;select&gt;</code> element using the array or object obtained by evaluating the
+<code>ngOptions</code> comprehension expression.</p>
+<p>In many cases, <code>ngRepeat</code> can be used on <code>&lt;option&gt;</code> elements instead of <code>ngOptions</code> to achieve a
+similar result. However, <code>ngOptions</code> provides some benefits such as reducing memory and
+increasing speed by not creating a new scope for each repeated instance, as well as providing
+more flexibility in how the <code>&lt;select&gt;</code>&${symbol_pound}39;s model is assigned via the <code>select</code> <strong><code>as</code></strong> part of the
+comprehension expression. <code>ngOptions</code> should be used when the <code>&lt;select&gt;</code> model needs to be bound
+ to a non-string value. This is because an option element can only be bound to string values at
+present.</p>
+<p>When an item in the <code>&lt;select&gt;</code> menu is selected, the array element or object property
+represented by the selected option will be bound to the model identified by the <code>ngModel</code>
+directive.</p>
+<p>Optionally, a single hard-coded <code>&lt;option&gt;</code> element, with the value set to an empty string, can
+be nested into the <code>&lt;select&gt;</code> element. This element will then represent the <code>null</code> or &quot;not selected&quot;
+option. See example below for demonstration.</p>
+<div class="alert alert-warning">
+<strong>Note:</strong> <code>ngModel</code> compares by reference, not value. This is important when binding to an
+array of objects. See an example <a href="http://jsfiddle.net/qWzTb/">in this jsfiddle</a>.
+</div>
+
+<h2 id="-select-as-"><code>select</code> <strong><code>as</code></strong></h2>
+<p>Using <code>select</code> <strong><code>as</code></strong> will bind the result of the <code>select</code> expression to the model, but
+the value of the <code>&lt;select&gt;</code> and <code>&lt;option&gt;</code> html elements will be either the index (for array data sources)
+or property name (for object data sources) of the value within the collection. If a <strong><code>track by</code></strong> expression
+is used, the result of that expression will be set as the value of the <code>option</code> and <code>select</code> elements.</p>
+<h3 id="-select-as-and-track-by-"><code>select</code> <strong><code>as</code></strong> and <strong><code>track by</code></strong></h3>
+<div class="alert alert-warning">
+Do not use <code>select</code> <strong><code>as</code></strong> and <strong><code>track by</code></strong> in the same expression. They are not designed to work together.
+</div>
+
+<p>Consider the following example:</p>
+<pre><code class="lang-html">&lt;select ng-options=&quot;item.subItem as item.label for item in values track by item.id&quot; ng-model=&quot;selected&quot;&gt;
+</code></pre>
+<pre><code class="lang-js">${symbol_dollar}scope.values = [{
+  id: 1,
+  label: &${symbol_pound}39;aLabel&${symbol_pound}39;,
+  subItem: { name: &${symbol_pound}39;aSubItem&${symbol_pound}39; }
+}, {
+  id: 2,
+  label: &${symbol_pound}39;bLabel&${symbol_pound}39;,
+  subItem: { name: &${symbol_pound}39;bSubItem&${symbol_pound}39; }
+}];
+
+${symbol_dollar}scope.selected = { name: &${symbol_pound}39;aSubItem&${symbol_pound}39; };
+</code></pre>
+<p>With the purpose of preserving the selection, the <strong><code>track by</code></strong> expression is always applied to the element
+of the data source (to <code>item</code> in this example). To calculate whether an element is selected, we do the
+following:</p>
+<ol>
+<li>Apply <strong><code>track by</code></strong> to the elements in the array. In the example: <code>[1, 2]</code></li>
+<li>Apply <strong><code>track by</code></strong> to the already selected value in <code>ngModel</code>.
+In the example: this is not possible as <strong><code>track by</code></strong> refers to <code>item.id</code>, but the selected
+value from <code>ngModel</code> is <code>{name: &${symbol_pound}39;aSubItem&${symbol_pound}39;}</code>, so the <strong><code>track by</code></strong> expression is applied to
+a wrong object, the selected element can&${symbol_pound}39;t be found, <code>&lt;select&gt;</code> is always reset to the &quot;not
+selected&quot; option.</li>
+</ol>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    
+    <li>This directive executes at priority level 0.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    
+      <li>as element:
+      
+      <pre><code>&lt;select&${symbol_pound}10;  ng-model=&quot;&quot;&${symbol_pound}10;  [name=&quot;&quot;]&${symbol_pound}10;  [required=&quot;&quot;]&${symbol_pound}10;  [ng-required=&quot;&quot;]&${symbol_pound}10;  [ng-options=&quot;&quot;]&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/select&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        ngModel
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Assignable angular expression to data-bind to.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        name
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Property name of the form under which the control is published.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        required
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>The control is considered valid only if value is entered.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        ngRequired
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Adds <code>required</code> attribute and <code>required</code> validation constraint to
+   the element when the ngRequired expression evaluates to true. Use <code>ngRequired</code> instead of
+   <code>required</code> when you want to data-bind to the <code>required</code> attribute.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        ngOptions
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-comprehension_expression">comprehension_expression</a>
+      </td>
+      <td>
+        <p>in one of the following forms:</p>
+<ul>
+<li>for array data sources:<ul>
+<li><code>label</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code></li>
+<li><code>select</code> <strong><code>as</code></strong> <code>label</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code></li>
+<li><code>label</code> <strong><code>group by</code></strong> <code>group</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code></li>
+<li><code>label</code> <strong><code>group by</code></strong> <code>group</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code> <strong><code>track by</code></strong> <code>trackexpr</code></li>
+<li><code>label</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code> | orderBy:<code>orderexpr</code> <strong><code>track by</code></strong> <code>trackexpr</code>
+ (for including a filter with <code>track by</code>)</li>
+</ul>
+</li>
+<li>for object data sources:<ul>
+<li><code>label</code> <strong><code>for (</code></strong><code>key</code> <strong><code>,</code></strong> <code>value</code><strong><code>) in</code></strong> <code>object</code></li>
+<li><code>select</code> <strong><code>as</code></strong> <code>label</code> <strong><code>for (</code></strong><code>key</code> <strong><code>,</code></strong> <code>value</code><strong><code>) in</code></strong> <code>object</code></li>
+<li><code>label</code> <strong><code>group by</code></strong> <code>group</code> <strong><code>for (</code></strong><code>key</code><strong><code>,</code></strong> <code>value</code><strong><code>) in</code></strong> <code>object</code></li>
+<li><code>select</code> <strong><code>as</code></strong> <code>label</code> <strong><code>group by</code></strong> <code>group</code>
+  <strong><code>for</code> <code>(</code></strong><code>key</code><strong><code>,</code></strong> <code>value</code><strong><code>) in</code></strong> <code>object</code></li>
+</ul>
+</li>
+</ul>
+<p>Where:</p>
+<ul>
+<li><code>array</code> / <code>object</code>: an expression which evaluates to an array / object to iterate over.</li>
+<li><code>value</code>: local variable which will refer to each item in the <code>array</code> or each property value
+ of <code>object</code> during iteration.</li>
+<li><code>key</code>: local variable which will refer to a property name in <code>object</code> during iteration.</li>
+<li><code>label</code>: The result of this expression will be the label for <code>&lt;option&gt;</code> element. The
+<code>expression</code> will most likely refer to the <code>value</code> variable (e.g. <code>value.propertyName</code>).</li>
+<li><code>select</code>: The result of this expression will be bound to the model of the parent <code>&lt;select&gt;</code>
+ element. If not specified, <code>select</code> expression will default to <code>value</code>.</li>
+<li><code>group</code>: The result of this expression will be used to group options using the <code>&lt;optgroup&gt;</code>
+ DOM element.</li>
+<li><code>trackexpr</code>: Used when working with an array of objects. The result of this expression will be
+ used to identify the objects in the array. The <code>trackexpr</code> will most likely refer to the
+<code>value</code> variable (e.g. <code>value.propertyName</code>). With this the selection is preserved
+ even when the options are recreated (e.g. reloaded from the server).</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+  
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example95', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example95"
+      module="selectExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;script&gt;&${symbol_pound}10;angular.module(&${symbol_pound}39;selectExample&${symbol_pound}39;, [])&${symbol_pound}10;  .controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;    ${symbol_dollar}scope.colors = [&${symbol_pound}10;      {name:&${symbol_pound}39;black&${symbol_pound}39;, shade:&${symbol_pound}39;dark&${symbol_pound}39;},&${symbol_pound}10;      {name:&${symbol_pound}39;white&${symbol_pound}39;, shade:&${symbol_pound}39;light&${symbol_pound}39;},&${symbol_pound}10;      {name:&${symbol_pound}39;red&${symbol_pound}39;, shade:&${symbol_pound}39;dark&${symbol_pound}39;},&${symbol_pound}10;      {name:&${symbol_pound}39;blue&${symbol_pound}39;, shade:&${symbol_pound}39;dark&${symbol_pound}39;},&${symbol_pound}10;      {name:&${symbol_pound}39;yellow&${symbol_pound}39;, shade:&${symbol_pound}39;light&${symbol_pound}39;}&${symbol_pound}10;    ];&${symbol_pound}10;    ${symbol_dollar}scope.myColor = ${symbol_dollar}scope.colors[2]; // red&${symbol_pound}10;  }]);&${symbol_pound}10;&lt;/script&gt;&${symbol_pound}10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;  &lt;ul&gt;&${symbol_pound}10;    &lt;li ng-repeat=&quot;color in colors&quot;&gt;&${symbol_pound}10;      Name: &lt;input ng-model=&quot;color.name&quot;&gt;&${symbol_pound}10;      [&lt;a href ng-click=&quot;colors.splice(${symbol_dollar}index, 1)&quot;&gt;X&lt;/a&gt;]&${symbol_pound}10;    &lt;/li&gt;&${symbol_pound}10;    &lt;li&gt;&${symbol_pound}10;      [&lt;a href ng-click=&quot;colors.push({})&quot;&gt;add&lt;/a&gt;]&${symbol_pound}10;    &lt;/li&gt;&${symbol_pound}10;  &lt;/ul&gt;&${symbol_pound}10;  &lt;hr/&gt;&${symbol_pound}10;  Color (null not allowed):&${symbol_pound}10;  &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name for color in colors&quot;&gt;&lt;/select&gt;&lt;br&gt;&${symbol_pound}10;&${symbol_pound}10;  Color (null allowed):&${symbol_pound}10;  &lt;span  class=&quot;nullable&quot;&gt;&${symbol_pound}10;    &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name for color in colors&quot;&gt;&${symbol_pound}10;      &lt;option value=&quot;&quot;&gt;-- choose color --&lt;/option&gt;&${symbol_pound}10;    &lt;/select&gt;&${symbol_pound}10;  &lt;/span&gt;&lt;br/&gt;&${symbol_pound}10;&${symbol_pound}10;  Color grouped by shade:&${symbol_pound}10;  &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name group by color.shade for color in colors&quot;&gt;&${symbol_pound}10;  &lt;/select&gt;&lt;br/&gt;&${symbol_pound}10;&${symbol_pound}10;&${symbol_pound}10;  Select &lt;a href ng-click=&quot;myColor = { name:&${symbol_pound}39;not in list&${symbol_pound}39;, shade: &${symbol_pound}39;other&${symbol_pound}39; }&quot;&gt;bogus&lt;/a&gt;.&lt;br&gt;&${symbol_pound}10;  &lt;hr/&gt;&${symbol_pound}10;  Currently selected: {{ {selected_color:myColor} }}&${symbol_pound}10;  &lt;div style=&quot;border:solid 1px black; height:20px&quot;&${symbol_pound}10;       ng-style=&quot;{&${symbol_pound}39;background-color&${symbol_pound}39;:myColor.name}&quot;&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>it(&${symbol_pound}39;should check ng-options&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;{selected_color:myColor}&${symbol_pound}39;)).getText()).toMatch(&${symbol_pound}39;red&${symbol_pound}39;);&${symbol_pound}10;  element.all(by.model(&${symbol_pound}39;myColor&${symbol_pound}39;)).first().click();&${symbol_pound}10;  element.all(by.css(&${symbol_pound}39;select[ng-model=&quot;myColor&quot;] option&${symbol_pound}39;)).first().click();&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;{selected_color:myColor}&${symbol_pound}39;)).getText()).toMatch(&${symbol_pound}39;black&${symbol_pound}39;);&${symbol_pound}10;  element(by.css(&${symbol_pound}39;.nullable select[ng-model=&quot;myColor&quot;]&${symbol_pound}39;)).click();&${symbol_pound}10;  element.all(by.css(&${symbol_pound}39;.nullable select[ng-model=&quot;myColor&quot;] option&${symbol_pound}39;)).first().click();&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;{selected_color:myColor}&${symbol_pound}39;)).getText()).toMatch(&${symbol_pound}39;null&${symbol_pound}39;);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example95/index.html" name="example-example95"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

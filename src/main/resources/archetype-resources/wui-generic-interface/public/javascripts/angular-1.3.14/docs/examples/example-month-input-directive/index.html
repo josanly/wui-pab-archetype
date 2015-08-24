@@ -1,0 +1,40 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-month-input-directive</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  
+
+  
+</head>
+<body ng-app="monthExample">
+  <script>
+ angular.module('monthExample', [])
+   .controller('DateController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+     ${symbol_dollar}scope.example = {
+       value: new Date(2013, 9, 1)
+     };
+   }]);
+</script>
+<form name="myForm" ng-controller="DateController as dateCtrl">
+  Pick a month in 2013:
+  <input id="exampleInput" type="month" name="input" ng-model="example.value"
+     placeholder="yyyy-MM" min="2013-01" max="2013-12" required />
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.required">
+     Required!</span>
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.month">
+     Not a valid month!</span>
+  <tt>value = {{example.value | date: "yyyy-MM"}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}valid = {{myForm.input.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}error = {{myForm.input.${symbol_dollar}error}}</tt><br/>
+  <tt>myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}</tt><br/>
+</form>
+</body>
+</html>

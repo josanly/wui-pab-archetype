@@ -1,0 +1,187 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/anchorScroll.js?message=docs(${symbol_dollar}anchorScroll)%3A%20describe%20your%20change...${symbol_pound}L32' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/anchorScroll.js${symbol_pound}L32' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}anchorScroll</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  <li>
+    <a href="api/ng/provider/${symbol_dollar}anchorScrollProvider">- ${symbol_dollar}anchorScrollProvider</a>
+  </li>
+
+    <li>
+      - service in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>When called, it checks the current value of <a href="api/ng/service/${symbol_dollar}location${symbol_pound}hash">${symbol_dollar}location.hash()</a> and
+scrolls to the related element, according to the rules specified in the
+<a href="http://dev.w3.org/html5/spec/Overview.html${symbol_pound}the-indicated-part-of-the-document">Html5 spec</a>.</p>
+<p>It also watches the <a href="api/ng/service/${symbol_dollar}location${symbol_pound}hash">${symbol_dollar}location.hash()</a> and automatically scrolls to
+match any anchor whenever it changes. This can be disabled by calling
+<a href="api/ng/provider/${symbol_dollar}anchorScrollProvider${symbol_pound}disableAutoScrolling">${symbol_dollar}anchorScrollProvider.disableAutoScrolling()</a>.</p>
+<p>Additionally, you can use its <a href="api/ng/service/${symbol_dollar}anchorScroll${symbol_pound}yOffset">yOffset</a> property to specify a
+vertical scroll-offset (either fixed or dynamic).</p>
+
+</div>
+
+
+
+
+<div>
+  
+  <h2 id="dependencies">Dependencies</h2>
+  <ul>
+    <li><a href="api/ng/service/${symbol_dollar}window"><code>${symbol_dollar}window</code></a></li><li><a href="api/ng/service/${symbol_dollar}location"><code>${symbol_dollar}location</code></a></li><li><a href="api/ng/service/${symbol_dollar}rootScope"><code>${symbol_dollar}rootScope</code></a></li>
+  </ul>
+  
+
+    
+
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>${symbol_dollar}anchorScroll();</code></p>
+
+
+    
+
+    
+    
+    
+
+  
+  
+  
+<h2>Properties</h2>
+<ul class="properties">
+  <li id="yOffset">
+    <h3><code>yOffset</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-number">number</a><a href="" class="label type-hint type-hint-function">function()</a><a href="" class="label type-hint type-hint-jqlite">jqLite</a></td>
+    <td><p>If set, specifies a vertical scroll-offset. This is often useful when there are fixed
+positioned elements at the top of the page, such as navbars, headers etc.</p>
+<p><code>yOffset</code> can be specified in various ways:</p>
+<ul>
+<li><strong>number</strong>: A fixed number of pixels to be used as offset.<br /><br /></li>
+<li><strong>function</strong>: A getter function called everytime <code>${symbol_dollar}anchorScroll()</code> is executed. Must return
+a number representing the offset (in pixels).<br /><br /></li>
+<li><strong>jqLite</strong>: A jqLite/jQuery element to be used for specifying the offset. The distance from
+the top of the page to the element&${symbol_pound}39;s bottom will be used as offset.<br />
+<strong>Note</strong>: The element will be taken into account only as long as its <code>position</code> is set to
+<code>fixed</code>. This option is useful, when dealing with responsive navbars/headers that adjust
+their height and/or positioning according to the viewport&${symbol_pound}39;s size.</li>
+</ul>
+<p><br /></p>
+<div class="alert alert-warning">
+In order for <code>yOffset</code> to work properly, scrolling should take place on the document&${symbol_pound}39;s root and
+not some child element.
+</div></td>
+  </tr>
+</table>
+  </li>
+  </ul>
+
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example48', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example48"
+      module="anchorScrollExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div id=&quot;scrollArea&quot; ng-controller=&quot;ScrollController&quot;&gt;&${symbol_pound}10;  &lt;a ng-click=&quot;gotoBottom()&quot;&gt;Go to bottom&lt;/a&gt;&${symbol_pound}10;  &lt;a id=&quot;bottom&quot;&gt;&lt;/a&gt; You&${symbol_pound}39;re at the bottom!&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;anchorScrollExample&${symbol_pound}39;, [])&${symbol_pound}10;.controller(&${symbol_pound}39;ScrollController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}location&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}anchorScroll&${symbol_pound}39;,&${symbol_pound}10;  function (${symbol_dollar}scope, ${symbol_dollar}location, ${symbol_dollar}anchorScroll) {&${symbol_pound}10;    ${symbol_dollar}scope.gotoBottom = function() {&${symbol_pound}10;      // set the location.hash to the id of&${symbol_pound}10;      // the element you wish to scroll to.&${symbol_pound}10;      ${symbol_dollar}location.hash(&${symbol_pound}39;bottom&${symbol_pound}39;);&${symbol_pound}10;&${symbol_pound}10;      // call ${symbol_dollar}anchorScroll()&${symbol_pound}10;      ${symbol_dollar}anchorScroll();&${symbol_pound}10;    };&${symbol_pound}10;  }]);</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="style.css"
+      language="css"
+      type="css">
+      <pre><code>${symbol_pound}scrollArea {&${symbol_pound}10;  height: 280px;&${symbol_pound}10;  overflow: auto;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;${symbol_pound}bottom {&${symbol_pound}10;  display: block;&${symbol_pound}10;  margin-top: 2000px;&${symbol_pound}10;}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example48/index.html" name="example-example48"></iframe>
+  </div>
+</div>
+
+
+</p>
+<p><hr />
+The example below illustrates the use of a vertical scroll-offset (specified as a fixed value).
+See <a href="api/ng/service/${symbol_dollar}anchorScroll${symbol_pound}yOffset">${symbol_dollar}anchorScroll.yOffset</a> for more details.</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example49', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example49"
+      module="anchorScrollOffsetExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div class=&quot;fixed-header&quot; ng-controller=&quot;headerCtrl&quot;&gt;&${symbol_pound}10;  &lt;a href=&quot;&quot; ng-click=&quot;gotoAnchor(x)&quot; ng-repeat=&quot;x in [1,2,3,4,5]&quot;&gt;&${symbol_pound}10;    Go to anchor {{x}}&${symbol_pound}10;  &lt;/a&gt;&${symbol_pound}10;&lt;/div&gt;&${symbol_pound}10;&lt;div id=&quot;anchor{{x}}&quot; class=&quot;anchor&quot; ng-repeat=&quot;x in [1,2,3,4,5]&quot;&gt;&${symbol_pound}10;  Anchor {{x}} of 5&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;anchorScrollOffsetExample&${symbol_pound}39;, [])&${symbol_pound}10;.run([&${symbol_pound}39;${symbol_dollar}anchorScroll&${symbol_pound}39;, function(${symbol_dollar}anchorScroll) {&${symbol_pound}10;  ${symbol_dollar}anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels&${symbol_pound}10;}])&${symbol_pound}10;.controller(&${symbol_pound}39;headerCtrl&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}anchorScroll&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}location&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;,&${symbol_pound}10;  function (${symbol_dollar}anchorScroll, ${symbol_dollar}location, ${symbol_dollar}scope) {&${symbol_pound}10;    ${symbol_dollar}scope.gotoAnchor = function(x) {&${symbol_pound}10;      var newHash = &${symbol_pound}39;anchor&${symbol_pound}39; + x;&${symbol_pound}10;      if (${symbol_dollar}location.hash() !== newHash) {&${symbol_pound}10;        // set the ${symbol_dollar}location.hash to `newHash` and&${symbol_pound}10;        // ${symbol_dollar}anchorScroll will automatically scroll to it&${symbol_pound}10;        ${symbol_dollar}location.hash(&${symbol_pound}39;anchor&${symbol_pound}39; + x);&${symbol_pound}10;      } else {&${symbol_pound}10;        // call ${symbol_dollar}anchorScroll() explicitly,&${symbol_pound}10;        // since ${symbol_dollar}location.hash hasn&${symbol_pound}39;t changed&${symbol_pound}10;        ${symbol_dollar}anchorScroll();&${symbol_pound}10;      }&${symbol_pound}10;    };&${symbol_pound}10;  }&${symbol_pound}10;]);</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="style.css"
+      language="css"
+      type="css">
+      <pre><code>body {&${symbol_pound}10;  padding-top: 50px;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.anchor {&${symbol_pound}10;  border: 2px dashed DarkOrchid;&${symbol_pound}10;  padding: 10px 10px 200px 10px;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.fixed-header {&${symbol_pound}10;  background-color: rgba(0, 0, 0, 0.2);&${symbol_pound}10;  height: 50px;&${symbol_pound}10;  position: fixed;&${symbol_pound}10;  top: 0; left: 0; right: 0;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.fixed-header &gt; a {&${symbol_pound}10;  display: inline-block;&${symbol_pound}10;  margin: 5px 15px;&${symbol_pound}10;}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example49/index.html" name="example-example49"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

@@ -1,0 +1,74 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngRoute/routeParams.js?message=docs(${symbol_dollar}routeParams)%3A%20describe%20your%20change...${symbol_pound}L6' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ngRoute/routeParams.js${symbol_pound}L6' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}routeParams</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  
+
+    <li>
+      - service in module <a href="api/ngRoute">ngRoute</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>The <code>${symbol_dollar}routeParams</code> service allows you to retrieve the current set of route parameters.</p>
+<p>Requires the <a href="api/ngRoute"><code>ngRoute</code></a> module to be installed.</p>
+<p>The route parameters are a combination of <a href="api/ng/service/${symbol_dollar}location"><code>${symbol_dollar}location</code></a>&${symbol_pound}39;s
+<a href="api/ng/service/${symbol_dollar}location${symbol_pound}search"><code>search()</code></a> and <a href="api/ng/service/${symbol_dollar}location${symbol_pound}path"><code>path()</code></a>.
+The <code>path</code> parameters are extracted when the <a href="api/ngRoute/service/${symbol_dollar}route"><code>${symbol_dollar}route</code></a> path is matched.</p>
+<p>In case of parameter name collision, <code>path</code> params take precedence over <code>search</code> params.</p>
+<p>The service guarantees that the identity of the <code>${symbol_dollar}routeParams</code> object will remain unchanged
+(but its properties will likely change) even when a route change occurs.</p>
+<p>Note that the <code>${symbol_dollar}routeParams</code> are only updated <em>after</em> a route change completes successfully.
+This means that you cannot rely on <code>${symbol_dollar}routeParams</code> being correct in route resolve functions.
+Instead you can use <code>${symbol_dollar}route.current.params</code> to access the new route&${symbol_pound}39;s parameters.</p>
+
+</div>
+
+
+
+
+<div>
+  
+  <h2 id="dependencies">Dependencies</h2>
+  <ul>
+    <li><a href="api/ngRoute/service/${symbol_dollar}route"><code>${symbol_dollar}route</code></a></li>
+  </ul>
+  
+
+    
+
+  
+
+  
+  
+  
+
+
+
+  
+  <h2 id="example">Example</h2><pre><code class="lang-js">// Given:
+// URL: http://server.com/index.html${symbol_pound}/Chapter/1/Section/2?search=moby
+// Route: /Chapter/:chapterId/Section/:sectionId
+//
+// Then
+${symbol_dollar}routeParams ==&gt; {chapterId:&${symbol_pound}39;1&${symbol_pound}39;, sectionId:&${symbol_pound}39;2&${symbol_pound}39;, search:&${symbol_pound}39;moby&${symbol_pound}39;}
+</code></pre>
+
+</div>
+
+

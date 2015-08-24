@@ -1,0 +1,173 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/log.js?message=docs(${symbol_dollar}log)%3A%20describe%20your%20change...${symbol_pound}L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/log.js${symbol_pound}L3' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}log</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  <li>
+    <a href="api/ng/provider/${symbol_dollar}logProvider">- ${symbol_dollar}logProvider</a>
+  </li>
+
+    <li>
+      - service in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Simple service for logging. Default implementation safely writes the message
+into the browser&${symbol_pound}39;s console (if present).</p>
+<p>The main purpose of this service is to simplify debugging and troubleshooting.</p>
+<p>The default is to log <code>debug</code> messages. You can use
+<a href="api/ng/provider/${symbol_dollar}logProvider">ng.${symbol_dollar}logProvider${symbol_pound}debugEnabled</a> to change this.</p>
+
+</div>
+
+
+
+
+<div>
+  
+  <h2 id="dependencies">Dependencies</h2>
+  <ul>
+    <li><a href="api/ng/service/${symbol_dollar}window"><code>${symbol_dollar}window</code></a></li>
+  </ul>
+  
+
+    
+
+  
+
+  
+<h2>Methods</h2>
+<ul class="methods">
+  <li id="log">
+    <h3><p><code>log();</code></p>
+
+</h3>
+    <div><p>Write a log message</p>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="info">
+    <h3><p><code>info();</code></p>
+
+</h3>
+    <div><p>Write an information message</p>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="warn">
+    <h3><p><code>warn();</code></p>
+
+</h3>
+    <div><p>Write a warning message</p>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="error">
+    <h3><p><code>error();</code></p>
+
+</h3>
+    <div><p>Write an error message</p>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="debug">
+    <h3><p><code>debug();</code></p>
+
+</h3>
+    <div><p>Write a debug message</p>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  </ul>
+  
+  
+
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example109', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example109"
+      module="logExample">
+
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;logExample&${symbol_pound}39;, [])&${symbol_pound}10;.controller(&${symbol_pound}39;LogController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}log&${symbol_pound}39;, function(${symbol_dollar}scope, ${symbol_dollar}log) {&${symbol_pound}10;  ${symbol_dollar}scope.${symbol_dollar}log = ${symbol_dollar}log;&${symbol_pound}10;  ${symbol_dollar}scope.message = &${symbol_pound}39;Hello World!&${symbol_pound}39;;&${symbol_pound}10;}]);</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;LogController&quot;&gt;&${symbol_pound}10;  &lt;p&gt;Reload this page with open console, enter text and hit the log button...&lt;/p&gt;&${symbol_pound}10;  Message:&${symbol_pound}10;  &lt;input type=&quot;text&quot; ng-model=&quot;message&quot;/&gt;&${symbol_pound}10;  &lt;button ng-click=&quot;${symbol_dollar}log.log(message)&quot;&gt;log&lt;/button&gt;&${symbol_pound}10;  &lt;button ng-click=&quot;${symbol_dollar}log.warn(message)&quot;&gt;warn&lt;/button&gt;&${symbol_pound}10;  &lt;button ng-click=&quot;${symbol_dollar}log.info(message)&quot;&gt;info&lt;/button&gt;&${symbol_pound}10;  &lt;button ng-click=&quot;${symbol_dollar}log.error(message)&quot;&gt;error&lt;/button&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example109/index.html" name="example-example109"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

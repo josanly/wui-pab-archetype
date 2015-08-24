@@ -1,0 +1,21 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-error-${symbol_dollar}rootScope-inprog</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  <script src="app.js"></script>
+  
+
+  
+</head>
+<body ng-app="app">
+  <button ng-click="focusInput = true">Focus</button>
+<input ng-focus="count = count + 1" set-focus-if="focusInput" />
+</body>
+</html>

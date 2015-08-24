@@ -1,0 +1,101 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example108-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="intervalExample">
+  <script>
+  angular.module('intervalExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', '${symbol_dollar}interval',
+      function(${symbol_dollar}scope, ${symbol_dollar}interval) {
+        ${symbol_dollar}scope.format = 'M/d/yy h:mm:ss a';
+        ${symbol_dollar}scope.blood_1 = 100;
+        ${symbol_dollar}scope.blood_2 = 120;
+
+        var stop;
+        ${symbol_dollar}scope.fight = function() {
+          // Don't start a new fight if we are already fighting
+          if ( angular.isDefined(stop) ) return;
+
+          stop = ${symbol_dollar}interval(function() {
+            if (${symbol_dollar}scope.blood_1 > 0 && ${symbol_dollar}scope.blood_2 > 0) {
+              ${symbol_dollar}scope.blood_1 = ${symbol_dollar}scope.blood_1 - 3;
+              ${symbol_dollar}scope.blood_2 = ${symbol_dollar}scope.blood_2 - 4;
+            } else {
+              ${symbol_dollar}scope.stopFight();
+            }
+          }, 100);
+        };
+
+        ${symbol_dollar}scope.stopFight = function() {
+          if (angular.isDefined(stop)) {
+            ${symbol_dollar}interval.cancel(stop);
+            stop = undefined;
+          }
+        };
+
+        ${symbol_dollar}scope.resetFight = function() {
+          ${symbol_dollar}scope.blood_1 = 100;
+          ${symbol_dollar}scope.blood_2 = 120;
+        };
+
+        ${symbol_dollar}scope.${symbol_dollar}on('${symbol_dollar}destroy', function() {
+          // Make sure that the interval is destroyed too
+          ${symbol_dollar}scope.stopFight();
+        });
+      }])
+    // Register the 'myCurrentTime' directive factory method.
+    // We inject ${symbol_dollar}interval and dateFilter service since the factory method is DI.
+    .directive('myCurrentTime', ['${symbol_dollar}interval', 'dateFilter',
+      function(${symbol_dollar}interval, dateFilter) {
+        // return the directive link function. (compile function not needed)
+        return function(scope, element, attrs) {
+          var format,  // date format
+              stopTime; // so that we can cancel the time updates
+
+          // used to update the UI
+          function updateTime() {
+            element.text(dateFilter(new Date(), format));
+          }
+
+          // watch the expression, and update the UI on change.
+          scope.${symbol_dollar}watch(attrs.myCurrentTime, function(value) {
+            format = value;
+            updateTime();
+          });
+
+          stopTime = ${symbol_dollar}interval(updateTime, 1000);
+
+          // listen on DOM destroy (removal) event, and cancel the next UI update
+          // to prevent updating time after the DOM element was removed.
+          element.on('${symbol_dollar}destroy', function() {
+            ${symbol_dollar}interval.cancel(stopTime);
+          });
+        }
+      }]);
+</script>
+
+<div>
+  <div ng-controller="ExampleController">
+    Date format: <input ng-model="format"> <hr/>
+    Current time is: <span my-current-time="format"></span>
+    <hr/>
+    Blood 1 : <font color='red'>{{blood_1}}</font>
+    Blood 2 : <font color='red'>{{blood_2}}</font>
+    <button type="button" data-ng-click="fight()">Fight</button>
+    <button type="button" data-ng-click="stopFight()">StopFight</button>
+    <button type="button" data-ng-click="resetFight()">resetFight</button>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-ngValue-directive-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="valueExample">
+  <script>
+   angular.module('valueExample', [])
+     .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+       ${symbol_dollar}scope.names = ['pizza', 'unicorns', 'robots'];
+       ${symbol_dollar}scope.my = { favorite: 'unicorns' };
+     }]);
+</script>
+ <form ng-controller="ExampleController">
+   <h2>Which is your favorite?</h2>
+     <label ng-repeat="name in names" for="{{name}}">
+       {{name}}
+       <input type="radio"
+              ng-model="my.favorite"
+              ng-value="name"
+              id="{{name}}"
+              name="favorite">
+     </label>
+   <div>You chose {{my.favorite}}</div>
+ </form>
+</body>
+</html>

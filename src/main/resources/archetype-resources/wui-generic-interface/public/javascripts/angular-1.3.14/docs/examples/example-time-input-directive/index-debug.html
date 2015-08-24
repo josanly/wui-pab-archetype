@@ -1,0 +1,40 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-time-input-directive-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="timeExample">
+  <script>
+ angular.module('timeExample', [])
+   .controller('DateController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+     ${symbol_dollar}scope.example = {
+       value: new Date(1970, 0, 1, 14, 57, 0)
+     };
+   }]);
+</script>
+<form name="myForm" ng-controller="DateController as dateCtrl">
+   Pick a between 8am and 5pm:
+   <input type="time" id="exampleInput" name="input" ng-model="example.value"
+       placeholder="HH:mm:ss" min="08:00:00" max="17:00:00" required />
+   <span class="error" ng-show="myForm.input.${symbol_dollar}error.required">
+       Required!</span>
+   <span class="error" ng-show="myForm.input.${symbol_dollar}error.time">
+       Not a valid date!</span>
+   <tt>value = {{example.value | date: "HH:mm:ss"}}</tt><br/>
+   <tt>myForm.input.${symbol_dollar}valid = {{myForm.input.${symbol_dollar}valid}}</tt><br/>
+   <tt>myForm.input.${symbol_dollar}error = {{myForm.input.${symbol_dollar}error}}</tt><br/>
+   <tt>myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}</tt><br/>
+   <tt>myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}</tt><br/>
+</form>
+</body>
+</html>

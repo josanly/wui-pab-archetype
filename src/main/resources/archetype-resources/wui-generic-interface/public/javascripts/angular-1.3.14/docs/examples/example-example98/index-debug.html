@@ -1,0 +1,30 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example98-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="currencyExample">
+  <script>
+  angular.module('currencyExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.amount = 1234.56;
+    }]);
+</script>
+<div ng-controller="ExampleController">
+  <input type="number" ng-model="amount"> <br>
+  default currency symbol (${symbol_dollar}): <span id="currency-default">{{amount | currency}}</span><br>
+  custom currency identifier (USD${symbol_dollar}): <span id="currency-custom">{{amount | currency:"USD${symbol_dollar}"}}</span>
+  no fractions (0): <span id="currency-no-fractions">{{amount | currency:"USD${symbol_dollar}":0}}</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example84-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="initExample">
+  <script>
+  angular.module('initExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.list = [['a', 'b'], ['c', 'd']];
+    }]);
+</script>
+<div ng-controller="ExampleController">
+  <div ng-repeat="innerList in list" ng-init="outerIndex = ${symbol_dollar}index">
+    <div ng-repeat="value in innerList" ng-init="innerIndex = ${symbol_dollar}index">
+       <span class="example-init">list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

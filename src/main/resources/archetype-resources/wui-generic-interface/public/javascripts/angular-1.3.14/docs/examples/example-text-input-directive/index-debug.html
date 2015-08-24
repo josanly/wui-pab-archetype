@@ -1,0 +1,41 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-text-input-directive-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="textInputExample">
+  <script>
+  angular.module('textInputExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.example = {
+        text: 'guest',
+        word: /^${symbol_escape}s*${symbol_escape}w*${symbol_escape}s*${symbol_dollar}/
+      };
+    }]);
+</script>
+<form name="myForm" ng-controller="ExampleController">
+  Single word: <input type="text" name="input" ng-model="example.text"
+                      ng-pattern="example.word" required ng-trim="false">
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.required">
+    Required!</span>
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.pattern">
+    Single word only!</span>
+
+  <tt>text = {{example.text}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}valid = {{myForm.input.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}error = {{myForm.input.${symbol_dollar}error}}</tt><br/>
+  <tt>myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}</tt><br/>
+ </form>
+</body>
+</html>

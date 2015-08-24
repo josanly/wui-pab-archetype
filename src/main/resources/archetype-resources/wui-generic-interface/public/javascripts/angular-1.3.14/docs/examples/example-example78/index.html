@@ -1,0 +1,37 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example78</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  
+
+  
+</head>
+<body ng-app="submitExample">
+  <script>
+  angular.module('submitExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.list = [];
+      ${symbol_dollar}scope.text = 'hello';
+      ${symbol_dollar}scope.submit = function() {
+        if (${symbol_dollar}scope.text) {
+          ${symbol_dollar}scope.list.push(this.text);
+          ${symbol_dollar}scope.text = '';
+        }
+      };
+    }]);
+</script>
+<form ng-submit="submit()" ng-controller="ExampleController">
+  Enter text and hit enter:
+  <input type="text" ng-model="text" name="text" />
+  <input type="submit" id="submit" value="Submit" />
+  <pre>list={{list}}</pre>
+</form>
+</body>
+</html>

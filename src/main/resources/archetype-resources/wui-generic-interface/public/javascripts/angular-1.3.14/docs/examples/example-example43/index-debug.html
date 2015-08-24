@@ -1,0 +1,35 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example43-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
+  
+
+  
+</head>
+<body ng-app="eventExample">
+  <div ng-controller="EventController">
+  Root scope <tt>MyEvent</tt> count: {{count}}
+  <ul>
+    <li ng-repeat="i in [1]" ng-controller="EventController">
+      <button ng-click="${symbol_dollar}emit('MyEvent')">${symbol_dollar}emit('MyEvent')</button>
+      <button ng-click="${symbol_dollar}broadcast('MyEvent')">${symbol_dollar}broadcast('MyEvent')</button>
+      <br>
+      Middle scope <tt>MyEvent</tt> count: {{count}}
+      <ul>
+        <li ng-repeat="item in [1, 2]" ng-controller="EventController">
+          Leaf scope <tt>MyEvent</tt> count: {{count}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

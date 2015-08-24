@@ -1,0 +1,32 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example111-jquery</title>
+  
+
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="windowExample">
+  <script>
+  angular.module('windowExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', '${symbol_dollar}window', function(${symbol_dollar}scope, ${symbol_dollar}window) {
+      ${symbol_dollar}scope.greeting = 'Hello, World!';
+      ${symbol_dollar}scope.doGreeting = function(greeting) {
+        ${symbol_dollar}window.alert(greeting);
+      };
+    }]);
+</script>
+<div ng-controller="ExampleController">
+  <input type="text" ng-model="greeting" />
+  <button ng-click="doGreeting(greeting)">ALERT</button>
+</div>
+</body>
+</html>

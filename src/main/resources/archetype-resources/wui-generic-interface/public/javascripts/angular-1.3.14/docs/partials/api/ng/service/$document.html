@@ -1,0 +1,90 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/document.js?message=docs(${symbol_dollar}document)%3A%20describe%20your%20change...${symbol_pound}L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/document.js${symbol_pound}L3' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}document</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  
+
+    <li>
+      - service in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>A <a href="api/ng/function/angular.element">jQuery or jqLite</a> wrapper for the browser&${symbol_pound}39;s <code>window.document</code> object.</p>
+
+</div>
+
+
+
+
+<div>
+  
+  <h2 id="dependencies">Dependencies</h2>
+  <ul>
+    <li><a href="api/ng/service/${symbol_dollar}window"><code>${symbol_dollar}window</code></a></li>
+  </ul>
+  
+
+    
+
+  
+
+  
+  
+  
+
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example96', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example96"
+      module="documentExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;  &lt;p&gt;${symbol_dollar}document title: &lt;b ng-bind=&quot;title&quot;&gt;&lt;/b&gt;&lt;/p&gt;&${symbol_pound}10;  &lt;p&gt;window.document title: &lt;b ng-bind=&quot;windowTitle&quot;&gt;&lt;/b&gt;&lt;/p&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;documentExample&${symbol_pound}39;, [])&${symbol_pound}10;.controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}document&${symbol_pound}39;, function(${symbol_dollar}scope, ${symbol_dollar}document) {&${symbol_pound}10;  ${symbol_dollar}scope.title = ${symbol_dollar}document[0].title;&${symbol_pound}10;  ${symbol_dollar}scope.windowTitle = angular.element(window.document)[0].title;&${symbol_pound}10;}]);</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example96/index.html" name="example-example96"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

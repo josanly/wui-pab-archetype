@@ -1,0 +1,136 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngCsp.js?message=docs(ngCsp)%3A%20describe%20your%20change...${symbol_pound}L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/ngCsp.js${symbol_pound}L3' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">ngCsp</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Enables <a href="https://developer.mozilla.org/en/Security/CSP">CSP (Content Security Policy)</a> support.</p>
+<p>This is necessary when developing things like Google Chrome Extensions or Universal Windows Apps.</p>
+<p>CSP forbids apps to use <code>eval</code> or <code>Function(string)</code> generated functions (among other things).
+For Angular to be CSP compatible there are only two things that we need to do differently:</p>
+<ul>
+<li>don&${symbol_pound}39;t use <code>Function</code> constructor to generate optimized value getters</li>
+<li>don&${symbol_pound}39;t inject custom stylesheet into the document</li>
+</ul>
+<p>AngularJS uses <code>Function(string)</code> generated functions as a speed optimization. Applying the <code>ngCsp</code>
+directive will cause Angular to use CSP compatibility mode. When this mode is on AngularJS will
+evaluate all expressions up to 30% slower than in non-CSP mode, but no security violations will
+be raised.</p>
+<p>CSP forbids JavaScript to inline stylesheet rules. In non CSP mode Angular automatically
+includes some CSS rules (e.g. <a href="api/ng/directive/ngCloak">ngCloak</a>).
+To make those directives work in CSP mode, include the <code>angular-csp.css</code> manually.</p>
+<p>Angular tries to autodetect if CSP is active and automatically turn on the CSP-safe mode. This
+autodetection however triggers a CSP error to be logged in the console:</p>
+<pre><code>Refused to evaluate a string as JavaScript because &${symbol_pound}39;unsafe-eval&${symbol_pound}39; is not an allowed source of
+script in the following Content Security Policy directive: &quot;default-src &${symbol_pound}39;self&${symbol_pound}39;&quot;. Note that
+&${symbol_pound}39;script-src&${symbol_pound}39; was not explicitly set, so &${symbol_pound}39;default-src&${symbol_pound}39; is used as a fallback.
+</code></pre>
+<p>This error is harmless but annoying. To prevent the error from showing up, put the <code>ngCsp</code>
+directive on the root element of the application or on the <code>angular.js</code> script tag, whichever
+appears first in the html document.</p>
+<p><em>Note: This directive is only available in the <code>ng-csp</code> and <code>data-ng-csp</code> attribute form.</em></p>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    
+    <li>This directive executes at priority level 0.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    <li>as attribute:
+        <pre><code>&lt;html&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/html&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+  
+
+
+  
+  <h2 id="example">Example</h2><p>This example shows how to apply the <code>ngCsp</code> directive to the <code>html</code> tag.</p>
+<pre><code class="lang-html">&lt;!doctype html&gt;
+&lt;html ng-app ng-csp&gt;
+...
+...
+&lt;/html&gt;
+</code></pre>
+<p>// Note: the suffix <code>.csp</code> in the example name triggers
+      // csp mode in our http server!
+      
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example.csp', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example.csp"
+      name="example.csp"
+      module="cspExample"
+      ng-csp="true">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;MainController as ctrl&quot;&gt;&${symbol_pound}10;  &lt;div&gt;&${symbol_pound}10;    &lt;button ng-click=&quot;ctrl.inc()&quot; id=&quot;inc&quot;&gt;Increment&lt;/button&gt;&${symbol_pound}10;    &lt;span id=&quot;counter&quot;&gt;&${symbol_pound}10;      {{ctrl.counter}}&${symbol_pound}10;    &lt;/span&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&${symbol_pound}10;  &lt;div&gt;&${symbol_pound}10;    &lt;button ng-click=&quot;ctrl.evil()&quot; id=&quot;evil&quot;&gt;Evil&lt;/button&gt;&${symbol_pound}10;    &lt;span id=&quot;evilError&quot;&gt;&${symbol_pound}10;      {{ctrl.evilError}}&${symbol_pound}10;    &lt;/span&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;cspExample&${symbol_pound}39;, [])&${symbol_pound}10;.controller(&${symbol_pound}39;MainController&${symbol_pound}39;, function() {&${symbol_pound}10;   this.counter = 0;&${symbol_pound}10;   this.inc = function() {&${symbol_pound}10;     this.counter++;&${symbol_pound}10;   };&${symbol_pound}10;   this.evil = function() {&${symbol_pound}10;     // jshint evil:true&${symbol_pound}10;     try {&${symbol_pound}10;       eval(&${symbol_pound}39;1+2&${symbol_pound}39;);&${symbol_pound}10;     } catch (e) {&${symbol_pound}10;       this.evilError = e.message;&${symbol_pound}10;     }&${symbol_pound}10;   };&${symbol_pound}10; });</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>var util, webdriver;&${symbol_pound}10;&${symbol_pound}10;var incBtn = element(by.id(&${symbol_pound}39;inc&${symbol_pound}39;));&${symbol_pound}10;var counter = element(by.id(&${symbol_pound}39;counter&${symbol_pound}39;));&${symbol_pound}10;var evilBtn = element(by.id(&${symbol_pound}39;evil&${symbol_pound}39;));&${symbol_pound}10;var evilError = element(by.id(&${symbol_pound}39;evilError&${symbol_pound}39;));&${symbol_pound}10;&${symbol_pound}10;function getAndClearSevereErrors() {&${symbol_pound}10;  return browser.manage().logs().get(&${symbol_pound}39;browser&${symbol_pound}39;).then(function(browserLog) {&${symbol_pound}10;    return browserLog.filter(function(logEntry) {&${symbol_pound}10;      return logEntry.level.value &gt; webdriver.logging.Level.WARNING.value;&${symbol_pound}10;    });&${symbol_pound}10;  });&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;function clearErrors() {&${symbol_pound}10;  getAndClearSevereErrors();&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;function expectNoErrors() {&${symbol_pound}10;  getAndClearSevereErrors().then(function(filteredLog) {&${symbol_pound}10;    expect(filteredLog.length).toEqual(0);&${symbol_pound}10;    if (filteredLog.length) {&${symbol_pound}10;      console.log(&${symbol_pound}39;browser console errors: &${symbol_pound}39; + util.inspect(filteredLog));&${symbol_pound}10;    }&${symbol_pound}10;  });&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;function expectError(regex) {&${symbol_pound}10;  getAndClearSevereErrors().then(function(filteredLog) {&${symbol_pound}10;    var found = false;&${symbol_pound}10;    filteredLog.forEach(function(log) {&${symbol_pound}10;      if (log.message.match(regex)) {&${symbol_pound}10;        found = true;&${symbol_pound}10;      }&${symbol_pound}10;    });&${symbol_pound}10;    if (!found) {&${symbol_pound}10;      throw new Error(&${symbol_pound}39;expected an error that matches &${symbol_pound}39; + regex);&${symbol_pound}10;    }&${symbol_pound}10;  });&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;beforeEach(function() {&${symbol_pound}10;  util = require(&${symbol_pound}39;util&${symbol_pound}39;);&${symbol_pound}10;  webdriver = require(&${symbol_pound}39;protractor/node_modules/selenium-webdriver&${symbol_pound}39;);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;// For now, we only test on Chrome,&${symbol_pound}10;// as Safari does not load the page with Protractor&${symbol_pound}39;s injected scripts,&${symbol_pound}10;// and Firefox webdriver always disables content security policy (${symbol_pound}6358)&${symbol_pound}10;if (browser.params.browser !== &${symbol_pound}39;chrome&${symbol_pound}39;) {&${symbol_pound}10;  return;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should not report errors when the page is loaded&${symbol_pound}39;, function() {&${symbol_pound}10;  // clear errors so we are not dependent on previous tests&${symbol_pound}10;  clearErrors();&${symbol_pound}10;  // Need to reload the page as the page is already loaded when&${symbol_pound}10;  // we come here&${symbol_pound}10;  browser.driver.getCurrentUrl().then(function(url) {&${symbol_pound}10;    browser.get(url);&${symbol_pound}10;  });&${symbol_pound}10;  expectNoErrors();&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should evaluate expressions&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(counter.getText()).toEqual(&${symbol_pound}39;0&${symbol_pound}39;);&${symbol_pound}10;  incBtn.click();&${symbol_pound}10;  expect(counter.getText()).toEqual(&${symbol_pound}39;1&${symbol_pound}39;);&${symbol_pound}10;  expectNoErrors();&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should throw and report an error when using &quot;eval&quot;&${symbol_pound}39;, function() {&${symbol_pound}10;  evilBtn.click();&${symbol_pound}10;  expect(evilError.getText()).toMatch(/Content Security Policy/);&${symbol_pound}10;  expectError(/Content Security Policy/);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example.csp/index.html" name="example-example.csp"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

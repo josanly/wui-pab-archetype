@@ -1,0 +1,23 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example96</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  <script src="script.js"></script>
+  
+
+  
+</head>
+<body ng-app="documentExample">
+  <div ng-controller="ExampleController">
+  <p>${symbol_dollar}document title: <b ng-bind="title"></b></p>
+  <p>window.document title: <b ng-bind="windowTitle"></b></p>
+</div>
+</body>
+</html>

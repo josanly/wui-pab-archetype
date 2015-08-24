@@ -1,0 +1,263 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngInclude.js?message=docs(ngInclude)%3A%20describe%20your%20change...${symbol_pound}L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/ngInclude.js${symbol_pound}L3' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">ngInclude</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Fetches, compiles and includes an external HTML fragment.</p>
+<p>By default, the template URL is restricted to the same domain and protocol as the
+application document. This is done by calling <a href="api/ng/service/${symbol_dollar}sce${symbol_pound}getTrustedResourceUrl">${symbol_dollar}sce.getTrustedResourceUrl</a> on it. To load templates from other domains or protocols
+you may either <a href="api/ng/provider/${symbol_dollar}sceDelegateProvider${symbol_pound}resourceUrlWhitelist">whitelist them</a> or
+<a href="api/ng/service/${symbol_dollar}sce${symbol_pound}trustAsResourceUrl">wrap them</a> as trusted values. Refer to Angular&${symbol_pound}39;s <a href="api/ng/service/${symbol_dollar}sce">Strict Contextual Escaping</a>.</p>
+<p>In addition, the browser&${symbol_pound}39;s
+<a href="https://code.google.com/p/browsersec/wiki/Part2${symbol_pound}Same-origin_policy_for_XMLHttpRequest">Same Origin Policy</a>
+and <a href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing (CORS)</a>
+policy may further restrict whether the template is successfully loaded.
+For example, <code>ngInclude</code> won&${symbol_pound}39;t work for cross-domain requests on all browsers and for <code>file://</code>
+access on some browsers.</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    <li>This directive creates new scope.</li>
+    <li>This directive executes at priority level 400.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    
+      <li>as element:
+      (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).
+      <pre><code>&lt;ng-include&${symbol_pound}10;  src=&quot;&quot;&${symbol_pound}10;  [onload=&quot;&quot;]&${symbol_pound}10;  [autoscroll=&quot;&quot;]&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/ng-include&gt;</code></pre>
+      </li>
+    <li>as attribute:
+        <pre><code>&lt;ANY&${symbol_pound}10;  ng-include=&quot;&quot;&${symbol_pound}10;  [onload=&quot;&quot;]&${symbol_pound}10;  [autoscroll=&quot;&quot;]&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/ANY&gt;</code></pre>
+      </li>
+    <li>as CSS class:
+        <pre><code>&lt;ANY class=&quot;ng-include: ; [onload: ;] [autoscroll: ;]&quot;&gt; ... &lt;/ANY&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+  <h2 id="animations">Animations</h2>
+  <p>enter - animation is used to bring new content into the browser.
+leave - animation is used to animate existing content away.</p>
+<p>The enter and leave animation occur concurrently.</p>
+
+  <a href="api/ngAnimate/service/${symbol_dollar}animate">Click here</a> to learn more about the steps involved in the animation.
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        ngInclude
+        | src
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>angular expression evaluating to URL. If the source is a string constant,
+                make sure you wrap it in <strong>single</strong> quotes, e.g. <code>src=&quot;&${symbol_pound}39;myPartialTemplate.html&${symbol_pound}39;&quot;</code>.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        onload
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Expression to evaluate when a new partial is loaded.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        autoscroll
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Whether <code>ngInclude</code> should call <a href="api/ng/service/${symbol_dollar}anchorScroll">${symbol_dollar}anchorScroll</a> to scroll the viewport after the content is loaded.</p>
+<pre><code>- If the attribute is not set, disable scrolling.
+- If the attribute is set without value, enable scrolling.
+- Otherwise enable scrolling only if the expression evaluates to truthy value.
+</code></pre>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+  
+<h2>Events</h2>
+<ul class="events">
+  <li id="${symbol_dollar}includeContentRequested">
+    <h3>${symbol_dollar}includeContentRequested</h3>
+    <div><p>Emitted every time the ngInclude content is requested.</p>
+</div>
+    <div class="inline">
+      <h4>Type:</h4>
+      <div class="type">emit</div>
+    </div>
+    <div class="inline">
+      <h4>Target:</h4>
+      <div class="target">the scope ngInclude was declared in</div>
+    </div>
+    </li>
+  
+  <li id="${symbol_dollar}includeContentLoaded">
+    <h3>${symbol_dollar}includeContentLoaded</h3>
+    <div><p>Emitted every time the ngInclude content is reloaded.</p>
+</div>
+    <div class="inline">
+      <h4>Type:</h4>
+      <div class="type">emit</div>
+    </div>
+    <div class="inline">
+      <h4>Target:</h4>
+      <div class="target">the current ngInclude scope</div>
+    </div>
+    </li>
+  
+  <li id="${symbol_dollar}includeContentError">
+    <h3>${symbol_dollar}includeContentError</h3>
+    <div><p>Emitted when a template HTTP request yields an erroneous response (status &lt; 200 || status &gt; 299)</p>
+</div>
+    <div class="inline">
+      <h4>Type:</h4>
+      <div class="type">emit</div>
+    </div>
+    <div class="inline">
+      <h4>Target:</h4>
+      <div class="target">the scope ngInclude was declared in</div>
+    </div>
+    </li>
+  </ul>
+
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example83', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example83"
+      module="includeExample"
+      deps="angular-animate.js"
+      animations="true">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;  &lt;select ng-model=&quot;template&quot; ng-options=&quot;t.name for t in templates&quot;&gt;&${symbol_pound}10;   &lt;option value=&quot;&quot;&gt;(blank)&lt;/option&gt;&${symbol_pound}10;  &lt;/select&gt;&${symbol_pound}10;  url of the template: &lt;code&gt;{{template.url}}&lt;/code&gt;&${symbol_pound}10;  &lt;hr/&gt;&${symbol_pound}10;  &lt;div class=&quot;slide-animate-container&quot;&gt;&${symbol_pound}10;    &lt;div class=&quot;slide-animate&quot; ng-include=&quot;template.url&quot;&gt;&lt;/div&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;includeExample&${symbol_pound}39;, [&${symbol_pound}39;ngAnimate&${symbol_pound}39;])&${symbol_pound}10;.controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;  ${symbol_dollar}scope.templates =&${symbol_pound}10;    [ { name: &${symbol_pound}39;template1.html&${symbol_pound}39;, url: &${symbol_pound}39;template1.html&${symbol_pound}39;},&${symbol_pound}10;      { name: &${symbol_pound}39;template2.html&${symbol_pound}39;, url: &${symbol_pound}39;template2.html&${symbol_pound}39;} ];&${symbol_pound}10;  ${symbol_dollar}scope.template = ${symbol_dollar}scope.templates[0];&${symbol_pound}10;}]);</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="template1.html"
+      language="html"
+      type="html">
+      <pre><code>Content of template1.html</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="template2.html"
+      language="html"
+      type="html">
+      <pre><code>Content of template2.html</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="animations.css"
+      language="css"
+      type="css">
+      <pre><code>.slide-animate-container {&${symbol_pound}10;  position:relative;&${symbol_pound}10;  background:white;&${symbol_pound}10;  border:1px solid black;&${symbol_pound}10;  height:40px;&${symbol_pound}10;  overflow:hidden;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.slide-animate {&${symbol_pound}10;  padding:10px;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.slide-animate.ng-enter, .slide-animate.ng-leave {&${symbol_pound}10;  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&${symbol_pound}10;  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&${symbol_pound}10;&${symbol_pound}10;  position:absolute;&${symbol_pound}10;  top:0;&${symbol_pound}10;  left:0;&${symbol_pound}10;  right:0;&${symbol_pound}10;  bottom:0;&${symbol_pound}10;  display:block;&${symbol_pound}10;  padding:10px;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.slide-animate.ng-enter {&${symbol_pound}10;  top:-50px;&${symbol_pound}10;}&${symbol_pound}10;.slide-animate.ng-enter.ng-enter-active {&${symbol_pound}10;  top:0;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.slide-animate.ng-leave {&${symbol_pound}10;  top:0;&${symbol_pound}10;}&${symbol_pound}10;.slide-animate.ng-leave.ng-leave-active {&${symbol_pound}10;  top:50px;&${symbol_pound}10;}</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>var templateSelect = element(by.model(&${symbol_pound}39;template&${symbol_pound}39;));&${symbol_pound}10;var includeElem = element(by.css(&${symbol_pound}39;[ng-include]&${symbol_pound}39;));&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should load template1.html&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(includeElem.getText()).toMatch(/Content of template1.html/);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should load template2.html&${symbol_pound}39;, function() {&${symbol_pound}10;  if (browser.params.browser == &${symbol_pound}39;firefox&${symbol_pound}39;) {&${symbol_pound}10;    // Firefox can&${symbol_pound}39;t handle using selects&${symbol_pound}10;    // See https://github.com/angular/protractor/issues/480&${symbol_pound}10;    return;&${symbol_pound}10;  }&${symbol_pound}10;  templateSelect.click();&${symbol_pound}10;  templateSelect.all(by.css(&${symbol_pound}39;option&${symbol_pound}39;)).get(2).click();&${symbol_pound}10;  expect(includeElem.getText()).toMatch(/Content of template2.html/);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should change to blank&${symbol_pound}39;, function() {&${symbol_pound}10;  if (browser.params.browser == &${symbol_pound}39;firefox&${symbol_pound}39;) {&${symbol_pound}10;    // Firefox can&${symbol_pound}39;t handle using selects&${symbol_pound}10;    return;&${symbol_pound}10;  }&${symbol_pound}10;  templateSelect.click();&${symbol_pound}10;  templateSelect.all(by.css(&${symbol_pound}39;option&${symbol_pound}39;)).get(0).click();&${symbol_pound}10;  expect(includeElem.isPresent()).toBe(false);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example83/index.html" name="example-example83"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

@@ -1,0 +1,140 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngBind.js?message=docs(ngBind)%3A%20describe%20your%20change...${symbol_pound}L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/ngBind.js${symbol_pound}L3' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">ngBind</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>The <code>ngBind</code> attribute tells Angular to replace the text content of the specified HTML element
+with the value of a given expression, and to update the text content when the value of that
+expression changes.</p>
+<p>Typically, you don&${symbol_pound}39;t use <code>ngBind</code> directly, but instead you use the double curly markup like
+<code>{{ expression }}</code> which is similar but less verbose.</p>
+<p>It is preferable to use <code>ngBind</code> instead of <code>{{ expression }}</code> if a template is momentarily
+displayed by the browser in its raw state before Angular compiles it. Since <code>ngBind</code> is an
+element attribute, it makes the bindings invisible to the user while the page is loading.</p>
+<p>An alternative solution to this problem would be using the
+<a href="api/ng/directive/ngCloak">ngCloak</a> directive.</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    
+    <li>This directive executes at priority level 0.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    <li>as attribute:
+        <pre><code>&lt;ANY&${symbol_pound}10;  ng-bind=&quot;&quot;&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/ANY&gt;</code></pre>
+      </li>
+    <li>as CSS class:
+        <pre><code>&lt;ANY class=&quot;ng-bind: ;&quot;&gt; ... &lt;/ANY&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        ngBind
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-expression">expression</a>
+      </td>
+      <td>
+        <p><a href="guide/expression">Expression</a> to evaluate.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+  
+
+
+  
+  <h2 id="example">Example</h2><p>Enter a name in the Live Preview text box; the greeting below the text box changes instantly.
+   
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example59', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example59"
+      module="bindExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;script&gt;&${symbol_pound}10;  angular.module(&${symbol_pound}39;bindExample&${symbol_pound}39;, [])&${symbol_pound}10;    .controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;      ${symbol_dollar}scope.name = &${symbol_pound}39;Whirled&${symbol_pound}39;;&${symbol_pound}10;    }]);&${symbol_pound}10;&lt;/script&gt;&${symbol_pound}10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;  Enter name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;&${symbol_pound}10;  Hello &lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt;!&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>it(&${symbol_pound}39;should check ng-bind&${symbol_pound}39;, function() {&${symbol_pound}10;  var nameInput = element(by.model(&${symbol_pound}39;name&${symbol_pound}39;));&${symbol_pound}10;&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;name&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;Whirled&${symbol_pound}39;);&${symbol_pound}10;  nameInput.clear();&${symbol_pound}10;  nameInput.sendKeys(&${symbol_pound}39;world&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;name&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;world&${symbol_pound}39;);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example59/index.html" name="example-example59"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

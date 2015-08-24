@@ -1,0 +1,285 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/interpolate.js?message=docs(${symbol_dollar}interpolate)%3A%20describe%20your%20change...${symbol_pound}L91' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/interpolate.js${symbol_pound}L91' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}interpolate</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  <li>
+    <a href="api/ng/provider/${symbol_dollar}interpolateProvider">- ${symbol_dollar}interpolateProvider</a>
+  </li>
+
+    <li>
+      - service in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Compiles a string with markup into an interpolation function. This service is used by the
+HTML <a href="api/ng/service/${symbol_dollar}compile">${symbol_dollar}compile</a> service for data binding. See
+<a href="api/ng/provider/${symbol_dollar}interpolateProvider">${symbol_dollar}interpolateProvider</a> for configuring the
+interpolation markup.</p>
+<pre><code class="lang-js">var ${symbol_dollar}interpolate = ...; // injected
+var exp = ${symbol_dollar}interpolate(&${symbol_pound}39;Hello {{name | uppercase}}!&${symbol_pound}39;);
+expect(exp({name:&${symbol_pound}39;Angular&${symbol_pound}39;}).toEqual(&${symbol_pound}39;Hello ANGULAR!&${symbol_pound}39;);
+</code></pre>
+<p><code>${symbol_dollar}interpolate</code> takes an optional fourth argument, <code>allOrNothing</code>. If <code>allOrNothing</code> is
+<code>true</code>, the interpolation function will return <code>undefined</code> unless all embedded expressions
+evaluate to a value other than <code>undefined</code>.</p>
+<pre><code class="lang-js">var ${symbol_dollar}interpolate = ...; // injected
+var context = {greeting: &${symbol_pound}39;Hello&${symbol_pound}39;, name: undefined };
+
+// default &quot;forgiving&quot; mode
+var exp = ${symbol_dollar}interpolate(&${symbol_pound}39;{{greeting}} {{name}}!&${symbol_pound}39;);
+expect(exp(context)).toEqual(&${symbol_pound}39;Hello !&${symbol_pound}39;);
+
+// &quot;allOrNothing&quot; mode
+exp = ${symbol_dollar}interpolate(&${symbol_pound}39;{{greeting}} {{name}}!&${symbol_pound}39;, false, null, true);
+expect(exp(context)).toBeUndefined();
+context.name = &${symbol_pound}39;Angular&${symbol_pound}39;;
+expect(exp(context)).toEqual(&${symbol_pound}39;Hello Angular!&${symbol_pound}39;);
+</code></pre>
+<p><code>allOrNothing</code> is useful for interpolating URLs. <code>ngSrc</code> and <code>ngSrcset</code> use this behavior.</p>
+<h4 id="escaped-interpolation">Escaped Interpolation</h4>
+<p>${symbol_dollar}interpolate provides a mechanism for escaping interpolation markers. Start and end markers
+can be escaped by preceding each of their characters with a REVERSE SOLIDUS U+005C (backslash).
+It will be rendered as a regular start/end marker, and will not be interpreted as an expression
+or binding.</p>
+<p>This enables web-servers to prevent script injection attacks and defacing attacks, to some
+degree, while also enabling code examples to work without relying on the
+<a href="api/ng/directive/ngNonBindable">ngNonBindable</a> directive.</p>
+<p><strong>For security purposes, it is strongly encouraged that web servers escape user-supplied data,
+replacing angle brackets (&lt;, &gt;) with &amp;lt; and &amp;gt; respectively, and replacing all
+interpolation start/end markers with their escaped counterparts.</strong></p>
+<p>Escaped interpolation markers are only replaced with the actual interpolation markers in rendered
+output when the ${symbol_dollar}interpolate service processes the text. So, for HTML elements interpolated
+by <a href="api/ng/service/${symbol_dollar}compile">${symbol_dollar}compile</a>, or otherwise interpolated with the <code>mustHaveExpression</code> parameter
+set to <code>true</code>, the interpolated text must contain an unescaped interpolation expression. As such,
+this is typically useful only when user-data is used in rendering a template from the server, or
+when otherwise untrusted data is used by a directive.</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example107', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example107">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-init=&quot;username=&${symbol_pound}39;A user&${symbol_pound}39;&quot;&gt;&${symbol_pound}10;  &lt;p ng-init=&quot;apptitle=&${symbol_pound}39;Escaping demo&${symbol_pound}39;&quot;&gt;{{apptitle}}: ${symbol_escape}{${symbol_escape}{ username = &quot;defaced value&quot;; ${symbol_escape}}${symbol_escape}}&${symbol_pound}10;    &lt;/p&gt;&${symbol_pound}10;  &lt;p&gt;&lt;strong&gt;{{username}}&lt;/strong&gt; attempts to inject code which will deface the&${symbol_pound}10;    application, but fails to accomplish their task, because the server has correctly&${symbol_pound}10;    escaped the interpolation start/end markers with REVERSE SOLIDUS U+005C (backslash)&${symbol_pound}10;    characters.&lt;/p&gt;&${symbol_pound}10;  &lt;p&gt;Instead, the result of the attempted script injection is visible, and can be removed&${symbol_pound}10;    from the database by an administrator.&lt;/p&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example107/index.html" name="example-example107"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+
+
+
+<div>
+  
+  <h2 id="dependencies">Dependencies</h2>
+  <ul>
+    <li><a href="api/ng/service/${symbol_dollar}parse"><code>${symbol_dollar}parse</code></a></li><li><a href="api/ng/service/${symbol_dollar}sce"><code>${symbol_dollar}sce</code></a></li>
+  </ul>
+  
+
+    
+
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>${symbol_dollar}interpolate(text, [mustHaveExpression], [trustedContext], [allOrNothing]);</code></p>
+
+
+    
+
+    
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        text
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>The text with markup to interpolate.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        mustHaveExpression
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>if set to true then the interpolation string must have
+   embedded expression in order to return an interpolation function. Strings with no
+   embedded expression will return null for the interpolation function.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        trustedContext
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>when provided, the returned function passes the interpolated
+   result through <a href="api/ng/service/${symbol_dollar}sce${symbol_pound}getTrusted">${symbol_dollar}sce.getTrusted(interpolatedResult,
+   trustedContext)</a> before returning it.  Refer to the <a href="api/ng/service/${symbol_dollar}sce">${symbol_dollar}sce</a> service that
+   provides Strict Contextual Escaping for details.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        allOrNothing
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>if <code>true</code>, then the returned function returns undefined
+   unless all embedded expressions evaluate to a value other than <code>undefined</code>.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+    
+    <h3>Returns</h3>
+<table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-function">function(context)</a></td>
+    <td><p>an interpolation function which is used to compute the
+   interpolated string. The function has these parameters:</p>
+<ul>
+<li><code>context</code>: evaluation context for all expressions embedded in the interpolated text</li>
+</ul>
+</td>
+  </tr>
+</table>
+
+  
+<h2>Methods</h2>
+<ul class="methods">
+  <li id="startSymbol">
+    <h3><p><code>startSymbol();</code></p>
+
+</h3>
+    <div><p>Symbol to denote the start of expression in the interpolated string. Defaults to <code>{{</code>.</p>
+<p>Use <a href="api/ng/provider/${symbol_dollar}interpolateProvider${symbol_pound}startSymbol"><code>${symbol_dollar}interpolateProvider.startSymbol</code></a> to change
+the symbol.</p>
+</div>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-string">string</a></td>
+    <td><p>start symbol.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="endSymbol">
+    <h3><p><code>endSymbol();</code></p>
+
+</h3>
+    <div><p>Symbol to denote the end of expression in the interpolated string. Defaults to <code>}}</code>.</p>
+<p>Use <a href="api/ng/provider/${symbol_dollar}interpolateProvider${symbol_pound}endSymbol"><code>${symbol_dollar}interpolateProvider.endSymbol</code></a> to change
+the symbol.</p>
+</div>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-string">string</a></td>
+    <td><p>end symbol.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  </ul>
+  
+  
+
+
+
+  
+</div>
+
+

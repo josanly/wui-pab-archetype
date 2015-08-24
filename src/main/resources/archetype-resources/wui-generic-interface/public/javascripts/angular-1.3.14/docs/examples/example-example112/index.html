@@ -1,0 +1,63 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example112</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  <script src="../../../angular-sanitize.js"></script>
+  
+
+  
+</head>
+<body ng-app="linkyExample">
+  <script>
+  angular.module('linkyExample', ['ngSanitize'])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.snippet =
+        'Pretty text with some links:${symbol_escape}n'+
+        'http://angularjs.org/,${symbol_escape}n'+
+        'mailto:us@somewhere.org,${symbol_escape}n'+
+        'another@somewhere.org,${symbol_escape}n'+
+        'and one more: ftp://127.0.0.1/.';
+      ${symbol_dollar}scope.snippetWithTarget = 'http://angularjs.org/';
+    }]);
+</script>
+<div ng-controller="ExampleController">
+Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
+<table>
+  <tr>
+    <td>Filter</td>
+    <td>Source</td>
+    <td>Rendered</td>
+  </tr>
+  <tr id="linky-filter">
+    <td>linky filter</td>
+    <td>
+      <pre>&lt;div ng-bind-html="snippet | linky"&gt;<br>&lt;/div&gt;</pre>
+    </td>
+    <td>
+      <div ng-bind-html="snippet | linky"></div>
+    </td>
+  </tr>
+  <tr id="linky-target">
+   <td>linky target</td>
+   <td>
+     <pre>&lt;div ng-bind-html="snippetWithTarget | linky:'_blank'"&gt;<br>&lt;/div&gt;</pre>
+   </td>
+   <td>
+     <div ng-bind-html="snippetWithTarget | linky:'_blank'"></div>
+   </td>
+  </tr>
+  <tr id="escaped-html">
+    <td>no filter</td>
+    <td><pre>&lt;div ng-bind="snippet"&gt;<br>&lt;/div&gt;</pre></td>
+    <td><div ng-bind="snippet"></div></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,1289 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/rootScope.js?message=docs(${symbol_dollar}rootScope.Scope)%3A%20describe%20your%20change...${symbol_pound}L86' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/rootScope.js${symbol_pound}L86' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}rootScope.Scope</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - type in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>A root scope can be retrieved using the <a href="api/ng/service/${symbol_dollar}rootScope">${symbol_dollar}rootScope</a> key from the
+<a href="api/auto/service/${symbol_dollar}injector">${symbol_dollar}injector</a>. Child scopes are created using the
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}new">${symbol_dollar}new()</a> method. (Most scopes are created automatically when
+compiled HTML template is executed.)</p>
+<p>Here is a simple scope snippet to show how you can interact with the scope.</p>
+<pre><code class="lang-html">&lt;file src=&quot;./test/ng/rootScopeSpec.js&quot; tag=&quot;docs1&quot; /&gt;
+</code></pre>
+<h1 id="inheritance">Inheritance</h1>
+<p>A scope can inherit from a parent scope, as in this example:</p>
+<pre><code class="lang-js">var parent = ${symbol_dollar}rootScope;
+var child = parent.${symbol_dollar}new();
+
+parent.salutation = &quot;Hello&quot;;
+expect(child.salutation).toEqual(&${symbol_pound}39;Hello&${symbol_pound}39;);
+
+child.salutation = &quot;Welcome&quot;;
+expect(child.salutation).toEqual(&${symbol_pound}39;Welcome&${symbol_pound}39;);
+expect(parent.salutation).toEqual(&${symbol_pound}39;Hello&${symbol_pound}39;);
+</code></pre>
+<p>When interacting with <code>Scope</code> in tests, additional helper methods are available on the
+instances of <code>Scope</code> type. See <a href="api/ngMock/type/${symbol_dollar}rootScope.Scope">ngMock Scope</a> for additional
+details.</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+    
+
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>${symbol_dollar}rootScope.Scope([providers], [instanceCache]);</code></p>
+
+
+    
+
+    
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        providers
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">Object.&lt;string, function()&gt;=</a>
+      </td>
+      <td>
+        <p>Map of service factory which need to be
+                                      provided for the current scope. Defaults to <a href="api/ng"><code>ng</code></a>.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        instanceCache
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">Object.&lt;string, *&gt;=</a>
+      </td>
+      <td>
+        <p>Provides pre-instantiated services which should
+                             append/override services provided by <code>providers</code>. This is handy
+                             when unit-testing and having the need to override a default
+                             service.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+    
+    <h3>Returns</h3>
+<table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-object">Object</a></td>
+    <td><p>Newly created scope.</p>
+</td>
+  </tr>
+</table>
+
+  
+<h2>Methods</h2>
+<ul class="methods">
+  <li id="${symbol_dollar}new">
+    <h3><p><code>${symbol_dollar}new(isolate, parent);</code></p>
+
+</h3>
+    <div><p>Creates a new child <a href="api/ng/type/${symbol_dollar}rootScope.Scope">scope</a>.</p>
+<p>The parent scope will propagate the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest()</a> event.
+The scope can be removed from the scope hierarchy using <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}destroy">${symbol_dollar}destroy()</a>.</p>
+<p><a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}destroy">${symbol_dollar}destroy()</a> must be called on a scope when it is
+desired for the scope and its child scopes to be permanently detached from the parent and
+thus stop participating in model change detection and listener notification by invoking.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        isolate
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>If true, then the scope does not prototypically inherit from the
+        parent scope. The scope is isolated, as it can not see parent scope properties.
+        When creating widgets, it is useful for the widget to not accidentally read parent
+        state.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        parent
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-scope">Scope</a>
+      </td>
+      <td>
+        <p>The <a href="api/ng/type/${symbol_dollar}rootScope.Scope"><code>Scope</code></a> that will be the <code>${symbol_dollar}parent</code>
+                             of the newly created scope. Defaults to <code>this</code> scope if not provided.
+                             This is used when creating a transclude scope to correctly place it
+                             in the scope hierarchy while maintaining the correct prototypical
+                             inheritance.</p>
+
+        <p><em>(default: this)</em></p>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-object">Object</a></td>
+    <td><p>The newly created child scope.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}watch">
+    <h3><p><code>${symbol_dollar}watch(watchExpression, listener, [objectEquality]);</code></p>
+
+</h3>
+    <div><p>Registers a <code>listener</code> callback to be executed whenever the <code>watchExpression</code> changes.</p>
+<ul>
+<li>The <code>watchExpression</code> is called on every call to <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest()</a> and should return the value that will be watched. (Since
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest()</a> reruns when it detects changes the
+<code>watchExpression</code> can execute multiple times per
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest()</a> and should be idempotent.)</li>
+<li>The <code>listener</code> is called only when the value from the current <code>watchExpression</code> and the
+previous call to <code>watchExpression</code> are not equal (with the exception of the initial run,
+see below). Inequality is determined according to reference inequality,
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators">strict comparison</a>
+ via the <code>!==</code> Javascript operator, unless <code>objectEquality == true</code>
+(see next point)</li>
+<li>When <code>objectEquality == true</code>, inequality of the <code>watchExpression</code> is determined
+according to the <a href="api/ng/function/angular.equals"><code>angular.equals</code></a> function. To save the value of the object for
+later comparison, the <a href="api/ng/function/angular.copy"><code>angular.copy</code></a> function is used. This therefore means that
+watching complex objects will have adverse memory and performance implications.</li>
+<li>The watch <code>listener</code> may change the model, which may trigger other <code>listener</code>s to fire.
+This is achieved by rerunning the watchers until no changes are detected. The rerun
+iteration limit is 10 to prevent an infinite loop deadlock.</li>
+</ul>
+<p>If you want to be notified whenever <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest</a> is called,
+you can register a <code>watchExpression</code> function with no <code>listener</code>. (Since <code>watchExpression</code>
+can execute multiple times per <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest</a> cycle when a
+change is detected, be prepared for multiple calls to your listener.)</p>
+<p>After a watcher is registered with the scope, the <code>listener</code> fn is called asynchronously
+(via <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}evalAsync">${symbol_dollar}evalAsync</a>) to initialize the
+watcher. In rare cases, this is undesirable because the listener is called when the result
+of <code>watchExpression</code> didn&${symbol_pound}39;t change. To detect this scenario within the <code>listener</code> fn, you
+can compare the <code>newVal</code> and <code>oldVal</code>. If these two values are identical (<code>===</code>) then the
+listener was called due to initialization.</p>
+<h1 id="example">Example</h1>
+<pre><code class="lang-js">// let&${symbol_pound}39;s assume that scope was dependency injected as the ${symbol_dollar}rootScope
+var scope = ${symbol_dollar}rootScope;
+scope.name = &${symbol_pound}39;misko&${symbol_pound}39;;
+scope.counter = 0;
+
+expect(scope.counter).toEqual(0);
+scope.${symbol_dollar}watch(&${symbol_pound}39;name&${symbol_pound}39;, function(newValue, oldValue) {
+  scope.counter = scope.counter + 1;
+});
+expect(scope.counter).toEqual(0);
+
+scope.${symbol_dollar}digest();
+// the listener is always called during the first ${symbol_dollar}digest loop after it was registered
+expect(scope.counter).toEqual(1);
+
+scope.${symbol_dollar}digest();
+// but now it will not be called unless the value changes
+expect(scope.counter).toEqual(1);
+
+scope.name = &${symbol_pound}39;adam&${symbol_pound}39;;
+scope.${symbol_dollar}digest();
+expect(scope.counter).toEqual(2);
+
+
+
+// Using a function as a watchExpression
+var food;
+scope.foodCounter = 0;
+expect(scope.foodCounter).toEqual(0);
+scope.${symbol_dollar}watch(
+  // This function returns the value being watched. It is called for each turn of the ${symbol_dollar}digest loop
+  function() { return food; },
+  // This is the change listener, called when the value returned from the above function changes
+  function(newValue, oldValue) {
+    if ( newValue !== oldValue ) {
+      // Only increment the counter if the value changed
+      scope.foodCounter = scope.foodCounter + 1;
+    }
+  }
+);
+// No digest has been run so the counter will be zero
+expect(scope.foodCounter).toEqual(0);
+
+// Run the digest but since food has not changed count will still be zero
+scope.${symbol_dollar}digest();
+expect(scope.foodCounter).toEqual(0);
+
+// Update food and run digest.  Now the counter will increment
+food = &${symbol_pound}39;cheeseburger&${symbol_pound}39;;
+scope.${symbol_dollar}digest();
+expect(scope.foodCounter).toEqual(1);
+</code></pre>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        watchExpression
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-function">function()</a><a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Expression that is evaluated on each
+   <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest</a> cycle. A change in the return value triggers
+   a call to the <code>listener</code>.</p>
+<ul>
+<li><code>string</code>: Evaluated as <a href="guide/expression">expression</a></li>
+<li><code>function(scope)</code>: called with current <code>scope</code> as a parameter.</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        listener
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-function">function(newVal, oldVal, scope)</a>
+      </td>
+      <td>
+        <p>Callback called whenever the value
+   of <code>watchExpression</code> changes.</p>
+<ul>
+<li><code>newVal</code> contains the current value of the <code>watchExpression</code></li>
+<li><code>oldVal</code> contains the previous value of the <code>watchExpression</code></li>
+<li><code>scope</code> refers to the current scope</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        objectEquality
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>Compare for object equality using <a href="api/ng/function/angular.equals"><code>angular.equals</code></a> instead of
+    comparing for reference equality.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-function">function()</a></td>
+    <td><p>Returns a deregistration function for this listener.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}watchGroup">
+    <h3><p><code>${symbol_dollar}watchGroup(watchExpressions, listener);</code></p>
+
+</h3>
+    <div><p>A variant of <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">${symbol_dollar}watch()</a> where it watches an array of <code>watchExpressions</code>.
+If any one expression in the collection changes the <code>listener</code> is executed.</p>
+<ul>
+<li>The items in the <code>watchExpressions</code> array are observed via standard ${symbol_dollar}watch operation and are examined on every
+call to ${symbol_dollar}digest() to see if any items changes.</li>
+<li>The <code>listener</code> is called whenever any expression in the <code>watchExpressions</code> array changes.</li>
+</ul>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        watchExpressions
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-array">Array.&lt;string|Function(scope)&gt;</a>
+      </td>
+      <td>
+        <p>Array of expressions that will be individually
+watched using <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">${symbol_dollar}watch()</a></p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        listener
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-function">function(newValues, oldValues, scope)</a>
+      </td>
+      <td>
+        <p>Callback called whenever the return value of any
+   expression in <code>watchExpressions</code> changes
+   The <code>newValues</code> array contains the current values of the <code>watchExpressions</code>, with the indexes matching
+   those of <code>watchExpression</code>
+   and the <code>oldValues</code> array contains the previous values of the <code>watchExpressions</code>, with the indexes matching
+   those of <code>watchExpression</code>
+   The <code>scope</code> refers to the current scope.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-function">function()</a></td>
+    <td><p>Returns a de-registration function for all listeners.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}watchCollection">
+    <h3><p><code>${symbol_dollar}watchCollection(obj, listener);</code></p>
+
+</h3>
+    <div><p>Shallow watches the properties of an object and fires whenever any of the properties change
+(for arrays, this implies watching the array items; for object maps, this implies watching
+the properties). If a change is detected, the <code>listener</code> callback is fired.</p>
+<ul>
+<li>The <code>obj</code> collection is observed via standard ${symbol_dollar}watch operation and is examined on every
+call to ${symbol_dollar}digest() to see if any items have been added, removed, or moved.</li>
+<li>The <code>listener</code> is called whenever anything within the <code>obj</code> has changed. Examples include
+adding, removing, and moving items belonging to an object or array.</li>
+</ul>
+<h1 id="example">Example</h1>
+<pre><code class="lang-js">${symbol_dollar}scope.names = [&${symbol_pound}39;igor&${symbol_pound}39;, &${symbol_pound}39;matias&${symbol_pound}39;, &${symbol_pound}39;misko&${symbol_pound}39;, &${symbol_pound}39;james&${symbol_pound}39;];
+${symbol_dollar}scope.dataCount = 4;
+
+${symbol_dollar}scope.${symbol_dollar}watchCollection(&${symbol_pound}39;names&${symbol_pound}39;, function(newNames, oldNames) {
+  ${symbol_dollar}scope.dataCount = newNames.length;
+});
+
+expect(${symbol_dollar}scope.dataCount).toEqual(4);
+${symbol_dollar}scope.${symbol_dollar}digest();
+
+//still at 4 ... no changes
+expect(${symbol_dollar}scope.dataCount).toEqual(4);
+
+${symbol_dollar}scope.names.pop();
+${symbol_dollar}scope.${symbol_dollar}digest();
+
+//now there&${symbol_pound}39;s been a change
+expect(${symbol_dollar}scope.dataCount).toEqual(3);
+</code></pre>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        obj
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-function">function(scope)</a>
+      </td>
+      <td>
+        <p>Evaluated as <a href="guide/expression">expression</a>. The
+   expression value should evaluate to an object or an array which is observed on each
+   <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest</a> cycle. Any shallow change within the
+   collection will trigger a call to the <code>listener</code>.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        listener
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-function">function(newCollection, oldCollection, scope)</a>
+      </td>
+      <td>
+        <p>a callback function called
+   when a change is detected.</p>
+<ul>
+<li>The <code>newCollection</code> object is the newly modified data obtained from the <code>obj</code> expression</li>
+<li>The <code>oldCollection</code> object is a copy of the former collection data.
+Due to performance considerations, the<code>oldCollection</code> value is computed only if the
+<code>listener</code> function declares two or more arguments.</li>
+<li>The <code>scope</code> argument refers to the current scope.</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-function">function()</a></td>
+    <td><p>Returns a de-registration function for this listener. When the
+   de-registration function is executed, the internal watch operation is terminated.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}digest">
+    <h3><p><code>${symbol_dollar}digest();</code></p>
+
+</h3>
+    <div><p>Processes all of the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">watchers</a> of the current scope and
+its children. Because a <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">watcher</a>&${symbol_pound}39;s listener can change
+the model, the <code>${symbol_dollar}digest()</code> keeps calling the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">watchers</a>
+until no more listeners are firing. This means that it is possible to get into an infinite
+loop. This function will throw <code>&${symbol_pound}39;Maximum iteration limit exceeded.&${symbol_pound}39;</code> if the number of
+iterations exceeds 10.</p>
+<p>Usually, you don&${symbol_pound}39;t call <code>${symbol_dollar}digest()</code> directly in
+<a href="api/ng/directive/ngController">controllers</a> or in
+<a href="api/ng/provider/${symbol_dollar}compileProvider${symbol_pound}directive">directives</a>.
+Instead, you should call <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}apply">${symbol_dollar}apply()</a> (typically from within
+a <a href="api/ng/provider/${symbol_dollar}compileProvider${symbol_pound}directive">directive</a>), which will force a <code>${symbol_dollar}digest()</code>.</p>
+<p>If you want to be notified whenever <code>${symbol_dollar}digest()</code> is called,
+you can register a <code>watchExpression</code> function with
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">${symbol_dollar}watch()</a> with no <code>listener</code>.</p>
+<p>In unit tests, you may need to call <code>${symbol_dollar}digest()</code> to simulate the scope life cycle.</p>
+<h1 id="example">Example</h1>
+<pre><code class="lang-js">var scope = ...;
+scope.name = &${symbol_pound}39;misko&${symbol_pound}39;;
+scope.counter = 0;
+
+expect(scope.counter).toEqual(0);
+scope.${symbol_dollar}watch(&${symbol_pound}39;name&${symbol_pound}39;, function(newValue, oldValue) {
+  scope.counter = scope.counter + 1;
+});
+expect(scope.counter).toEqual(0);
+
+scope.${symbol_dollar}digest();
+// the listener is always called during the first ${symbol_dollar}digest loop after it was registered
+expect(scope.counter).toEqual(1);
+
+scope.${symbol_dollar}digest();
+// but now it will not be called unless the value changes
+expect(scope.counter).toEqual(1);
+
+scope.name = &${symbol_pound}39;adam&${symbol_pound}39;;
+scope.${symbol_dollar}digest();
+expect(scope.counter).toEqual(2);
+</code></pre>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}destroy">
+    <h3><p><code>${symbol_dollar}destroy();</code></p>
+
+</h3>
+    <div><p>Removes the current scope (and all of its children) from the parent scope. Removal implies
+that calls to <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest()</a> will no longer
+propagate to the current scope and its children. Removal also implies that the current
+scope is eligible for garbage collection.</p>
+<p>The <code>${symbol_dollar}destroy()</code> is usually used by directives such as
+<a href="api/ng/directive/ngRepeat">ngRepeat</a> for managing the
+unrolling of the loop.</p>
+<p>Just before a scope is destroyed, a <code>${symbol_dollar}destroy</code> event is broadcasted on this scope.
+Application code can register a <code>${symbol_dollar}destroy</code> event handler that will give it a chance to
+perform any necessary cleanup.</p>
+<p>Note that, in AngularJS, there is also a <code>${symbol_dollar}destroy</code> jQuery event, which can be used to
+clean up DOM bindings before an element is removed from the DOM.</p>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}eval">
+    <h3><p><code>${symbol_dollar}eval([expression], [locals]);</code></p>
+
+</h3>
+    <div><p>Executes the <code>expression</code> on the current scope and returns the result. Any exceptions in
+the expression are propagated (uncaught). This is useful when evaluating Angular
+expressions.</p>
+<h1 id="example">Example</h1>
+<pre><code class="lang-js">var scope = ng.${symbol_dollar}rootScope.Scope();
+scope.a = 1;
+scope.b = 2;
+
+expect(scope.${symbol_dollar}eval(&${symbol_pound}39;a+b&${symbol_pound}39;)).toEqual(3);
+expect(scope.${symbol_dollar}eval(function(scope){ return scope.a + scope.b; })).toEqual(3);
+</code></pre>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        expression
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-function">function()</a>
+      </td>
+      <td>
+        <p>An angular expression to be executed.</p>
+<ul>
+<li><code>string</code>: execute using the rules as defined in  <a href="guide/expression">expression</a>.</li>
+<li><code>function(scope)</code>: execute the function with the current <code>scope</code> parameter.</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        locals
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        <p>Local variables object, useful for overriding values in scope.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-object">*</a></td>
+    <td><p>The result of evaluating the expression.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}evalAsync">
+    <h3><p><code>${symbol_dollar}evalAsync([expression], [locals]);</code></p>
+
+</h3>
+    <div><p>Executes the expression on the current scope at a later point in time.</p>
+<p>The <code>${symbol_dollar}evalAsync</code> makes no guarantees as to when the <code>expression</code> will be executed, only
+that:</p>
+<ul>
+<li>it will execute after the function that scheduled the evaluation (preferably before DOM
+rendering).</li>
+<li>at least one <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest cycle</a> will be performed after
+<code>expression</code> execution.</li>
+</ul>
+<p>Any exceptions from the execution of the expression are forwarded to the
+<a href="api/ng/service/${symbol_dollar}exceptionHandler">${symbol_dollar}exceptionHandler</a> service.</p>
+<p><strong>Note:</strong> if this function is called outside of a <code>${symbol_dollar}digest</code> cycle, a new <code>${symbol_dollar}digest</code> cycle
+will be scheduled. However, it is encouraged to always call code that changes the model
+from within an <code>${symbol_dollar}apply</code> call. That includes code evaluated via <code>${symbol_dollar}evalAsync</code>.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        expression
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-function">function()</a>
+      </td>
+      <td>
+        <p>An angular expression to be executed.</p>
+<ul>
+<li><code>string</code>: execute using the rules as defined in <a href="guide/expression">expression</a>.</li>
+<li><code>function(scope)</code>: execute the function with the current <code>scope</code> parameter.</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        locals
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        <p>Local variables object, useful for overriding values in scope.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}apply">
+    <h3><p><code>${symbol_dollar}apply([exp]);</code></p>
+
+</h3>
+    <div><p><code>${symbol_dollar}apply()</code> is used to execute an expression in angular from outside of the angular
+framework. (For example from browser DOM events, setTimeout, XHR or third party libraries).
+Because we are calling into the angular framework we need to perform proper scope life
+cycle of <a href="api/ng/service/${symbol_dollar}exceptionHandler">exception handling</a>,
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">executing watches</a>.</p>
+<h2 id="life-cycle">Life cycle</h2>
+<h1 id="pseudo-code-of-apply-">Pseudo-Code of <code>${symbol_dollar}apply()</code></h1>
+<pre><code class="lang-js">function ${symbol_dollar}apply(expr) {
+  try {
+    return ${symbol_dollar}eval(expr);
+  } catch (e) {
+    ${symbol_dollar}exceptionHandler(e);
+  } finally {
+    ${symbol_dollar}root.${symbol_dollar}digest();
+  }
+}
+</code></pre>
+<p>Scope&${symbol_pound}39;s <code>${symbol_dollar}apply()</code> method transitions through the following stages:</p>
+<ol>
+<li>The <a href="guide/expression">expression</a> is executed using the
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}eval">${symbol_dollar}eval()</a> method.</li>
+<li>Any exceptions from the execution of the expression are forwarded to the
+<a href="api/ng/service/${symbol_dollar}exceptionHandler">${symbol_dollar}exceptionHandler</a> service.</li>
+<li>The <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">watch</a> listeners are fired immediately after the
+expression was executed using the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}digest">${symbol_dollar}digest()</a> method.</li>
+</ol>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        exp
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-function">function()</a>
+      </td>
+      <td>
+        <p>An angular expression to be executed.</p>
+<ul>
+<li><code>string</code>: execute using the rules as defined in <a href="guide/expression">expression</a>.</li>
+<li><code>function(scope)</code>: execute the function with current <code>scope</code> parameter.</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-object">*</a></td>
+    <td><p>The result of evaluating the expression.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}applyAsync">
+    <h3><p><code>${symbol_dollar}applyAsync([exp]);</code></p>
+
+</h3>
+    <div><p>Schedule the invocation of ${symbol_dollar}apply to occur at a later time. The actual time difference
+varies across browsers, but is typically around ~10 milliseconds.</p>
+<p>This can be used to queue up multiple expressions which need to be evaluated in the same
+digest.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        exp
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-function">function()</a>
+      </td>
+      <td>
+        <p>An angular expression to be executed.</p>
+<ul>
+<li><code>string</code>: execute using the rules as defined in <a href="guide/expression">expression</a>.</li>
+<li><code>function(scope)</code>: execute the function with current <code>scope</code> parameter.</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}on">
+    <h3><p><code>${symbol_dollar}on(name, listener);</code></p>
+
+</h3>
+    <div><p>Listens on events of a given type. See <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}emit">${symbol_dollar}emit</a> for
+discussion of event life cycle.</p>
+<p>The event listener function format is: <code>function(event, args...)</code>. The <code>event</code> object
+passed into the listener has the following attributes:</p>
+<ul>
+<li><code>targetScope</code> - <code>{Scope}</code>: the scope on which the event was <code>${symbol_dollar}emit</code>-ed or
+<code>${symbol_dollar}broadcast</code>-ed.</li>
+<li><code>currentScope</code> - <code>{Scope}</code>: the scope that is currently handling the event. Once the
+event propagates through the scope hierarchy, this property is set to null.</li>
+<li><code>name</code> - <code>{string}</code>: name of the event.</li>
+<li><code>stopPropagation</code> - <code>{function=}</code>: calling <code>stopPropagation</code> function will cancel
+further event propagation (available only for events that were <code>${symbol_dollar}emit</code>-ed).</li>
+<li><code>preventDefault</code> - <code>{function}</code>: calling <code>preventDefault</code> sets <code>defaultPrevented</code> flag
+to true.</li>
+<li><code>defaultPrevented</code> - <code>{boolean}</code>: true if <code>preventDefault</code> was called.</li>
+</ul>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        name
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Event name to listen on.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        listener
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-function">function(event, ...args)</a>
+      </td>
+      <td>
+        <p>Function to call when the event is emitted.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-function">function()</a></td>
+    <td><p>Returns a deregistration function for this listener.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}emit">
+    <h3><p><code>${symbol_dollar}emit(name, args);</code></p>
+
+</h3>
+    <div><p>Dispatches an event <code>name</code> upwards through the scope hierarchy notifying the
+registered <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on"><code>${symbol_dollar}rootScope.Scope</code></a> listeners.</p>
+<p>The event life cycle starts at the scope on which <code>${symbol_dollar}emit</code> was called. All
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on">listeners</a> listening for <code>name</code> event on this scope get
+notified. Afterwards, the event traverses upwards toward the root scope and calls all
+registered listeners along the way. The event will stop propagating if one of the listeners
+cancels it.</p>
+<p>Any exception emitted from the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on">listeners</a> will be passed
+onto the <a href="api/ng/service/${symbol_dollar}exceptionHandler">${symbol_dollar}exceptionHandler</a> service.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        name
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Event name to emit.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        args
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">*</a>
+      </td>
+      <td>
+        <p>Optional one or more arguments which will be passed onto the event listeners.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-object">Object</a></td>
+    <td><p>Event object (see <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on"><code>${symbol_dollar}rootScope.Scope</code></a>).</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="${symbol_dollar}broadcast">
+    <h3><p><code>${symbol_dollar}broadcast(name, args);</code></p>
+
+</h3>
+    <div><p>Dispatches an event <code>name</code> downwards to all child scopes (and their children) notifying the
+registered <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on"><code>${symbol_dollar}rootScope.Scope</code></a> listeners.</p>
+<p>The event life cycle starts at the scope on which <code>${symbol_dollar}broadcast</code> was called. All
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on">listeners</a> listening for <code>name</code> event on this scope get
+notified. Afterwards, the event propagates to all direct and indirect scopes of the current
+scope and calls all registered listeners along the way. The event cannot be canceled.</p>
+<p>Any exception emitted from the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on">listeners</a> will be passed
+onto the <a href="api/ng/service/${symbol_dollar}exceptionHandler">${symbol_dollar}exceptionHandler</a> service.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        name
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Event name to broadcast.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        args
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">*</a>
+      </td>
+      <td>
+        <p>Optional one or more arguments which will be passed onto the event listeners.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-object">Object</a></td>
+    <td><p>Event object, see <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}on"><code>${symbol_dollar}rootScope.Scope</code></a></p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  </ul>
+  
+<h2>Events</h2>
+<ul class="events">
+  <li id="${symbol_dollar}destroy">
+    <h3>${symbol_dollar}destroy</h3>
+    <div><p>Broadcasted when a scope and its children are being destroyed.</p>
+<p>Note that, in AngularJS, there is also a <code>${symbol_dollar}destroy</code> jQuery event, which can be used to
+clean up DOM bindings before an element is removed from the DOM.</p>
+</div>
+    <div class="inline">
+      <h4>Type:</h4>
+      <div class="type">broadcast</div>
+    </div>
+    <div class="inline">
+      <h4>Target:</h4>
+      <div class="target">scope being destroyed
+</div>
+    </div>
+    </li>
+  </ul>
+
+  
+<h2>Properties</h2>
+<ul class="properties">
+  <li id="${symbol_dollar}id">
+    <h3><code>${symbol_dollar}id</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td></td>
+    <td><p>Unique scope ID (monotonically increasing) useful for debugging.</p>
+</td>
+  </tr>
+</table>
+  </li>
+  
+  <li id="${symbol_dollar}parent">
+    <h3><code>${symbol_dollar}parent</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td></td>
+    <td><p>Reference to the parent scope.</p>
+</td>
+  </tr>
+</table>
+  </li>
+  
+  <li id="${symbol_dollar}root">
+    <h3><code>${symbol_dollar}root</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td></td>
+    <td><p>Reference to the root scope.</p>
+</td>
+  </tr>
+</table>
+  </li>
+  </ul>
+
+
+
+  
+</div>
+
+

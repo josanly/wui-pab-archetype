@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="pab-wui-archetype"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>project</directory>
+      <includes>
+        <include>**/*.properties</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>project</directory>
+      <includes>
+        <include>**/*.sbt</include>
+        <include>**/*.scala</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>README.md</include>
+      </includes>
+      <excludes>
+          	<exclude>.project</exclude>
+          	<exclude>.settings</exclude>
+          </excludes>
+    </fileSet>
+  </fileSets>
+  <modules>
+    <module id="wui-generic-core" dir="wui-generic-core" name="wui-generic-core">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/test/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/test/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>.gitignore</include>
+          </includes>
+          <excludes>
+          	<exclude>.project</exclude>
+          	<exclude>.settings</exclude>
+          </excludes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="wui-generic-interface" dir="wui-generic-interface" name="wui-generic-interface">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>app/controllers</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>test</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>public/javascripts</directory>
+          <includes>
+            <include>**/*.txt</include>
+            <include>**/*.html</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>project</directory>
+          <includes>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>public/images</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>app/views</directory>
+          <includes>
+            <include>**/*.html</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>public/javascripts</directory>
+          <includes>
+            <include>**/*.</include>
+            <include>**/*.jpg</include>
+            <include>**/*.css</include>
+            <include>**/*.scss</include>
+            <include>**/*.svg</include>
+            <include>**/*.gif</include>
+            <include>**/*.ttf</include>
+            <include>**/*.png</include>
+            <include>**/*.js</include>
+            <include>**/*.less</include>
+            <include>**/*.eot</include>
+            <include>**/*.woff</include>
+            <include>**/*.pptx</include>
+            <include>**/*.ico</include>
+            <include>**/*.md</include>
+            <include>**/*.json</include>
+            <include>**/*.map</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>public/app</directory>
+          <includes>
+            <include>**/*.js</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>project</directory>
+          <includes>
+            <include>**/*.sbt</include>
+            <include>**/*.scala</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+        <directory>conf</directory>
+          <includes>
+            <include>**/routes</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>conf</directory>
+          <includes>
+            <include>**/*.conf</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>public/stylesheets</directory>
+          <includes>
+            <include>**/*.css</include>
+            <include>**/*.svg</include>
+            <include>**/*.scss</include>
+            <include>**/*.ttf</include>
+            <include>**/*.js</include>
+            <include>**/*.woff2</include>
+            <include>**/*.eot</include>
+            <include>**/*.less</include>
+            <include>**/*.map</include>
+            <include>**/*.woff</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>public/images</directory>
+          <includes>
+            <include>**/*.ico</include>
+            <include>**/*.png</include>
+            <include>**/*.json</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>README</include>
+            <include>.gitignore</include>
+          </includes>
+          <excludes>
+          	<exclude>.project</exclude>
+          	<exclude>.settings</exclude>
+          </excludes>
+        </fileSet>
+      </fileSets>
+    </module>
+  </modules>
+</archetype-descriptor>

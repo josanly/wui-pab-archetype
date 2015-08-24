@@ -1,0 +1,316 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngRepeat.js?message=docs(ngRepeat)%3A%20describe%20your%20change...${symbol_pound}L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/ngRepeat.js${symbol_pound}L3' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">ngRepeat</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>The <code>ngRepeat</code> directive instantiates a template once per item from a collection. Each template
+instance gets its own scope, where the given loop variable is set to the current collection item,
+and <code>${symbol_dollar}index</code> is set to the item index or key.</p>
+<p>Special properties are exposed on the local scope of each template instance, including:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${symbol_dollar}index</code></td>
+<td><a href="" class="label type-hint type-hint-number">number</a></td>
+<td>iterator offset of the repeated element (0..length-1)</td>
+</tr>
+<tr>
+<td><code>${symbol_dollar}first</code></td>
+<td><a href="" class="label type-hint type-hint-boolean">boolean</a></td>
+<td>true if the repeated element is first in the iterator.</td>
+</tr>
+<tr>
+<td><code>${symbol_dollar}middle</code></td>
+<td><a href="" class="label type-hint type-hint-boolean">boolean</a></td>
+<td>true if the repeated element is between the first and last in the iterator.</td>
+</tr>
+<tr>
+<td><code>${symbol_dollar}last</code></td>
+<td><a href="" class="label type-hint type-hint-boolean">boolean</a></td>
+<td>true if the repeated element is last in the iterator.</td>
+</tr>
+<tr>
+<td><code>${symbol_dollar}even</code></td>
+<td><a href="" class="label type-hint type-hint-boolean">boolean</a></td>
+<td>true if the iterator position <code>${symbol_dollar}index</code> is even (otherwise false).</td>
+</tr>
+<tr>
+<td><code>${symbol_dollar}odd</code></td>
+<td><a href="" class="label type-hint type-hint-boolean">boolean</a></td>
+<td>true if the iterator position <code>${symbol_dollar}index</code> is odd (otherwise false).</td>
+</tr>
+</tbody>
+</table>
+<p>Creating aliases for these properties is possible with <a href="api/ng/directive/ngInit"><code>ngInit</code></a>.
+This may be useful when, for instance, nesting ngRepeats.</p>
+<h1 id="iterating-over-object-properties">Iterating over object properties</h1>
+<p>It is possible to get <code>ngRepeat</code> to iterate over the properties of an object using the following
+syntax:</p>
+<pre><code class="lang-js">&lt;div ng-repeat=&quot;(key, value) in myObj&quot;&gt; ... &lt;/div&gt;
+</code></pre>
+<p>You need to be aware that the JavaScript specification does not define what order
+it will return the keys for an object. In order to have a guaranteed deterministic order
+for the keys, Angular versions up to and including 1.3 <strong>sort the keys alphabetically</strong>.</p>
+<p>If this is not desired, the recommended workaround is to convert your object into an array
+that is sorted into the order that you prefer before providing it to <code>ngRepeat</code>.  You could
+do this with a filter such as <a href="http://ngmodules.org/modules/angular-toArrayFilter">toArrayFilter</a>
+or implement a <code>${symbol_dollar}watch</code> on the object yourself.</p>
+<p>In version 1.4 we will remove the sorting, since it seems that browsers generally follow the
+strategy of providing keys in the order in which they were defined, although there are exceptions
+when keys are deleted and reinstated.</p>
+<h1 id="tracking-and-duplicates">Tracking and Duplicates</h1>
+<p>When the contents of the collection change, <code>ngRepeat</code> makes the corresponding changes to the DOM:</p>
+<ul>
+<li>When an item is added, a new instance of the template is added to the DOM.</li>
+<li>When an item is removed, its template instance is removed from the DOM.</li>
+<li>When items are reordered, their respective templates are reordered in the DOM.</li>
+</ul>
+<p>By default, <code>ngRepeat</code> does not allow duplicate items in arrays. This is because when
+there are duplicates, it is not possible to maintain a one-to-one mapping between collection
+items and DOM elements.</p>
+<p>If you do need to repeat duplicate items, you can substitute the default tracking behavior
+with your own using the <code>track by</code> expression.</p>
+<p>For example, you may track items by the index of each item in the collection, using the
+special scope property <code>${symbol_dollar}index</code>:</p>
+<pre><code class="lang-html">&lt;div ng-repeat=&quot;n in [42, 42, 43, 43] track by ${symbol_dollar}index&quot;&gt;
+  {{n}}
+&lt;/div&gt;
+</code></pre>
+<p>You may use arbitrary expressions in <code>track by</code>, including references to custom functions
+on the scope:</p>
+<pre><code class="lang-html">&lt;div ng-repeat=&quot;n in [42, 42, 43, 43] track by myTrackingFunction(n)&quot;&gt;
+  {{n}}
+&lt;/div&gt;
+</code></pre>
+<p>If you are working with objects that have an identifier property, you can track
+by the identifier instead of the whole object. Should you reload your data later, <code>ngRepeat</code>
+will not have to rebuild the DOM elements for items it has already rendered, even if the
+JavaScript objects in the collection have been substituted for new ones:</p>
+<pre><code class="lang-html">&lt;div ng-repeat=&quot;model in collection track by model.id&quot;&gt;
+  {{model.name}}
+&lt;/div&gt;
+</code></pre>
+<p>When no <code>track by</code> expression is provided, it is equivalent to tracking by the built-in
+<code>${symbol_dollar}id</code> function, which tracks items by their identity:</p>
+<pre><code class="lang-html">&lt;div ng-repeat=&quot;obj in collection track by ${symbol_dollar}id(obj)&quot;&gt;
+  {{obj.prop}}
+&lt;/div&gt;
+</code></pre>
+<h1 id="special-repeat-start-and-end-points">Special repeat start and end points</h1>
+<p>To repeat a series of elements instead of just one parent element, ngRepeat (as well as other ng directives) supports extending
+the range of the repeater by defining explicit start and end points by using <strong>ng-repeat-start</strong> and <strong>ng-repeat-end</strong> respectively.
+The <strong>ng-repeat-start</strong> directive works the same as <strong>ng-repeat</strong>, but will repeat all the HTML code (including the tag it&${symbol_pound}39;s defined on)
+up to and including the ending HTML tag where <strong>ng-repeat-end</strong> is placed.</p>
+<p>The example below makes use of this feature:</p>
+<pre><code class="lang-html">&lt;header ng-repeat-start=&quot;item in items&quot;&gt;
+  Header {{ item }}
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body {{ item }}
+&lt;/div&gt;
+&lt;footer ng-repeat-end&gt;
+  Footer {{ item }}
+&lt;/footer&gt;
+</code></pre>
+<p>And with an input of <a href="" class="label type-hint type-hint-object">[&${symbol_pound}39;A&${symbol_pound}39;,&${symbol_pound}39;B&${symbol_pound}39;]</a> for the items variable in the example above, the output will evaluate to:</p>
+<pre><code class="lang-html">&lt;header&gt;
+  Header A
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body A
+&lt;/div&gt;
+&lt;footer&gt;
+  Footer A
+&lt;/footer&gt;
+&lt;header&gt;
+  Header B
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body B
+&lt;/div&gt;
+&lt;footer&gt;
+  Footer B
+&lt;/footer&gt;
+</code></pre>
+<p>The custom start and end points for ngRepeat also support all other HTML directive syntax flavors provided in AngularJS (such
+as <strong>data-ng-repeat-start</strong>, <strong>x-ng-repeat-start</strong> and <strong>ng:repeat-start</strong>).</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    <li>This directive creates new scope.</li>
+    <li>This directive executes at priority level 1000.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    <li>as attribute:
+        <pre><code>&lt;ANY&${symbol_pound}10;  ng-repeat=&quot;&quot;&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/ANY&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+  <h2 id="animations">Animations</h2>
+  <p><strong>.enter</strong> - when a new item is added to the list or when an item is revealed after a filter</p>
+<p><strong>.leave</strong> - when an item is removed from the list or when an item is filtered out</p>
+<p><strong>.move</strong> - when an adjacent item is filtered out causing a reorder or when the item contents are reordered</p>
+
+  <a href="api/ngAnimate/service/${symbol_dollar}animate">Click here</a> to learn more about the steps involved in the animation.
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        ngRepeat
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-repeat_expression">repeat_expression</a>
+      </td>
+      <td>
+        <p>The expression indicating how to enumerate a collection. These
+  formats are currently supported:</p>
+<ul>
+<li><p><code>variable in expression</code> – where variable is the user defined loop variable and <code>expression</code>
+is a scope expression giving the collection to enumerate.</p>
+<p>For example: <code>album in artist.albums</code>.</p>
+</li>
+<li><p><code>(key, value) in expression</code> – where <code>key</code> and <code>value</code> can be any user defined identifiers,
+and <code>expression</code> is the scope expression giving the collection to enumerate.</p>
+<p>For example: <code>(name, age) in {&${symbol_pound}39;adam&${symbol_pound}39;:10, &${symbol_pound}39;amalie&${symbol_pound}39;:12}</code>.</p>
+</li>
+<li><p><code>variable in expression track by tracking_expression</code> – You can also provide an optional tracking expression
+which can be used to associate the objects in the collection with the DOM elements. If no tracking expression
+is specified, ng-repeat associates elements by identity. It is an error to have
+more than one tracking expression value resolve to the same key. (This would mean that two distinct objects are
+mapped to the same DOM element, which is not possible.)  If filters are used in the expression, they should be
+applied before the tracking expression.</p>
+<p>For example: <code>item in items</code> is equivalent to <code>item in items track by ${symbol_dollar}id(item)</code>. This implies that the DOM elements
+will be associated by item identity in the array.</p>
+<p>For example: <code>item in items track by ${symbol_dollar}id(item)</code>. A built in <code>${symbol_dollar}id()</code> function can be used to assign a unique
+<code>${symbol_dollar}${symbol_dollar}hashKey</code> property to each item in the array. This property is then used as a key to associated DOM elements
+with the corresponding item in the array by identity. Moving the same object in array would move the DOM
+element in the same way in the DOM.</p>
+<p>For example: <code>item in items track by item.id</code> is a typical pattern when the items come from the database. In this
+case the object identity does not matter. Two objects are considered equivalent as long as their <code>id</code>
+property is same.</p>
+<p>For example: <code>item in items | filter:searchText track by item.id</code> is a pattern that might be used to apply a filter
+to items in conjunction with a tracking expression.</p>
+</li>
+<li><p><code>variable in expression as alias_expression</code> – You can also provide an optional alias expression which will then store the
+intermediate results of the repeater after the filters have been applied. Typically this is used to render a special message
+when a filter is active on the repeater, but the filtered result set is empty.</p>
+<p>For example: <code>item in items | filter:x as results</code> will store the fragment of the repeated items as <code>results</code>, but only after
+the items have been processed through the filter.</p>
+</li>
+</ul>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+  
+
+
+  
+  <h2 id="example">Example</h2><p>This example initializes the scope to a list of names and
+then uses <code>ngRepeat</code> to display every person:
+  
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example88', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example88"
+      module="ngAnimate"
+      deps="angular-animate.js"
+      animations="true">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-init=&quot;friends = [&${symbol_pound}10;  {name:&${symbol_pound}39;John&${symbol_pound}39;, age:25, gender:&${symbol_pound}39;boy&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Jessie&${symbol_pound}39;, age:30, gender:&${symbol_pound}39;girl&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Johanna&${symbol_pound}39;, age:28, gender:&${symbol_pound}39;girl&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Joy&${symbol_pound}39;, age:15, gender:&${symbol_pound}39;girl&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Mary&${symbol_pound}39;, age:28, gender:&${symbol_pound}39;girl&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Peter&${symbol_pound}39;, age:95, gender:&${symbol_pound}39;boy&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Sebastian&${symbol_pound}39;, age:50, gender:&${symbol_pound}39;boy&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Erika&${symbol_pound}39;, age:27, gender:&${symbol_pound}39;girl&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Patrick&${symbol_pound}39;, age:40, gender:&${symbol_pound}39;boy&${symbol_pound}39;},&${symbol_pound}10;  {name:&${symbol_pound}39;Samantha&${symbol_pound}39;, age:60, gender:&${symbol_pound}39;girl&${symbol_pound}39;}&${symbol_pound}10;]&quot;&gt;&${symbol_pound}10;  I have {{friends.length}} friends. They are:&${symbol_pound}10;  &lt;input type=&quot;search&quot; ng-model=&quot;q&quot; placeholder=&quot;filter friends...&quot; /&gt;&${symbol_pound}10;  &lt;ul class=&quot;example-animate-container&quot;&gt;&${symbol_pound}10;    &lt;li class=&quot;animate-repeat&quot; ng-repeat=&quot;friend in friends | filter:q as results&quot;&gt;&${symbol_pound}10;      [{{${symbol_dollar}index + 1}}] {{friend.name}} who is {{friend.age}} years old.&${symbol_pound}10;    &lt;/li&gt;&${symbol_pound}10;    &lt;li class=&quot;animate-repeat&quot; ng-if=&quot;results.length == 0&quot;&gt;&${symbol_pound}10;      &lt;strong&gt;No results found...&lt;/strong&gt;&${symbol_pound}10;    &lt;/li&gt;&${symbol_pound}10;  &lt;/ul&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="animations.css"
+      language="css"
+      type="css">
+      <pre><code>.example-animate-container {&${symbol_pound}10;  background:white;&${symbol_pound}10;  border:1px solid black;&${symbol_pound}10;  list-style:none;&${symbol_pound}10;  margin:0;&${symbol_pound}10;  padding:0 10px;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.animate-repeat {&${symbol_pound}10;  line-height:40px;&${symbol_pound}10;  list-style:none;&${symbol_pound}10;  box-sizing:border-box;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.animate-repeat.ng-move,&${symbol_pound}10;.animate-repeat.ng-enter,&${symbol_pound}10;.animate-repeat.ng-leave {&${symbol_pound}10;  -webkit-transition:all linear 0.5s;&${symbol_pound}10;  transition:all linear 0.5s;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.animate-repeat.ng-leave.ng-leave-active,&${symbol_pound}10;.animate-repeat.ng-move,&${symbol_pound}10;.animate-repeat.ng-enter {&${symbol_pound}10;  opacity:0;&${symbol_pound}10;  max-height:0;&${symbol_pound}10;}&${symbol_pound}10;&${symbol_pound}10;.animate-repeat.ng-leave,&${symbol_pound}10;.animate-repeat.ng-move.ng-move-active,&${symbol_pound}10;.animate-repeat.ng-enter.ng-enter-active {&${symbol_pound}10;  opacity:1;&${symbol_pound}10;  max-height:40px;&${symbol_pound}10;}</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>var friends = element.all(by.repeater(&${symbol_pound}39;friend in friends&${symbol_pound}39;));&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should render initial data set&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(friends.count()).toBe(10);&${symbol_pound}10;  expect(friends.get(0).getText()).toEqual(&${symbol_pound}39;[1] John who is 25 years old.&${symbol_pound}39;);&${symbol_pound}10;  expect(friends.get(1).getText()).toEqual(&${symbol_pound}39;[2] Jessie who is 30 years old.&${symbol_pound}39;);&${symbol_pound}10;  expect(friends.last().getText()).toEqual(&${symbol_pound}39;[10] Samantha who is 60 years old.&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;friends.length&${symbol_pound}39;)).getText())&${symbol_pound}10;      .toMatch(&quot;I have 10 friends. They are:&quot;);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10; it(&${symbol_pound}39;should update repeater when filter predicate changes&${symbol_pound}39;, function() {&${symbol_pound}10;   expect(friends.count()).toBe(10);&${symbol_pound}10;&${symbol_pound}10;   element(by.model(&${symbol_pound}39;q&${symbol_pound}39;)).sendKeys(&${symbol_pound}39;ma&${symbol_pound}39;);&${symbol_pound}10;&${symbol_pound}10;   expect(friends.count()).toBe(2);&${symbol_pound}10;   expect(friends.get(0).getText()).toEqual(&${symbol_pound}39;[1] Mary who is 28 years old.&${symbol_pound}39;);&${symbol_pound}10;   expect(friends.last().getText()).toEqual(&${symbol_pound}39;[2] Samantha who is 60 years old.&${symbol_pound}39;);&${symbol_pound}10; });</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example88/index.html" name="example-example88"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

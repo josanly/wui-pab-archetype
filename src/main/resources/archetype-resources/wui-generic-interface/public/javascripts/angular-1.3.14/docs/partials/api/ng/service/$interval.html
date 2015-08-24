@@ -1,0 +1,250 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/interval.js?message=docs(${symbol_dollar}interval)%3A%20describe%20your%20change...${symbol_pound}L10' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/interval.js${symbol_pound}L10' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}interval</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  
+
+    <li>
+      - service in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Angular&${symbol_pound}39;s wrapper for <code>window.setInterval</code>. The <code>fn</code> function is executed every <code>delay</code>
+milliseconds.</p>
+<p>The return value of registering an interval function is a promise. This promise will be
+notified upon each tick of the interval, and will be resolved after <code>count</code> iterations, or
+run indefinitely if <code>count</code> is not defined. The value of the notification will be the
+number of iterations that have run.
+To cancel an interval, call <code>${symbol_dollar}interval.cancel(promise)</code>.</p>
+<p>In tests you can use <a href="api/ngMock/service/${symbol_dollar}interval${symbol_pound}flush"><code>${symbol_dollar}interval.flush(millis)</code></a> to
+move forward by <code>millis</code> milliseconds and trigger any functions scheduled to run in that
+time.</p>
+<div class="alert alert-warning">
+<strong>Note</strong>: Intervals created by this service must be explicitly destroyed when you are finished
+with them.  In particular they are not automatically destroyed when a controller&${symbol_pound}39;s scope or a
+directive&${symbol_pound}39;s element are destroyed.
+You should take this into consideration and make sure to always cancel the interval at the
+appropriate moment.  See the example below for more details on how and when to do this.
+</div>
+</div>
+
+
+
+
+<div>
+  
+
+    
+
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>${symbol_dollar}interval(fn, delay, [count], [invokeApply]);</code></p>
+
+
+    
+
+    
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        fn
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-function">function()</a>
+      </td>
+      <td>
+        <p>A function that should be called repeatedly.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        delay
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-number">number</a>
+      </td>
+      <td>
+        <p>Number of milliseconds between each function call.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        count
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-number">number</a>
+      </td>
+      <td>
+        <p>Number of times to repeat. If not set, or 0, will repeat
+  indefinitely.</p>
+
+        <p><em>(default: 0)</em></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        invokeApply
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>If set to <code>false</code> skips model dirty checking, otherwise
+  will invoke <code>fn</code> within the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}apply">${symbol_dollar}apply</a> block.</p>
+
+        <p><em>(default: true)</em></p>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+    
+    <h3>Returns</h3>
+<table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-promise">promise</a></td>
+    <td><p>A promise which will be notified on each iteration.</p>
+</td>
+  </tr>
+</table>
+
+  
+<h2>Methods</h2>
+<ul class="methods">
+  <li id="cancel">
+    <h3><p><code>cancel(promise);</code></p>
+
+</h3>
+    <div><p>Cancels a task associated with the <code>promise</code>.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        promise
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-promise">promise</a>
+      </td>
+      <td>
+        <p>returned by the <code>${symbol_dollar}interval</code> function.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-boolean">boolean</a></td>
+    <td><p>Returns <code>true</code> if the task was successfully canceled.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  </ul>
+  
+  
+
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example108', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example108"
+      module="intervalExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;script&gt;&${symbol_pound}10;  angular.module(&${symbol_pound}39;intervalExample&${symbol_pound}39;, [])&${symbol_pound}10;    .controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}interval&${symbol_pound}39;,&${symbol_pound}10;      function(${symbol_dollar}scope, ${symbol_dollar}interval) {&${symbol_pound}10;        ${symbol_dollar}scope.format = &${symbol_pound}39;M/d/yy h:mm:ss a&${symbol_pound}39;;&${symbol_pound}10;        ${symbol_dollar}scope.blood_1 = 100;&${symbol_pound}10;        ${symbol_dollar}scope.blood_2 = 120;&${symbol_pound}10;&${symbol_pound}10;        var stop;&${symbol_pound}10;        ${symbol_dollar}scope.fight = function() {&${symbol_pound}10;          // Don&${symbol_pound}39;t start a new fight if we are already fighting&${symbol_pound}10;          if ( angular.isDefined(stop) ) return;&${symbol_pound}10;&${symbol_pound}10;          stop = ${symbol_dollar}interval(function() {&${symbol_pound}10;            if (${symbol_dollar}scope.blood_1 &gt; 0 &amp;&amp; ${symbol_dollar}scope.blood_2 &gt; 0) {&${symbol_pound}10;              ${symbol_dollar}scope.blood_1 = ${symbol_dollar}scope.blood_1 - 3;&${symbol_pound}10;              ${symbol_dollar}scope.blood_2 = ${symbol_dollar}scope.blood_2 - 4;&${symbol_pound}10;            } else {&${symbol_pound}10;              ${symbol_dollar}scope.stopFight();&${symbol_pound}10;            }&${symbol_pound}10;          }, 100);&${symbol_pound}10;        };&${symbol_pound}10;&${symbol_pound}10;        ${symbol_dollar}scope.stopFight = function() {&${symbol_pound}10;          if (angular.isDefined(stop)) {&${symbol_pound}10;            ${symbol_dollar}interval.cancel(stop);&${symbol_pound}10;            stop = undefined;&${symbol_pound}10;          }&${symbol_pound}10;        };&${symbol_pound}10;&${symbol_pound}10;        ${symbol_dollar}scope.resetFight = function() {&${symbol_pound}10;          ${symbol_dollar}scope.blood_1 = 100;&${symbol_pound}10;          ${symbol_dollar}scope.blood_2 = 120;&${symbol_pound}10;        };&${symbol_pound}10;&${symbol_pound}10;        ${symbol_dollar}scope.${symbol_dollar}on(&${symbol_pound}39;${symbol_dollar}destroy&${symbol_pound}39;, function() {&${symbol_pound}10;          // Make sure that the interval is destroyed too&${symbol_pound}10;          ${symbol_dollar}scope.stopFight();&${symbol_pound}10;        });&${symbol_pound}10;      }])&${symbol_pound}10;    // Register the &${symbol_pound}39;myCurrentTime&${symbol_pound}39; directive factory method.&${symbol_pound}10;    // We inject ${symbol_dollar}interval and dateFilter service since the factory method is DI.&${symbol_pound}10;    .directive(&${symbol_pound}39;myCurrentTime&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}interval&${symbol_pound}39;, &${symbol_pound}39;dateFilter&${symbol_pound}39;,&${symbol_pound}10;      function(${symbol_dollar}interval, dateFilter) {&${symbol_pound}10;        // return the directive link function. (compile function not needed)&${symbol_pound}10;        return function(scope, element, attrs) {&${symbol_pound}10;          var format,  // date format&${symbol_pound}10;              stopTime; // so that we can cancel the time updates&${symbol_pound}10;&${symbol_pound}10;          // used to update the UI&${symbol_pound}10;          function updateTime() {&${symbol_pound}10;            element.text(dateFilter(new Date(), format));&${symbol_pound}10;          }&${symbol_pound}10;&${symbol_pound}10;          // watch the expression, and update the UI on change.&${symbol_pound}10;          scope.${symbol_dollar}watch(attrs.myCurrentTime, function(value) {&${symbol_pound}10;            format = value;&${symbol_pound}10;            updateTime();&${symbol_pound}10;          });&${symbol_pound}10;&${symbol_pound}10;          stopTime = ${symbol_dollar}interval(updateTime, 1000);&${symbol_pound}10;&${symbol_pound}10;          // listen on DOM destroy (removal) event, and cancel the next UI update&${symbol_pound}10;          // to prevent updating time after the DOM element was removed.&${symbol_pound}10;          element.on(&${symbol_pound}39;${symbol_dollar}destroy&${symbol_pound}39;, function() {&${symbol_pound}10;            ${symbol_dollar}interval.cancel(stopTime);&${symbol_pound}10;          });&${symbol_pound}10;        }&${symbol_pound}10;      }]);&${symbol_pound}10;&lt;/script&gt;&${symbol_pound}10;&${symbol_pound}10;&lt;div&gt;&${symbol_pound}10;  &lt;div ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;    Date format: &lt;input ng-model=&quot;format&quot;&gt; &lt;hr/&gt;&${symbol_pound}10;    Current time is: &lt;span my-current-time=&quot;format&quot;&gt;&lt;/span&gt;&${symbol_pound}10;    &lt;hr/&gt;&${symbol_pound}10;    Blood 1 : &lt;font color=&${symbol_pound}39;red&${symbol_pound}39;&gt;{{blood_1}}&lt;/font&gt;&${symbol_pound}10;    Blood 2 : &lt;font color=&${symbol_pound}39;red&${symbol_pound}39;&gt;{{blood_2}}&lt;/font&gt;&${symbol_pound}10;    &lt;button type=&quot;button&quot; data-ng-click=&quot;fight()&quot;&gt;Fight&lt;/button&gt;&${symbol_pound}10;    &lt;button type=&quot;button&quot; data-ng-click=&quot;stopFight()&quot;&gt;StopFight&lt;/button&gt;&${symbol_pound}10;    &lt;button type=&quot;button&quot; data-ng-click=&quot;resetFight()&quot;&gt;resetFight&lt;/button&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example108/index.html" name="example-example108"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

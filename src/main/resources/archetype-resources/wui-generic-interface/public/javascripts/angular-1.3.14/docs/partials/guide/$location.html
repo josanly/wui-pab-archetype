@@ -1,0 +1,594 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/${symbol_dollar}location.ngdoc?message=docs(guide%2FUsing ${symbol_dollar}location)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+<h1 id="what-does-it-do-">What does it do?</h1>
+<p>The <code>${symbol_dollar}location</code> service parses the URL in the browser address bar (based on <a href="https://developer.mozilla.org/en/window.location"><code>window.location</code></a>) and makes the URL available to
+your application. Changes to the URL in the address bar are reflected into the <code>${symbol_dollar}location</code> service and
+changes to <code>${symbol_dollar}location</code> are reflected into the browser address bar.</p>
+<p><strong>The ${symbol_dollar}location service:</strong></p>
+<ul>
+<li>Exposes the current URL in the browser address bar, so you can<ul>
+<li>Watch and observe the URL.</li>
+<li>Change the URL.</li>
+</ul>
+</li>
+<li>Maintains synchronization between itself and the browser&${symbol_pound}39;s URL when the user<ul>
+<li>Changes the address in the browser&${symbol_pound}39;s address bar.</li>
+<li>Clicks the back or forward button in the browser (or clicks a History link).</li>
+<li>Clicks on a link in the page.</li>
+</ul>
+</li>
+<li>Represents the URL object as a set of methods (protocol, host, port, path, search, hash).</li>
+</ul>
+<h2 id="comparing-location-to-window-location-">Comparing <code>${symbol_dollar}location</code> to <code>window.location</code></h2>
+<table class="table">
+<thead>
+
+  <tr>
+    <th class="empty-corner-lt"></th>
+    <th>window.location</th>
+    <th>${symbol_dollar}location service</th>
+  </tr>
+
+</thead>
+<tbody>
+
+  <tr>
+    <td class="head">purpose</td>
+    <td>allow read/write access to the current browser location</td>
+    <td>same</td>
+  </tr>
+
+  <tr>
+    <td class="head">API</td>
+    <td>exposes &quot;raw&quot; object with properties that can be directly modified</td>
+    <td>exposes jQuery-style getters and setters</td>
+  </tr>
+
+  <tr>
+    <td class="head">integration with angular application life-cycle</td>
+    <td>none</td>
+    <td>knows about all internal life-cycle phases, integrates with <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">${symbol_dollar}watch</a>, ...</td>
+  </tr>
+
+  <tr>
+    <td class="head">seamless integration with HTML5 API</td>
+    <td>no</td>
+    <td>yes (with a fallback for legacy browsers)</td>
+  </tr>
+
+  <tr>
+    <td class="head">aware of docroot/context from which the application is loaded</td>
+    <td>no - window.location.pathname returns &quot;/docroot/actual/path&quot;</td>
+    <td>yes - ${symbol_dollar}location.path() returns &quot;/actual/path&quot;</td>
+  </tr>
+
+</tbody>
+</table>
+
+<h2 id="when-should-i-use-location-">When should I use <code>${symbol_dollar}location</code>?</h2>
+<p>Any time your application needs to react to a change in the current URL or if you want to change
+the current URL in the browser.</p>
+<h2 id="what-does-it-not-do-">What does it not do?</h2>
+<p>It does not cause a full page reload when the browser URL is changed. To reload the page after
+changing the URL, use the lower-level API, <code>${symbol_dollar}window.location.href</code>.</p>
+<h1 id="general-overview-of-the-api">General overview of the API</h1>
+<p>The <code>${symbol_dollar}location</code> service can behave differently, depending on the configuration that was provided to
+it when it was instantiated. The default configuration is suitable for many applications, for
+others customizing the configuration can enable new features.</p>
+<p>Once the <code>${symbol_dollar}location</code> service is instantiated, you can interact with it via jQuery-style getter and
+setter methods that allow you to get or change the current URL in the browser.</p>
+<h2 id="-location-service-configuration"><code>${symbol_dollar}location</code> service configuration</h2>
+<p>To configure the <code>${symbol_dollar}location</code> service, retrieve the
+<a href="api/ng/provider/${symbol_dollar}locationProvider">${symbol_dollar}locationProvider</a> and set the parameters as follows:</p>
+<ul>
+<li><p><strong>html5Mode(mode)</strong>: {boolean|Object}<br />
+<code>true</code> or <code>enabled:true</code> - see HTML5 mode<br />
+<code>false</code> or <code>enabled:false</code> - see Hashbang mode<br />
+<code>requireBase:true</code> - see Relative links<br />
+default: <code>enabled:false</code></p>
+</li>
+<li><p><strong>hashPrefix(prefix)</strong>: {string}<br />
+prefix used for Hashbang URLs (used in Hashbang mode or in legacy browser in Html5 mode)<br />
+default: <code>&quot;&quot;</code></p>
+</li>
+</ul>
+<h3 id="example-configuration">Example configuration</h3>
+<pre><code class="lang-js">${symbol_dollar}locationProvider.html5Mode(true).hashPrefix(&${symbol_pound}39;!&${symbol_pound}39;);
+</code></pre>
+<h2 id="getter-and-setter-methods">Getter and setter methods</h2>
+<p><code>${symbol_dollar}location</code> service provides getter methods for read-only parts of the URL (absUrl, protocol, host,
+port) and getter / setter methods for url, path, search, hash:</p>
+<pre><code class="lang-js">// get the current path
+${symbol_dollar}location.path();
+
+// change the path
+${symbol_dollar}location.path(&${symbol_pound}39;/newValue&${symbol_pound}39;)
+</code></pre>
+<p>All of the setter methods return the same <code>${symbol_dollar}location</code> object to allow chaining. For example, to
+change multiple segments in one go, chain setters like this:</p>
+<pre><code class="lang-js">${symbol_dollar}location.path(&${symbol_pound}39;/newValue&${symbol_pound}39;).search({key: value});
+</code></pre>
+<h2 id="replace-method">Replace method</h2>
+<p>There is a special <code>replace</code> method which can be used to tell the ${symbol_dollar}location service that the next
+time the ${symbol_dollar}location service is synced with the browser, the last history record should be replaced
+instead of creating a new one. This is useful when you want to implement redirection, which would
+otherwise break the back button (navigating back would retrigger the redirection). To change the
+current URL without creating a new browser history record you can call:</p>
+<pre><code class="lang-js">${symbol_dollar}location.path(&${symbol_pound}39;/someNewPath&${symbol_pound}39;);
+${symbol_dollar}location.replace();
+// or you can chain these as: ${symbol_dollar}location.path(&${symbol_pound}39;/someNewPath&${symbol_pound}39;).replace();
+</code></pre>
+<p>Note that the setters don&${symbol_pound}39;t update <code>window.location</code> immediately. Instead, the <code>${symbol_dollar}location</code> service is
+aware of the <a href="api/ng/type/${symbol_dollar}rootScope.Scope">scope</a> life-cycle and coalesces multiple <code>${symbol_dollar}location</code>
+mutations into one &quot;commit&quot; to the <code>window.location</code> object during the scope <code>${symbol_dollar}digest</code> phase. Since
+multiple changes to the ${symbol_dollar}location&${symbol_pound}39;s state will be pushed to the browser as a single change, it&${symbol_pound}39;s
+enough to call the <code>replace()</code> method just once to make the entire &quot;commit&quot; a replace operation
+rather than an addition to the browser history. Once the browser is updated, the ${symbol_dollar}location service
+resets the flag set by <code>replace()</code> method and future mutations will create new history records,
+unless <code>replace()</code> is called again.</p>
+<h3 id="setters-and-character-encoding">Setters and character encoding</h3>
+<p>You can pass special characters to <code>${symbol_dollar}location</code> service and it will encode them according to rules
+specified in <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>. When you access the methods:</p>
+<ul>
+<li>All values that are passed to <code>${symbol_dollar}location</code> setter methods, <code>path()</code>, <code>search()</code>, <code>hash()</code>, are
+encoded.</li>
+<li>Getters (calls to methods without parameters) return decoded values for the following methods
+<code>path()</code>, <code>search()</code>, <code>hash()</code>.</li>
+<li>When you call the <code>absUrl()</code> method, the returned value is a full url with its segments encoded.</li>
+<li>When you call the <code>url()</code> method, the returned value is path, search and hash, in the form
+<code>/path?search=a&amp;b=c${symbol_pound}hash</code>. The segments are encoded as well.</li>
+</ul>
+<h1 id="hashbang-and-html5-modes">Hashbang and HTML5 Modes</h1>
+<p><code>${symbol_dollar}location</code> service has two configuration modes which control the format of the URL in the browser
+address bar: <strong>Hashbang mode</strong> (the default) and the <strong>HTML5 mode</strong> which is based on using the
+HTML5 <a href="http://www.w3.org/TR/html5/introduction.html${symbol_pound}history-0">History API</a>. Applications use the same API in
+both modes and the <code>${symbol_dollar}location</code> service will work with appropriate URL segments and browser APIs to
+facilitate the browser URL change and history management.</p>
+<p><img src="img/guide/hashbang_vs_regular_url.jpg"></p>
+<table class="table">
+<thead>
+
+  <tr>
+    <th class="empty-corner-lt"></th>
+    <th>Hashbang mode</th>
+    <th>HTML5 mode</th>
+  </tr>
+
+</thead>
+<tbody>
+
+  <tr>
+    <td class="head">configuration</td>
+    <td>the default</td>
+    <td>{ html5Mode: true }</td>
+  </tr>
+
+  <tr>
+    <td class="head">URL format</td>
+    <td>hashbang URLs in all browsers</td>
+    <td>regular URLs in modern browser, hashbang URLs in old browser</td>
+  </tr>
+
+  <tr>
+    <td class="head">&lt;a href=&quot;&quot;&gt; link rewriting</td>
+    <td>no</td>
+    <td>yes</td>
+  </tr>
+
+  <tr>
+    <td class="head">requires server-side configuration</td>
+    <td>no</td>
+    <td>yes</td>
+  </tr>
+</tbody>
+</table>
+
+<h2 id="hashbang-mode-default-mode-">Hashbang mode (default mode)</h2>
+<p>In this mode, <code>${symbol_dollar}location</code> uses Hashbang URLs in all browsers.
+Angular also does not intercept and rewrite links in this mode. I.e. links work
+as expected and also perform full page reloads when other parts of the url
+than the hash fragment was changed.</p>
+<h3 id="example">Example</h3>
+<pre><code class="lang-js">it(&${symbol_pound}39;should show example&${symbol_pound}39;, inject(
+  function(${symbol_dollar}locationProvider) {
+    ${symbol_dollar}locationProvider.html5Mode(false);
+    ${symbol_dollar}locationProvider.hashPrefix(&${symbol_pound}39;!&${symbol_pound}39;);
+  },
+  function(${symbol_dollar}location) {
+    // open http://example.com/base/index.html${symbol_pound}!/a
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/base/index.html${symbol_pound}!/a&${symbol_pound}39;
+    ${symbol_dollar}location.path() == &${symbol_pound}39;/a&${symbol_pound}39;
+
+    ${symbol_dollar}location.path(&${symbol_pound}39;/foo&${symbol_pound}39;)
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/base/index.html${symbol_pound}!/foo&${symbol_pound}39;
+
+    ${symbol_dollar}location.search() == {}
+    ${symbol_dollar}location.search({a: &${symbol_pound}39;b&${symbol_pound}39;, c: true});
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/base/index.html${symbol_pound}!/foo?a=b&amp;c&${symbol_pound}39;
+
+    ${symbol_dollar}location.path(&${symbol_pound}39;/new&${symbol_pound}39;).search(&${symbol_pound}39;x=y&${symbol_pound}39;);
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/base/index.html${symbol_pound}!/new?x=y&${symbol_pound}39;
+  }
+));
+</code></pre>
+<h2 id="html5-mode">HTML5 mode</h2>
+<p>In HTML5 mode, the <code>${symbol_dollar}location</code> service getters and setters interact with the browser URL address
+through the HTML5 history API. This allows for use of regular URL path and search segments,
+instead of their hashbang equivalents. If the HTML5 History API is not supported by a browser, the
+<code>${symbol_dollar}location</code> service will fall back to using the hashbang URLs automatically. This frees you from
+having to worry about whether the browser displaying your app supports the history API  or not; the
+<code>${symbol_dollar}location</code> service transparently uses the best available option.</p>
+<ul>
+<li>Opening a regular URL in a legacy browser -&gt; redirects to a hashbang URL</li>
+<li>Opening hashbang URL in a modern browser -&gt; rewrites to a regular URL</li>
+</ul>
+<p>Note that in this mode, Angular intercepts all links (subject to the &quot;Html link rewriting&quot; rules below)
+and updates the url in a way that never performs a full page reload.</p>
+<h3 id="example">Example</h3>
+<pre><code class="lang-js">it(&${symbol_pound}39;should show example&${symbol_pound}39;, inject(
+  function(${symbol_dollar}locationProvider) {
+    ${symbol_dollar}locationProvider.html5Mode(true);
+    ${symbol_dollar}locationProvider.hashPrefix(&${symbol_pound}39;!&${symbol_pound}39;);
+  },
+  function(${symbol_dollar}location) {
+    // in browser with HTML5 history support:
+    // open http://example.com/${symbol_pound}!/a -&gt; rewrite to http://example.com/a
+    // (replacing the http://example.com/${symbol_pound}!/a history record)
+    ${symbol_dollar}location.path() == &${symbol_pound}39;/a&${symbol_pound}39;
+
+    ${symbol_dollar}location.path(&${symbol_pound}39;/foo&${symbol_pound}39;);
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/foo&${symbol_pound}39;
+
+    ${symbol_dollar}location.search() == {}
+    ${symbol_dollar}location.search({a: &${symbol_pound}39;b&${symbol_pound}39;, c: true});
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/foo?a=b&amp;c&${symbol_pound}39;
+
+    ${symbol_dollar}location.path(&${symbol_pound}39;/new&${symbol_pound}39;).search(&${symbol_pound}39;x=y&${symbol_pound}39;);
+    ${symbol_dollar}location.url() == &${symbol_pound}39;new?x=y&${symbol_pound}39;
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/new?x=y&${symbol_pound}39;
+
+    // in browser without html5 history support:
+    // open http://example.com/new?x=y -&gt; redirect to http://example.com/${symbol_pound}!/new?x=y
+    // (again replacing the http://example.com/new?x=y history item)
+    ${symbol_dollar}location.path() == &${symbol_pound}39;/new&${symbol_pound}39;
+    ${symbol_dollar}location.search() == {x: &${symbol_pound}39;y&${symbol_pound}39;}
+
+    ${symbol_dollar}location.path(&${symbol_pound}39;/foo/bar&${symbol_pound}39;);
+    ${symbol_dollar}location.path() == &${symbol_pound}39;/foo/bar&${symbol_pound}39;
+    ${symbol_dollar}location.url() == &${symbol_pound}39;/foo/bar?x=y&${symbol_pound}39;
+    ${symbol_dollar}location.absUrl() == &${symbol_pound}39;http://example.com/${symbol_pound}!/foo/bar?x=y&${symbol_pound}39;
+  }
+));
+</code></pre>
+<h3 id="fallback-for-legacy-browsers">Fallback for legacy browsers</h3>
+<p>For browsers that support the HTML5 history API, <code>${symbol_dollar}location</code> uses the HTML5 history API to write
+path and search. If the history API is not supported by a browser, <code>${symbol_dollar}location</code> supplies a Hasbang
+URL. This frees you from having to worry about whether the browser viewing your app supports the
+history API  or not; the <code>${symbol_dollar}location</code> service makes this transparent to you.</p>
+<h3 id="html-link-rewriting">Html link rewriting</h3>
+<p>When you use HTML5 history API mode, you will not need special hashbang links. All you have to do
+is specify regular URL links, such as: <code>&lt;a href=&quot;/some?foo=bar&quot;&gt;link&lt;/a&gt;</code></p>
+<p>When a user clicks on this link,</p>
+<ul>
+<li>In a legacy browser, the URL changes to <code>/index.html${symbol_pound}!/some?foo=bar</code></li>
+<li>In a modern browser, the URL changes to <code>/some?foo=bar</code></li>
+</ul>
+<p>In cases like the following, links are not rewritten; instead, the browser will perform a full page
+reload to the original link.</p>
+<ul>
+<li>Links that contain <code>target</code> element<br>
+Example: <code>&lt;a href=&quot;/ext/link?a=b&quot; target=&quot;_self&quot;&gt;link&lt;/a&gt;</code></li>
+<li>Absolute links that go to a different domain<br>
+Example: <code>&lt;a href=&quot;http://angularjs.org/&quot;&gt;link&lt;/a&gt;</code></li>
+<li>Links starting with &${symbol_pound}39;/&${symbol_pound}39; that lead to a different base path<br>
+Example: <code>&lt;a href=&quot;/not-my-base/link&quot;&gt;link&lt;/a&gt;</code></li>
+</ul>
+<h3 id="relative-links">Relative links</h3>
+<p>Be sure to check all relative links, images, scripts etc. Angular requires you to specify the url
+base in the head of your main html file (<code>&lt;base href=&quot;/my-base&quot;&gt;</code>) unless <code>html5Mode.requireBase</code> is
+set to <code>false</code> in the html5Mode definition object passed to <code>${symbol_dollar}locationProvider.html5Mode()</code>. With
+that, relative urls will always be resolved to this base url, even if the initial url of the
+document was different.</p>
+<p>There is one exception: Links that only contain a hash fragment (e.g. <code>&lt;a href=&quot;${symbol_pound}target&quot;&gt;</code>)
+will only change <code>${symbol_dollar}location.hash()</code> and not modify the url otherwise. This is useful for scrolling
+to anchors on the same page without needing to know on which page the user currently is.</p>
+<h3 id="server-side">Server side</h3>
+<p>Using this mode requires URL rewriting on server side, basically you have to rewrite all your links
+to entry point of your application (e.g. index.html). Requiring a <code>&lt;base&gt;</code> tag is also important for
+this case, as it allows Angular to differentiate between the part of the url that is the application
+base and the path that should be handled by the application.</p>
+<h3 id="sending-links-among-different-browsers">Sending links among different browsers</h3>
+<p>Because of rewriting capability in HTML5 mode, your users will be able to open regular url links in
+legacy browsers and hashbang links in modern browser:</p>
+<ul>
+<li>Modern browser will rewrite hashbang URLs to regular URLs.</li>
+<li>Older browsers will redirect regular URLs to hashbang URLs.</li>
+</ul>
+<h3 id="example">Example</h3>
+<p>Here you can see two <code>${symbol_dollar}location</code> instances, both in <strong>Html5 mode</strong>, but on different browsers, so
+that you can see the differences. These <code>${symbol_dollar}location</code> services are connected to a fake browsers. Each
+input represents the address bar of the browser.</p>
+<p>Note that when you type hashbang url into first browser (or vice versa) it doesn&${symbol_pound}39;t rewrite /
+redirect to regular / hashbang url, as this conversion happens only during parsing the initial URL
+= on page reload.</p>
+<p>In these examples we use <code>&lt;base href=&quot;/base/index.html&quot; /&gt;</code></p>
+<h4 id="browser-in-html5-mode">Browser in HTML5 mode</h4>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-location-html5-mode', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-location-html5-mode"
+      module="html5-mode"
+      name="location-html5-mode">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;LocationController&quot;&gt;&${symbol_pound}10;  &lt;div ng-address-bar&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&${symbol_pound}10;  &lt;div&gt;&${symbol_pound}10;    ${symbol_dollar}location.protocol() = &lt;span ng-bind=&quot;${symbol_dollar}location.protocol()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.host() = &lt;span ng-bind=&quot;${symbol_dollar}location.host()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.port() = &lt;span ng-bind=&quot;${symbol_dollar}location.port()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.path() = &lt;span ng-bind=&quot;${symbol_dollar}location.path()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.search() = &lt;span ng-bind=&quot;${symbol_dollar}location.search()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.hash() = &lt;span ng-bind=&quot;${symbol_dollar}location.hash()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;  &lt;div id=&quot;navigation&quot;&gt;&${symbol_pound}10;    &lt;a href=&quot;http://www.example.com/base/first?a=b&quot;&gt;/base/first?a=b&lt;/a&gt; |&${symbol_pound}10;    &lt;a href=&quot;http://www.example.com/base/sec/ond?flag${symbol_pound}hash&quot;&gt;sec/ond?flag${symbol_pound}hash&lt;/a&gt; |&${symbol_pound}10;    &lt;a href=&quot;/other-base/another?search&quot;&gt;external&lt;/a&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="app.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;html5-mode&${symbol_pound}39;, [&${symbol_pound}39;fake-browser&${symbol_pound}39;, &${symbol_pound}39;address-bar&${symbol_pound}39;])&${symbol_pound}10;&${symbol_pound}10;.constant(&${symbol_pound}39;initUrl&${symbol_pound}39;, &${symbol_pound}39;http://www.example.com/base/path?a=b${symbol_pound}h&${symbol_pound}39;)&${symbol_pound}10;.constant(&${symbol_pound}39;baseHref&${symbol_pound}39;, &${symbol_pound}39;/base/index.html&${symbol_pound}39;)&${symbol_pound}10;.value(&${symbol_pound}39;${symbol_dollar}sniffer&${symbol_pound}39;, { history: true })&${symbol_pound}10;&${symbol_pound}10;.controller(&quot;LocationController&quot;, function(${symbol_dollar}scope, ${symbol_dollar}location) {&${symbol_pound}10;  ${symbol_dollar}scope.${symbol_dollar}location = {};&${symbol_pound}10;  angular.forEach(&quot;protocol host port path search hash&quot;.split(&quot; &quot;), function(method){&${symbol_pound}10;   ${symbol_dollar}scope.${symbol_dollar}location[method] = function(){&${symbol_pound}10;     var result = ${symbol_dollar}location[method].call(${symbol_dollar}location);&${symbol_pound}10;     return angular.isObject(result) ? angular.toJson(result) : result;&${symbol_pound}10;   };&${symbol_pound}10;  });&${symbol_pound}10;})&${symbol_pound}10;&${symbol_pound}10;.config(function(${symbol_dollar}locationProvider) {&${symbol_pound}10;  ${symbol_dollar}locationProvider.html5Mode(true).hashPrefix(&${symbol_pound}39;!&${symbol_pound}39;);&${symbol_pound}10;})&${symbol_pound}10;&${symbol_pound}10;.run(function(${symbol_dollar}rootElement) {&${symbol_pound}10;  ${symbol_dollar}rootElement.on(&${symbol_pound}39;click&${symbol_pound}39;, function(e) { e.stopPropagation(); });&${symbol_pound}10;});</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="fakeBrowser.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;fake-browser&${symbol_pound}39;, [])&${symbol_pound}10;&${symbol_pound}10;.config(function(${symbol_dollar}provide) {&${symbol_pound}10; ${symbol_dollar}provide.decorator(&${symbol_pound}39;${symbol_dollar}browser&${symbol_pound}39;, function(${symbol_dollar}delegate, baseHref, initUrl) {&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.onUrlChange = function(fn) {&${symbol_pound}10;     this.urlChange = fn;&${symbol_pound}10;   };&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.url = function() {&${symbol_pound}10;     return initUrl;&${symbol_pound}10;  };&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.defer = function(fn, delay) {&${symbol_pound}10;     setTimeout(function() { fn(); }, delay || 0);&${symbol_pound}10;   };&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.baseHref = function() {&${symbol_pound}10;     return baseHref;&${symbol_pound}10;   };&${symbol_pound}10;&${symbol_pound}10;   return ${symbol_dollar}delegate;&${symbol_pound}10; });&${symbol_pound}10;});</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="addressBar.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;address-bar&${symbol_pound}39;, [])&${symbol_pound}10;.directive(&${symbol_pound}39;ngAddressBar&${symbol_pound}39;, function(${symbol_dollar}browser, ${symbol_dollar}timeout) {&${symbol_pound}10;   return {&${symbol_pound}10;     template: &${symbol_pound}39;Address: &lt;input id=&quot;addressBar&quot; type=&quot;text&quot; style=&quot;width: 400px&quot; &gt;&${symbol_pound}39;,&${symbol_pound}10;     link: function(scope, element, attrs){&${symbol_pound}10;       var input = element.children(&quot;input&quot;), delay;&${symbol_pound}10;&${symbol_pound}10;       input.on(&${symbol_pound}39;keypress keyup keydown&${symbol_pound}39;, function(event) {&${symbol_pound}10;               delay = (!delay ? ${symbol_dollar}timeout(fireUrlChange, 250) : null);&${symbol_pound}10;               event.stopPropagation();&${symbol_pound}10;             })&${symbol_pound}10;            .val(${symbol_dollar}browser.url());&${symbol_pound}10;&${symbol_pound}10;       ${symbol_dollar}browser.url = function(url) {&${symbol_pound}10;         return url ? input.val(url) : input.val();&${symbol_pound}10;       };&${symbol_pound}10;&${symbol_pound}10;       function fireUrlChange() {&${symbol_pound}10;         delay = null;&${symbol_pound}10;         ${symbol_dollar}browser.urlChange(input.val());&${symbol_pound}10;       }&${symbol_pound}10;     }&${symbol_pound}10;   };&${symbol_pound}10; });</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>var addressBar = element(by.css(&quot;${symbol_pound}addressBar&quot;)),&${symbol_pound}10;    url = &${symbol_pound}39;http://www.example.com/base/path?a=b${symbol_pound}h&${symbol_pound}39;;&${symbol_pound}10;&${symbol_pound}10;&${symbol_pound}10;it(&quot;should show fake browser info on load&quot;, function(){&${symbol_pound}10;  expect(addressBar.getAttribute(&${symbol_pound}39;value&${symbol_pound}39;)).toBe(url);&${symbol_pound}10;&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.protocol()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;http&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.host()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;www.example.com&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.port()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;80&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.path()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;/path&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.search()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;{&quot;a&quot;:&quot;b&quot;}&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.hash()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;h&${symbol_pound}39;);&${symbol_pound}10;&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&quot;should change ${symbol_dollar}location accordingly&quot;, function(){&${symbol_pound}10;  var navigation = element.all(by.css(&quot;${symbol_pound}navigation a&quot;));&${symbol_pound}10;&${symbol_pound}10;  navigation.get(0).click();&${symbol_pound}10;&${symbol_pound}10;  expect(addressBar.getAttribute(&${symbol_pound}39;value&${symbol_pound}39;)).toBe(&quot;http://www.example.com/base/first?a=b&quot;);&${symbol_pound}10;&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.protocol()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;http&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.host()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;www.example.com&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.port()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;80&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.path()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;/first&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.search()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;{&quot;a&quot;:&quot;b&quot;}&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.hash()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;&${symbol_pound}39;);&${symbol_pound}10;&${symbol_pound}10;&${symbol_pound}10;  navigation.get(1).click();&${symbol_pound}10;&${symbol_pound}10;  expect(addressBar.getAttribute(&${symbol_pound}39;value&${symbol_pound}39;)).toBe(&quot;http://www.example.com/base/sec/ond?flag${symbol_pound}hash&quot;);&${symbol_pound}10;&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.protocol()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;http&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.host()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;www.example.com&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.port()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;80&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.path()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;/sec/ond&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.search()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;{&quot;flag&quot;:true}&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.hash()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;hash&${symbol_pound}39;);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-location-html5-mode/index.html" name="example-location-html5-mode"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h4 id="browser-in-html5-fallback-mode-hashbang-mode-">Browser in HTML5 Fallback mode (Hashbang mode)</h4>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-location-hashbang-mode', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-location-hashbang-mode"
+      module="hashbang-mode"
+      name="location-hashbang-mode">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;LocationController&quot;&gt;&${symbol_pound}10;  &lt;div ng-address-bar&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&${symbol_pound}10;  &lt;div&gt;&${symbol_pound}10;    ${symbol_dollar}location.protocol() = &lt;span ng-bind=&quot;${symbol_dollar}location.protocol()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.host() = &lt;span ng-bind=&quot;${symbol_dollar}location.host()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.port() = &lt;span ng-bind=&quot;${symbol_dollar}location.port()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.path() = &lt;span ng-bind=&quot;${symbol_dollar}location.path()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.search() = &lt;span ng-bind=&quot;${symbol_dollar}location.search()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;    ${symbol_dollar}location.hash() = &lt;span ng-bind=&quot;${symbol_dollar}location.hash()&quot;&gt;&lt;/span&gt; &lt;br&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;  &lt;div id=&quot;navigation&quot;&gt;&${symbol_pound}10;    &lt;a href=&quot;http://www.example.com/base/first?a=b&quot;&gt;/base/first?a=b&lt;/a&gt; |&${symbol_pound}10;    &lt;a href=&quot;http://www.example.com/base/sec/ond?flag${symbol_pound}hash&quot;&gt;sec/ond?flag${symbol_pound}hash&lt;/a&gt; |&${symbol_pound}10;    &lt;a href=&quot;/other-base/another?search&quot;&gt;external&lt;/a&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="app.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;hashbang-mode&${symbol_pound}39;, [&${symbol_pound}39;fake-browser&${symbol_pound}39;, &${symbol_pound}39;address-bar&${symbol_pound}39;])&${symbol_pound}10;&${symbol_pound}10;.constant(&${symbol_pound}39;initUrl&${symbol_pound}39;, &${symbol_pound}39;http://www.example.com/base/index.html${symbol_pound}!/path?a=b${symbol_pound}h&${symbol_pound}39;)&${symbol_pound}10;.constant(&${symbol_pound}39;baseHref&${symbol_pound}39;, &${symbol_pound}39;/base/index.html&${symbol_pound}39;)&${symbol_pound}10;.value(&${symbol_pound}39;${symbol_dollar}sniffer&${symbol_pound}39;, { history: false })&${symbol_pound}10;&${symbol_pound}10;.config(function(${symbol_dollar}locationProvider) {&${symbol_pound}10;  ${symbol_dollar}locationProvider.html5Mode(true).hashPrefix(&${symbol_pound}39;!&${symbol_pound}39;);&${symbol_pound}10;})&${symbol_pound}10;&${symbol_pound}10;.controller(&quot;LocationController&quot;, function(${symbol_dollar}scope, ${symbol_dollar}location) {&${symbol_pound}10;  ${symbol_dollar}scope.${symbol_dollar}location = {};&${symbol_pound}10;  angular.forEach(&quot;protocol host port path search hash&quot;.split(&quot; &quot;), function(method){&${symbol_pound}10;    ${symbol_dollar}scope.${symbol_dollar}location[method] = function(){&${symbol_pound}10;      var result = ${symbol_dollar}location[method].call(${symbol_dollar}location);&${symbol_pound}10;      return angular.isObject(result) ? angular.toJson(result) : result;&${symbol_pound}10;    };&${symbol_pound}10;  });&${symbol_pound}10;})&${symbol_pound}10;&${symbol_pound}10;.run(function(${symbol_dollar}rootElement) {&${symbol_pound}10;  ${symbol_dollar}rootElement.on(&${symbol_pound}39;click&${symbol_pound}39;, function(e) {&${symbol_pound}10;    e.stopPropagation();&${symbol_pound}10;  });&${symbol_pound}10;});</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="fakeBrowser.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;fake-browser&${symbol_pound}39;, [])&${symbol_pound}10;&${symbol_pound}10;.config(function(${symbol_dollar}provide) {&${symbol_pound}10; ${symbol_dollar}provide.decorator(&${symbol_pound}39;${symbol_dollar}browser&${symbol_pound}39;, function(${symbol_dollar}delegate, baseHref, initUrl) {&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.onUrlChange = function(fn) {&${symbol_pound}10;     this.urlChange = fn;&${symbol_pound}10;   };&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.url = function() {&${symbol_pound}10;     return initUrl;&${symbol_pound}10;  };&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.defer = function(fn, delay) {&${symbol_pound}10;     setTimeout(function() { fn(); }, delay || 0);&${symbol_pound}10;   };&${symbol_pound}10;&${symbol_pound}10;  ${symbol_dollar}delegate.baseHref = function() {&${symbol_pound}10;     return baseHref;&${symbol_pound}10;   };&${symbol_pound}10;&${symbol_pound}10;   return ${symbol_dollar}delegate;&${symbol_pound}10; });&${symbol_pound}10;});</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="addressBar.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;address-bar&${symbol_pound}39;, [])&${symbol_pound}10;.directive(&${symbol_pound}39;ngAddressBar&${symbol_pound}39;, function(${symbol_dollar}browser, ${symbol_dollar}timeout) {&${symbol_pound}10;   return {&${symbol_pound}10;     template: &${symbol_pound}39;Address: &lt;input id=&quot;addressBar&quot; type=&quot;text&quot; style=&quot;width: 400px&quot; &gt;&${symbol_pound}39;,&${symbol_pound}10;     link: function(scope, element, attrs){&${symbol_pound}10;       var input = element.children(&quot;input&quot;), delay;&${symbol_pound}10;&${symbol_pound}10;       input.on(&${symbol_pound}39;keypress keyup keydown&${symbol_pound}39;, function(event) {&${symbol_pound}10;               delay = (!delay ? ${symbol_dollar}timeout(fireUrlChange, 250) : null);&${symbol_pound}10;               event.stopPropagation();&${symbol_pound}10;             })&${symbol_pound}10;            .val(${symbol_dollar}browser.url());&${symbol_pound}10;&${symbol_pound}10;       ${symbol_dollar}browser.url = function(url) {&${symbol_pound}10;         return url ? input.val(url) : input.val();&${symbol_pound}10;       };&${symbol_pound}10;&${symbol_pound}10;       function fireUrlChange() {&${symbol_pound}10;         delay = null;&${symbol_pound}10;         ${symbol_dollar}browser.urlChange(input.val());&${symbol_pound}10;       }&${symbol_pound}10;     }&${symbol_pound}10;   };&${symbol_pound}10; });</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>var addressBar = element(by.css(&quot;${symbol_pound}addressBar&quot;)),&${symbol_pound}10;     url = &${symbol_pound}39;http://www.example.com/base/index.html${symbol_pound}!/path?a=b${symbol_pound}h&${symbol_pound}39;;&${symbol_pound}10;&${symbol_pound}10;it(&quot;should show fake browser info on load&quot;, function(){&${symbol_pound}10;  expect(addressBar.getAttribute(&${symbol_pound}39;value&${symbol_pound}39;)).toBe(url);&${symbol_pound}10;&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.protocol()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;http&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.host()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;www.example.com&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.port()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;80&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.path()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;/path&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.search()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;{&quot;a&quot;:&quot;b&quot;}&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.hash()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;h&${symbol_pound}39;);&${symbol_pound}10;&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&quot;should change ${symbol_dollar}location accordingly&quot;, function(){&${symbol_pound}10;  var navigation = element.all(by.css(&quot;${symbol_pound}navigation a&quot;));&${symbol_pound}10;&${symbol_pound}10;  navigation.get(0).click();&${symbol_pound}10;&${symbol_pound}10;  expect(addressBar.getAttribute(&${symbol_pound}39;value&${symbol_pound}39;)).toBe(&quot;http://www.example.com/base/index.html${symbol_pound}!/first?a=b&quot;);&${symbol_pound}10;&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.protocol()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;http&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.host()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;www.example.com&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.port()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;80&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.path()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;/first&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.search()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;{&quot;a&quot;:&quot;b&quot;}&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.hash()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;&${symbol_pound}39;);&${symbol_pound}10;&${symbol_pound}10;&${symbol_pound}10;  navigation.get(1).click();&${symbol_pound}10;&${symbol_pound}10;  expect(addressBar.getAttribute(&${symbol_pound}39;value&${symbol_pound}39;)).toBe(&quot;http://www.example.com/base/index.html${symbol_pound}!/sec/ond?flag${symbol_pound}hash&quot;);&${symbol_pound}10;&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.protocol()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;http&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.host()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;www.example.com&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.port()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;80&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.path()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;/sec/ond&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.search()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;{&quot;flag&quot;:true}&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.binding(&${symbol_pound}39;${symbol_dollar}location.hash()&${symbol_pound}39;)).getText()).toBe(&${symbol_pound}39;hash&${symbol_pound}39;);&${symbol_pound}10;&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-location-hashbang-mode/index.html" name="example-location-hashbang-mode"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h1 id="caveats">Caveats</h1>
+<h2 id="page-reload-navigation">Page reload navigation</h2>
+<p>The <code>${symbol_dollar}location</code> service allows you to change only the URL; it does not allow you to reload the
+page. When you need to change the URL and reload the page or navigate to a different page, please
+use a lower level API, <a href="api/ng/service/${symbol_dollar}window">${symbol_dollar}window.location.href</a>.</p>
+<h2 id="using-location-outside-of-the-scope-life-cycle">Using ${symbol_dollar}location outside of the scope life-cycle</h2>
+<p><code>${symbol_dollar}location</code> knows about Angular&${symbol_pound}39;s <a href="api/ng/type/${symbol_dollar}rootScope.Scope">scope</a> life-cycle. When a URL changes in
+the browser it updates the <code>${symbol_dollar}location</code> and calls <code>${symbol_dollar}apply</code> so that all
+<a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">${symbol_dollar}watchers</a> /
+<a href="api/ng/type/${symbol_dollar}compile.directive.Attributes${symbol_pound}${symbol_dollar}observe">${symbol_dollar}observers</a> are notified.
+When you change the <code>${symbol_dollar}location</code> inside the <code>${symbol_dollar}digest</code> phase everything is ok; <code>${symbol_dollar}location</code> will
+propagate this change into browser and will notify all the <a href="api/ng/type/${symbol_dollar}rootScope.Scope${symbol_pound}${symbol_dollar}watch">${symbol_dollar}watchers</a> /
+<a href="api/ng/type/${symbol_dollar}compile.directive.Attributes${symbol_pound}${symbol_dollar}observe">${symbol_dollar}observers</a>.
+When you want to change the <code>${symbol_dollar}location</code> from outside Angular (for example, through a DOM Event or
+during testing) - you must call <code>${symbol_dollar}apply</code> to propagate the changes.</p>
+<h2 id="-location-path-and-or-prefixes">${symbol_dollar}location.path() and ! or / prefixes</h2>
+<p>A path should always begin with forward slash (<code>/</code>); the <code>${symbol_dollar}location.path()</code> setter will add the
+forward slash if it is missing.</p>
+<p>Note that the <code>!</code> prefix in the hashbang mode is not part of <code>${symbol_dollar}location.path()</code>; it is actually
+hashPrefix.</p>
+<h2 id="crawling-your-app">Crawling your app</h2>
+<p>To allow indexing of your AJAX application, you have to add special meta tag in the head section of
+your document:</p>
+<pre><code class="lang-html">&lt;meta name=&quot;fragment&quot; content=&quot;!&quot; /&gt;
+</code></pre>
+<p>This will cause crawler bot to request links with <code>_escaped_fragment_</code> param so that your server
+can recognize the crawler and serve a HTML snapshots. For more information about this technique,
+see <a href="http://code.google.com/web/ajaxcrawling/docs/specification.html">Making AJAX Applications
+Crawlable</a>.</p>
+<h1 id="testing-with-the-location-service">Testing with the ${symbol_dollar}location service</h1>
+<p>When using <code>${symbol_dollar}location</code> service during testing, you are outside of the angular&${symbol_pound}39;s <a href="api/ng/type/${symbol_dollar}rootScope.Scope">scope</a> life-cycle. This means it&${symbol_pound}39;s your responsibility to call <code>scope.${symbol_dollar}apply()</code>.</p>
+<pre><code class="lang-js">describe(&${symbol_pound}39;serviceUnderTest&${symbol_pound}39;, function() {
+  beforeEach(module(function(${symbol_dollar}provide) {
+    ${symbol_dollar}provide.factory(&${symbol_pound}39;serviceUnderTest&${symbol_pound}39;, function(${symbol_dollar}location){
+      // whatever it does...
+    });
+  });
+
+  it(&${symbol_pound}39;should...&${symbol_pound}39;, inject(function(${symbol_dollar}location, ${symbol_dollar}rootScope, serviceUnderTest) {
+    ${symbol_dollar}location.path(&${symbol_pound}39;/new/path&${symbol_pound}39;);
+    ${symbol_dollar}rootScope.${symbol_dollar}apply();
+
+    // test whatever the service should do...
+
+  }));
+});
+</code></pre>
+<h1 id="migrating-from-earlier-angularjs-releases">Migrating from earlier AngularJS releases</h1>
+<p>In earlier releases of Angular, <code>${symbol_dollar}location</code> used <code>hashPath</code> or <code>hashSearch</code> to process path and
+search methods. With this release, the <code>${symbol_dollar}location</code> service processes path and search methods and
+then uses the information it obtains to compose hashbang URLs (such as
+<code>http://server.com/${symbol_pound}!/path?search=a</code>), when necessary.</p>
+<h2 id="changes-to-your-code">Changes to your code</h2>
+<table class="table">
+  <thead>
+    <tr class="head">
+      <th>Navigation inside the app</th>
+      <th>Change to</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>${symbol_dollar}location.href = value<br />${symbol_dollar}location.hash = value<br />${symbol_dollar}location.update(value)<br
+/>${symbol_dollar}location.updateHash(value)</td>
+      <td>${symbol_dollar}location.path(path).search(search)</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location.hashPath = path</td>
+      <td>${symbol_dollar}location.path(path)</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location.hashSearch = search</td>
+      <td>${symbol_dollar}location.search(search)</td>
+    </tr>
+
+    <tr class="head">
+      <td>Navigation outside the app</td>
+      <td>Use lower level API</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location.href = value<br />${symbol_dollar}location.update(value)</td>
+      <td>${symbol_dollar}window.location.href = value</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location[protocol | host | port | path | search]</td>
+      <td>${symbol_dollar}window.location[protocol | host | port | path | search]</td>
+    </tr>
+
+    <tr class="head">
+      <td>Read access</td>
+      <td>Change to</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location.hashPath</td>
+      <td>${symbol_dollar}location.path()</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location.hashSearch</td>
+      <td>${symbol_dollar}location.search()</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location.href<br />${symbol_dollar}location.protocol<br />${symbol_dollar}location.host<br />${symbol_dollar}location.port<br
+/>${symbol_dollar}location.hash</td>
+      <td>${symbol_dollar}location.absUrl()<br />${symbol_dollar}location.protocol()<br />${symbol_dollar}location.host()<br />${symbol_dollar}location.port()<br
+/>${symbol_dollar}location.path() + ${symbol_dollar}location.search()</td>
+    </tr>
+
+    <tr>
+      <td>${symbol_dollar}location.path<br />${symbol_dollar}location.search</td>
+      <td>${symbol_dollar}window.location.path<br />${symbol_dollar}window.location.search</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="two-way-binding-to-location">Two-way binding to ${symbol_dollar}location</h2>
+<p>Because <code>${symbol_dollar}location</code> uses getters/setters, you can use <code>ng-model-options=&quot;{ getterSetter: true }&quot;</code>
+to bind it to <code>ngModel</code>:</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example"
+      module="locationExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;LocationController&quot;&gt;&${symbol_pound}10;  &lt;input type=&quot;text&quot; ng-model=&quot;locationPath&quot; ng-model-options=&quot;{ getterSetter: true }&quot; /&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;locationExample&${symbol_pound}39;, [])&${symbol_pound}10;.controller(&${symbol_pound}39;LocationController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}location&${symbol_pound}39;, function(${symbol_dollar}scope, ${symbol_dollar}location) {&${symbol_pound}10;  ${symbol_dollar}scope.locationPath = function (newLocation) {&${symbol_pound}10;    return ${symbol_dollar}location.path(newLocation);&${symbol_pound}10;  };&${symbol_pound}10;}]);</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example/index.html" name="example-example"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h1 id="related-api">Related API</h1>
+<ul>
+<li><a href="api/ng/service/${symbol_dollar}location"><code>${symbol_dollar}location</code> API</a></li>
+</ul>
+
+

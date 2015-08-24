@@ -1,0 +1,89 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example1</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  <script src="../../../angular-aria.js"></script>
+  
+
+  
+</head>
+<body ng-app="ngAria_ngModelExample">
+   <style>
+   [role=checkbox] {
+     cursor: pointer;
+     display: inline-block;
+   }
+   [role=checkbox] .icon:before {
+     content: '${symbol_escape}2610';
+     display: inline-block;
+     font-size: 2em;
+     line-height: 1;
+     vertical-align: middle;
+     speak: none;
+   }
+   [role=checkbox].active .icon:before {
+     content: '${symbol_escape}2611';
+   }
+   pre {
+     white-space: pre-wrap;
+   }
+ </style>
+<div>
+<form ng-controller="formsController">
+ <some-checkbox role="checkbox" ng-model="checked" ng-class="{active: checked}"
+   ng-disabled="isDisabled" ng-click="toggleCheckbox()"
+   aria-label="Custom Checkbox" show-attrs>
+   <span class="icon" aria-hidden="true"></span>
+   Custom Checkbox
+ </some-checkbox>
+</form>
+</div>
+<script>
+ var app = angular.module('ngAria_ngModelExample', ['ngAria'])
+ .controller('formsController', function(${symbol_dollar}scope){
+   ${symbol_dollar}scope.checked = false;
+   ${symbol_dollar}scope.toggleCheckbox = function(){
+     ${symbol_dollar}scope.checked = !${symbol_dollar}scope.checked;
+   }
+ })
+ .directive('someCheckbox', function(){
+   return {
+     restrict: 'E',
+     link: function(${symbol_dollar}scope, ${symbol_dollar}el, ${symbol_dollar}attrs) {
+       ${symbol_dollar}el.on('keypress', function(event){
+         event.preventDefault();
+         if(event.keyCode === 32 || event.keyCode === 13){
+           ${symbol_dollar}scope.toggleCheckbox();
+           ${symbol_dollar}scope.${symbol_dollar}apply();
+         }
+       });
+     }
+   }
+ })
+ .directive('showAttrs', function() {
+   return function(${symbol_dollar}scope, ${symbol_dollar}el, ${symbol_dollar}attrs) {
+     var pre = document.createElement('pre');
+     ${symbol_dollar}el.after(pre);
+     ${symbol_dollar}scope.${symbol_dollar}watch(function() {
+       var ${symbol_dollar}attrs = {};
+       Array.prototype.slice.call(${symbol_dollar}el[0].attributes, 0).forEach(function(item) {
+         if (item.name !== 'show-${symbol_dollar}attrs') {
+           ${symbol_dollar}attrs[item.name] = item.value;
+         }
+       });
+       return ${symbol_dollar}attrs;
+     }, function(newAttrs, oldAttrs) {
+       pre.textContent = JSON.stringify(newAttrs, null, 2);
+     }, true);
+   }
+ });
+</script>
+</body>
+</html>

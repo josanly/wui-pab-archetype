@@ -1,0 +1,76 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngMock/angular-mocks.js?message=docs(${symbol_dollar}exceptionHandler)%3A%20describe%20your%20change...${symbol_pound}L200' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ngMock/angular-mocks.js${symbol_pound}L200' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}exceptionHandler</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  <li>
+    <a href="api/ngMock/provider/${symbol_dollar}exceptionHandlerProvider">- ${symbol_dollar}exceptionHandlerProvider</a>
+  </li>
+
+    <li>
+      - service in module <a href="api/ngMock">ngMock</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Mock implementation of <a href="api/ng/service/${symbol_dollar}exceptionHandler"><code>${symbol_dollar}exceptionHandler</code></a> that rethrows or logs errors passed
+to it. See <a href="api/ngMock/provider/${symbol_dollar}exceptionHandlerProvider">${symbol_dollar}exceptionHandlerProvider</a> for configuration
+information.</p>
+<pre><code class="lang-js">describe(&${symbol_pound}39;${symbol_dollar}exceptionHandlerProvider&${symbol_pound}39;, function() {
+
+  it(&${symbol_pound}39;should capture log messages and exceptions&${symbol_pound}39;, function() {
+
+    module(function(${symbol_dollar}exceptionHandlerProvider) {
+      ${symbol_dollar}exceptionHandlerProvider.mode(&${symbol_pound}39;log&${symbol_pound}39;);
+    });
+
+    inject(function(${symbol_dollar}log, ${symbol_dollar}exceptionHandler, ${symbol_dollar}timeout) {
+      ${symbol_dollar}timeout(function() { ${symbol_dollar}log.log(1); });
+      ${symbol_dollar}timeout(function() { ${symbol_dollar}log.log(2); throw &${symbol_pound}39;banana peel&${symbol_pound}39;; });
+      ${symbol_dollar}timeout(function() { ${symbol_dollar}log.log(3); });
+      expect(${symbol_dollar}exceptionHandler.errors).toEqual([]);
+      expect(${symbol_dollar}log.assertEmpty());
+      ${symbol_dollar}timeout.flush();
+      expect(${symbol_dollar}exceptionHandler.errors).toEqual([&${symbol_pound}39;banana peel&${symbol_pound}39;]);
+      expect(${symbol_dollar}log.log.logs).toEqual([[1], [2], [3]]);
+    });
+  });
+});
+</code></pre>
+
+</div>
+
+
+
+
+<div>
+  
+
+    
+
+  
+
+  
+  
+  
+
+
+
+  
+</div>
+
+

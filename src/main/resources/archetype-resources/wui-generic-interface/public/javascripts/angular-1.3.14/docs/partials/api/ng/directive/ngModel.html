@@ -1,0 +1,211 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngModel.js?message=docs(ngModel)%3A%20describe%20your%20change...${symbol_pound}L837' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/ngModel.js${symbol_pound}L837' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">ngModel</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>The <code>ngModel</code> directive binds an <code>input</code>,<code>select</code>, <code>textarea</code> (or custom form control) to a
+property on the scope using <a href="api/ng/type/ngModel.NgModelController">NgModelController</a>,
+which is created and exposed by this directive.</p>
+<p><code>ngModel</code> is responsible for:</p>
+<ul>
+<li>Binding the view into the model, which other directives such as <code>input</code>, <code>textarea</code> or <code>select</code>
+require.</li>
+<li>Providing validation behavior (i.e. required, number, email, url).</li>
+<li>Keeping the state of the control (valid/invalid, dirty/pristine, touched/untouched, validation errors).</li>
+<li>Setting related css classes on the element (<code>ng-valid</code>, <code>ng-invalid</code>, <code>ng-dirty</code>, <code>ng-pristine</code>, <code>ng-touched</code>, <code>ng-untouched</code>) including animations.</li>
+<li>Registering the control with its parent <a href="api/ng/directive/form">form</a>.</li>
+</ul>
+<p>Note: <code>ngModel</code> will try to bind to the property given by evaluating the expression on the
+current scope. If the property doesn&${symbol_pound}39;t already exist on this scope, it will be created
+implicitly and added to the scope.</p>
+<p>For best practices on using <code>ngModel</code>, see:</p>
+<ul>
+<li><a href="https://github.com/angular/angular.js/wiki/Understanding-Scopes">Understanding Scopes</a></li>
+</ul>
+<p>For basic examples, how to use <code>ngModel</code>, see:</p>
+<ul>
+<li><a href="api/ng/directive/input">input</a><ul>
+<li><a href="api/ng/input/input[text]">text</a></li>
+<li><a href="api/ng/input/input[checkbox]">checkbox</a></li>
+<li><a href="api/ng/input/input[radio]">radio</a></li>
+<li><a href="api/ng/input/input[number]">number</a></li>
+<li><a href="api/ng/input/input[email]">email</a></li>
+<li><a href="api/ng/input/input[url]">url</a></li>
+<li><a href="api/ng/input/input[date]">date</a></li>
+<li><a href="api/ng/input/input[datetime-local]">datetime-local</a></li>
+<li><a href="api/ng/input/input[time]">time</a></li>
+<li><a href="api/ng/input/input[month]">month</a></li>
+<li><a href="api/ng/input/input[week]">week</a></li>
+</ul>
+</li>
+<li><a href="api/ng/directive/select">select</a></li>
+<li><a href="api/ng/directive/textarea">textarea</a></li>
+</ul>
+<h1 id="css-classes">CSS classes</h1>
+<p>The following CSS classes are added and removed on the associated input/select/textarea element
+depending on the validity of the model.</p>
+<ul>
+<li><code>ng-valid</code>: the model is valid</li>
+<li><code>ng-invalid</code>: the model is invalid</li>
+<li><code>ng-valid-[key]</code>: for each valid key added by <code>${symbol_dollar}setValidity</code></li>
+<li><code>ng-invalid-[key]</code>: for each invalid key added by <code>${symbol_dollar}setValidity</code></li>
+<li><code>ng-pristine</code>: the control hasn&${symbol_pound}39;t been interacted with yet</li>
+<li><code>ng-dirty</code>: the control has been interacted with</li>
+<li><code>ng-touched</code>: the control has been blurred</li>
+<li><code>ng-untouched</code>: the control hasn&${symbol_pound}39;t been blurred</li>
+<li><code>ng-pending</code>: any <code>${symbol_dollar}asyncValidators</code> are unfulfilled</li>
+</ul>
+<p>Keep in mind that ngAnimate can detect each of these classes when added and removed.</p>
+<h2 id="animation-hooks">Animation Hooks</h2>
+<p>Animations within models are triggered when any of the associated CSS classes are added and removed
+on the input element which is attached to the model. These classes are: <code>.ng-pristine</code>, <code>.ng-dirty</code>,
+<code>.ng-invalid</code> and <code>.ng-valid</code> as well as any other validations that are performed on the model itself.
+The animations that are triggered within ngModel are similar to how they work in ngClass and
+animations can be hooked into using CSS transitions, keyframes as well as JS animations.</p>
+<p>The following example shows a simple way to utilize CSS transitions to style an input element
+that has been rendered as invalid after it has been validated:</p>
+<pre>
+//be sure to include ngAnimate as a module to hook into more
+//advanced animations
+.my-input {
+  transition:0.5s linear all;
+  background: white;
+}
+.my-input.ng-invalid {
+  background: red;
+  color:white;
+}
+</pre>
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    
+    <li>This directive executes at priority level 1.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    <li>as attribute:
+        <pre><code>&lt;input&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/input&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+  
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example85', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example85"
+      deps="angular-animate.js"
+      animations="true"
+      fixBase="true"
+      module="inputExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;script&gt;&${symbol_pound}10; angular.module(&${symbol_pound}39;inputExample&${symbol_pound}39;, [])&${symbol_pound}10;   .controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;     ${symbol_dollar}scope.val = &${symbol_pound}39;1&${symbol_pound}39;;&${symbol_pound}10;   }]);&${symbol_pound}10;&lt;/script&gt;&${symbol_pound}10;&lt;style&gt;&${symbol_pound}10;  .my-input {&${symbol_pound}10;    -webkit-transition:all linear 0.5s;&${symbol_pound}10;    transition:all linear 0.5s;&${symbol_pound}10;    background: transparent;&${symbol_pound}10;  }&${symbol_pound}10;  .my-input.ng-invalid {&${symbol_pound}10;    color:white;&${symbol_pound}10;    background: red;&${symbol_pound}10;  }&${symbol_pound}10;&lt;/style&gt;&${symbol_pound}10;Update input to see transitions when valid/invalid.&${symbol_pound}10;Integer is a valid value.&${symbol_pound}10;&lt;form name=&quot;testForm&quot; ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;  &lt;input ng-model=&quot;val&quot; ng-pattern=&quot;/^${symbol_escape}d+${symbol_dollar}/&quot; name=&quot;anim&quot; class=&quot;my-input&quot; /&gt;&${symbol_pound}10;&lt;/form&gt;</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example85/index.html" name="example-example85"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h2 id="binding-to-a-getter-setter">Binding to a getter/setter</h2>
+<p>Sometimes it&${symbol_pound}39;s helpful to bind <code>ngModel</code> to a getter/setter function.  A getter/setter is a
+function that returns a representation of the model when called with zero arguments, and sets
+the internal state of a model when called with an argument. It&${symbol_pound}39;s sometimes useful to use this
+for models that have an internal representation that&${symbol_pound}39;s different than what the model exposes
+to the view.</p>
+<div class="alert alert-success">
+<strong>Best Practice:</strong> It&${symbol_pound}39;s best to keep getters fast because Angular is likely to call them more
+frequently than other parts of your code.
+</div>
+
+<p>You use this behavior by adding <code>ng-model-options=&quot;{ getterSetter: true }&quot;</code> to an element that
+has <code>ng-model</code> attached to it. You can also add <code>ng-model-options=&quot;{ getterSetter: true }&quot;</code> to
+a <code>&lt;form&gt;</code>, which will enable this behavior for all <code>&lt;input&gt;</code>s within it. See
+<a href="api/ng/directive/ngModelOptions"><code>ngModelOptions</code></a> for more.</p>
+<p>The following example shows how to use <code>ngModel</code> with a getter/setter:</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-ngModel-getter-setter', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-ngModel-getter-setter"
+      name="ngModel-getter-setter"
+      module="getterSetterExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;  &lt;form name=&quot;userForm&quot;&gt;&${symbol_pound}10;    Name:&${symbol_pound}10;    &lt;input type=&quot;text&quot; name=&quot;userName&quot;&${symbol_pound}10;           ng-model=&quot;user.name&quot;&${symbol_pound}10;           ng-model-options=&quot;{ getterSetter: true }&quot; /&gt;&${symbol_pound}10;  &lt;/form&gt;&${symbol_pound}10;  &lt;pre&gt;user.name = &lt;span ng-bind=&quot;user.name()&quot;&gt;&lt;/span&gt;&lt;/pre&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="app.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;getterSetterExample&${symbol_pound}39;, [])&${symbol_pound}10;.controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;  var _name = &${symbol_pound}39;Brian&${symbol_pound}39;;&${symbol_pound}10;  ${symbol_dollar}scope.user = {&${symbol_pound}10;    name: function(newName) {&${symbol_pound}10;      if (angular.isDefined(newName)) {&${symbol_pound}10;        _name = newName;&${symbol_pound}10;      }&${symbol_pound}10;      return _name;&${symbol_pound}10;    }&${symbol_pound}10;  };&${symbol_pound}10;}]);</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-ngModel-getter-setter/index.html" name="example-ngModel-getter-setter"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

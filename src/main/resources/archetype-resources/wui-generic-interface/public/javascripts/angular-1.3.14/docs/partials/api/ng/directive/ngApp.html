@@ -1,0 +1,202 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/Angular.js?message=docs(ngApp)%3A%20describe%20your%20change...${symbol_pound}L1144' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/Angular.js${symbol_pound}L1144' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">ngApp</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Use this directive to <strong>auto-bootstrap</strong> an AngularJS application. The <code>ngApp</code> directive
+designates the <strong>root element</strong> of the application and is typically placed near the root element
+of the page - e.g. on the <code>&lt;body&gt;</code> or <code>&lt;html&gt;</code> tags.</p>
+<p>Only one AngularJS application can be auto-bootstrapped per HTML document. The first <code>ngApp</code>
+found in the document will be used to define the root element to auto-bootstrap as an
+application. To run multiple applications in an HTML document you must manually bootstrap them using
+<a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a> instead. AngularJS applications cannot be nested within each other.</p>
+<p>You can specify an <strong>AngularJS module</strong> to be used as the root module for the application.  This
+module will be loaded into the <a href="api/auto/service/${symbol_dollar}injector"><code>${symbol_dollar}injector</code></a> when the application is bootstrapped. It
+should contain the application code needed or have dependencies on other modules that will
+contain the code. See <a href="api/ng/function/angular.module"><code>angular.module</code></a> for more information.</p>
+<p>In the example below if the <code>ngApp</code> directive were not placed on the <code>html</code> element then the
+document would not be compiled, the <code>AppController</code> would not be instantiated and the <code>{{ a+b }}</code>
+would not be resolved to <code>3</code>.</p>
+<p><code>ngApp</code> is the easiest, and most common way to bootstrap an application.</p>
+<p> 
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example46', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example46"
+      module="ngAppDemo">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;ngAppDemoController&quot;&gt;&${symbol_pound}10;  I can add: {{a}} + {{b}} =  {{ a+b }}&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;ngAppDemo&${symbol_pound}39;, []).controller(&${symbol_pound}39;ngAppDemoController&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;  ${symbol_dollar}scope.a = 1;&${symbol_pound}10;  ${symbol_dollar}scope.b = 2;&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example46/index.html" name="example-example46"></iframe>
+  </div>
+</div>
+
+
+</p>
+<p>Using <code>ngStrictDi</code>, you would see something like this:</p>
+<p> 
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example47', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example47"
+      ng-app-included="true">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-app=&quot;ngAppStrictDemo&quot; ng-strict-di&gt;&${symbol_pound}10;    &lt;div ng-controller=&quot;GoodController1&quot;&gt;&${symbol_pound}10;        I can add: {{a}} + {{b}} =  {{ a+b }}&${symbol_pound}10;&${symbol_pound}10;        &lt;p&gt;This renders because the controller does not fail to&${symbol_pound}10;           instantiate, by using explicit annotation style (see&${symbol_pound}10;           script.js for details)&${symbol_pound}10;        &lt;/p&gt;&${symbol_pound}10;    &lt;/div&gt;&${symbol_pound}10;&${symbol_pound}10;    &lt;div ng-controller=&quot;GoodController2&quot;&gt;&${symbol_pound}10;        Name: &lt;input ng-model=&quot;name&quot;&gt;&lt;br /&gt;&${symbol_pound}10;        Hello, {{name}}!&${symbol_pound}10;&${symbol_pound}10;        &lt;p&gt;This renders because the controller does not fail to&${symbol_pound}10;           instantiate, by using explicit annotation style&${symbol_pound}10;           (see script.js for details)&${symbol_pound}10;        &lt;/p&gt;&${symbol_pound}10;    &lt;/div&gt;&${symbol_pound}10;&${symbol_pound}10;    &lt;div ng-controller=&quot;BadController&quot;&gt;&${symbol_pound}10;        I can add: {{a}} + {{b}} =  {{ a+b }}&${symbol_pound}10;&${symbol_pound}10;        &lt;p&gt;The controller could not be instantiated, due to relying&${symbol_pound}10;           on automatic function annotations (which are disabled in&${symbol_pound}10;           strict mode). As such, the content of this section is not&${symbol_pound}10;           interpolated, and there should be an error in your web console.&${symbol_pound}10;        &lt;/p&gt;&${symbol_pound}10;    &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;ngAppStrictDemo&${symbol_pound}39;, [])&${symbol_pound}10;// BadController will fail to instantiate, due to relying on automatic function annotation,&${symbol_pound}10;// rather than an explicit annotation&${symbol_pound}10;.controller(&${symbol_pound}39;BadController&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;  ${symbol_dollar}scope.a = 1;&${symbol_pound}10;  ${symbol_dollar}scope.b = 2;&${symbol_pound}10;})&${symbol_pound}10;// Unlike BadController, GoodController1 and GoodController2 will not fail to be instantiated,&${symbol_pound}10;// due to using explicit annotations using the array style and ${symbol_dollar}inject property, respectively.&${symbol_pound}10;.controller(&${symbol_pound}39;GoodController1&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;  ${symbol_dollar}scope.a = 1;&${symbol_pound}10;  ${symbol_dollar}scope.b = 2;&${symbol_pound}10;}])&${symbol_pound}10;.controller(&${symbol_pound}39;GoodController2&${symbol_pound}39;, GoodController2);&${symbol_pound}10;function GoodController2(${symbol_dollar}scope) {&${symbol_pound}10;  ${symbol_dollar}scope.name = &quot;World&quot;;&${symbol_pound}10;}&${symbol_pound}10;GoodController2.${symbol_dollar}inject = [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;];</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="style.css"
+      language="css"
+      type="css">
+      <pre><code>div[ng-controller] {&${symbol_pound}10;    margin-bottom: 1em;&${symbol_pound}10;    -webkit-border-radius: 4px;&${symbol_pound}10;    border-radius: 4px;&${symbol_pound}10;    border: 1px solid;&${symbol_pound}10;    padding: .5em;&${symbol_pound}10;}&${symbol_pound}10;div[ng-controller^=Good] {&${symbol_pound}10;    border-color: ${symbol_pound}d6e9c6;&${symbol_pound}10;    background-color: ${symbol_pound}dff0d8;&${symbol_pound}10;    color: ${symbol_pound}3c763d;&${symbol_pound}10;}&${symbol_pound}10;div[ng-controller^=Bad] {&${symbol_pound}10;    border-color: ${symbol_pound}ebccd1;&${symbol_pound}10;    background-color: ${symbol_pound}f2dede;&${symbol_pound}10;    color: ${symbol_pound}a94442;&${symbol_pound}10;    margin-bottom: 0;&${symbol_pound}10;}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example47/index.html" name="example-example47"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    
+    <li>This directive executes at priority level 0.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    <li>as attribute:
+        <pre><code>&lt;ANY&${symbol_pound}10;  ng-app=&quot;&quot;&${symbol_pound}10;  [ng-strict-di=&quot;&quot;]&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/ANY&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        ngApp
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-angular">angular.Module</a>
+      </td>
+      <td>
+        <p>an optional application
+  <a href="api/ng/function/angular.module">module</a> name to load.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        ngStrictDi
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>if this attribute is present on the app element, the injector will be
+  created in &quot;strict-di&quot; mode. This means that the application will fail to invoke functions which
+  do not use explicit function annotation (and are thus unsuitable for minification), as described
+  in <a href="guide/di">the Dependency Injection guide</a>, and useful debugging info will assist in
+  tracking down the root of these bugs.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+  
+
+
+  
+</div>
+
+

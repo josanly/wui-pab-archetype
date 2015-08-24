@@ -1,0 +1,64 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngCookies/cookies.js?message=docs(${symbol_dollar}cookies)%3A%20describe%20your%20change...${symbol_pound}L21' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ngCookies/cookies.js${symbol_pound}L21' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}cookies</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  
+
+    <li>
+      - service in module <a href="api/ngCookies">ngCookies</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Provides read/write access to browser&${symbol_pound}39;s cookies.</p>
+<p>Only a simple Object is exposed and by adding or removing properties to/from this object, new
+cookies are created/deleted at the end of current ${symbol_dollar}eval.
+The object&${symbol_pound}39;s properties can only be strings.</p>
+<p>Requires the <a href="api/ngCookies"><code>ngCookies</code></a> module to be installed.</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+    
+
+  
+
+  
+  
+  
+
+
+
+  
+  <h2 id="example">Example</h2><pre><code class="lang-js">angular.module(&${symbol_pound}39;cookiesExample&${symbol_pound}39;, [&${symbol_pound}39;ngCookies&${symbol_pound}39;])
+.controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}cookies&${symbol_pound}39;, function(${symbol_dollar}cookies) {
+  // Retrieving a cookie
+  var favoriteCookie = ${symbol_dollar}cookies.myFavorite;
+  // Setting a cookie
+  ${symbol_dollar}cookies.myFavorite = &${symbol_pound}39;oatmeal&${symbol_pound}39;;
+}]);
+</code></pre>
+
+</div>
+
+

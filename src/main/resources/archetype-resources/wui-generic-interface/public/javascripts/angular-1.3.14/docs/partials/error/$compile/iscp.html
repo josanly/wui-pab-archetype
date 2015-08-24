@@ -1,0 +1,36 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/error/${symbol_dollar}compile/iscp.ngdoc?message=docs(error%2Fiscp)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+<h1>Error: error:iscp
+  <div><span class='hint'>Invalid Isolate Scope Definition</span></div>
+</h1>
+
+<div>
+    <pre class="minerr-errmsg" error-display="Invalid isolate scope definition for directive '{0}'. Definition: {... {1}: '{2}' ...}">Invalid isolate scope definition for directive '{0}'. Definition: {... {1}: '{2}' ...}</pre>
+</div>
+
+<h2>Description</h2>
+<div class="description">
+  <p>When declaring isolate scope the scope definition object must be in specific format which starts with mode character (<code>@&amp;=</code>) with an optional local name.</p>
+<pre><code>myModule.directive(&${symbol_pound}39;directiveName&${symbol_pound}39;, function factory() {
+  return {
+    ...
+    scope: {
+      &${symbol_pound}39;attrName&${symbol_pound}39;: &${symbol_pound}39;@&${symbol_pound}39;, // OK
+      &${symbol_pound}39;attrName2&${symbol_pound}39;: &${symbol_pound}39;=localName&${symbol_pound}39;, // OK
+      &${symbol_pound}39;attrName3&${symbol_pound}39;: &${symbol_pound}39;name&${symbol_pound}39;,    // ERROR: missing mode @&amp;=
+      &${symbol_pound}39;attrName4&${symbol_pound}39;: &${symbol_pound}39; = name&${symbol_pound}39;, // ERROR: extra spaces
+      &${symbol_pound}39;attrName5&${symbol_pound}39;: &${symbol_pound}39;name=&${symbol_pound}39;,   // ERROR: must be prefixed with @&amp;=
+    }
+    ...
+  }
+});
+</code></pre>
+<p>Please refer to the <a href="api/ng/service/${symbol_dollar}compile${symbol_pound}directive-definition-object"><code>scope</code> option</a> of the directive definition documentation to learn more about the API.</p>
+
+</div>
+
+

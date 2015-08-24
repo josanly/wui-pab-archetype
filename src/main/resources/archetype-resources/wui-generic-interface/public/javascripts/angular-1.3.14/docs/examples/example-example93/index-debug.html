@@ -1,0 +1,41 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example93-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="transcludeExample">
+  <script>
+  angular.module('transcludeExample', [])
+   .directive('pane', function(){
+      return {
+        restrict: 'E',
+        transclude: true,
+        scope: { title:'@' },
+        template: '<div style="border: 1px solid black;">' +
+                    '<div style="background-color: gray">{{title}}</div>' +
+                    '<ng-transclude></ng-transclude>' +
+                  '</div>'
+      };
+  })
+  .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+    ${symbol_dollar}scope.title = 'Lorem Ipsum';
+    ${symbol_dollar}scope.text = 'Neque porro quisquam est qui dolorem ipsum quia dolor...';
+  }]);
+</script>
+<div ng-controller="ExampleController">
+  <input ng-model="title"> <br/>
+  <textarea ng-model="text"></textarea> <br/>
+  <pane title="{{title}}">{{text}}</pane>
+</div>
+</body>
+</html>

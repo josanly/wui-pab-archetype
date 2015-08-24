@@ -1,0 +1,39 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-number-input-directive</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  
+
+  
+</head>
+<body ng-app="numberExample">
+  <script>
+  angular.module('numberExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.example = {
+        value: 12
+      };
+    }]);
+</script>
+<form name="myForm" ng-controller="ExampleController">
+  Number: <input type="number" name="input" ng-model="example.value"
+                 min="0" max="99" required>
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.required">
+    Required!</span>
+  <span class="error" ng-show="myForm.input.${symbol_dollar}error.number">
+    Not valid number!</span>
+  <tt>value = {{example.value}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}valid = {{myForm.input.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.input.${symbol_dollar}error = {{myForm.input.${symbol_dollar}error}}</tt><br/>
+  <tt>myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}</tt><br/>
+  <tt>myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}</tt><br/>
+ </form>
+</body>
+</html>

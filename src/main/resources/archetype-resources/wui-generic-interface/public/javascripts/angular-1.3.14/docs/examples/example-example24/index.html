@@ -1,0 +1,30 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example24</title>
+  
+
+  <script src="../../../angular.min.js"></script>
+  <script src="script.js"></script>
+  
+
+  
+</head>
+<body ng-app="expressionExample">
+  <div ng-controller="ExampleController" class="expressions">
+  Expression:
+  <input type='text' ng-model="expr" size="80"/>
+  <button ng-click="addExp(expr)">Evaluate</button>
+  <ul>
+   <li ng-repeat="expr in exprs track by ${symbol_dollar}index">
+     [ <a href="" ng-click="removeExp(${symbol_dollar}index)">X</a> ]
+     <tt>{{expr}}</tt> => <span ng-bind="${symbol_dollar}parent.${symbol_dollar}eval(expr)"></span>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/filter.ngdoc?message=docs(guide%2FFilters)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+<p>A filter formats the value of an expression for display to the user. They can be used in view templates,
+controllers or services and it is easy to define your own filter.</p>
+<p>The underlying API is the <a href="api/ng/provider/${symbol_dollar}filterProvider"><code>filterProvider</code></a>.</p>
+<h2 id="using-filters-in-view-templates">Using filters in view templates</h2>
+<p>Filters can be applied to expressions in view templates using the following syntax:</p>
+<pre><code>{{ expression | filter }}
+</code></pre>
+<p>E.g. the markup <code>{{ 12 | currency }}</code> formats the number 12 as a currency using the <a href="api/ng/filter/currency"><code>currency</code></a>
+filter. The resulting value is <code>${symbol_dollar}12.00</code>.</p>
+<p>Filters can be applied to the result of another filter. This is called &quot;chaining&quot; and uses
+the following syntax:</p>
+<pre><code>{{ expression | filter1 | filter2 | ... }}
+</code></pre>
+<p>Filters may have arguments. The syntax for this is</p>
+<pre><code>{{ expression | filter:argument1:argument2:... }}
+</code></pre>
+<p>E.g. the markup <code>{{ 1234 | number:2 }}</code> formats the number 1234 with 2 decimal points using the
+<a href="api/ng/filter/number"><code>number</code></a> filter. The resulting value is <code>1,234.00</code>.</p>
+<h2 id="using-filters-in-controllers-services-and-directives">Using filters in controllers, services, and directives</h2>
+<p>You can also use filters in controllers, services, and directives. For this, inject a dependency
+with the name <code>&lt;filterName&gt;Filter</code> to your controller/service/directive. E.g. using the dependency
+<code>numberFilter</code> will inject the number filter. The injected argument is a function that takes the
+value to format as first argument and filter parameters starting with the second argument.</p>
+<p>The example below uses the filter called <a href="api/ng/filter/filter"><code>filter</code></a>.
+This filter reduces arrays into sub arrays based on
+conditions. The filter can be applied in the view template with markup like
+<code>{{ctrl.array | filter:&${symbol_pound}39;a&${symbol_pound}39;}}</code>, which would do a fulltext search for &quot;a&quot;.
+However, using a filter in a view template will reevaluate the filter on
+every digest, which can be costly if the array is big.</p>
+<p>The example below therefore calls the filter directly in the controller.
+By this, the controller is able to call the filter only when needed (e.g. when the data is loaded from the backend
+or the filter expression is changed).</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example28', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example28"
+      module="FilterInControllerModule">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;FilterController as ctrl&quot;&gt;&${symbol_pound}10;  &lt;div&gt;&${symbol_pound}10;    All entries:&${symbol_pound}10;    &lt;span ng-repeat=&quot;entry in ctrl.array&quot;&gt;{{entry.name}} &lt;/span&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;  &lt;div&gt;&${symbol_pound}10;    Entries that contain an &quot;a&quot;:&${symbol_pound}10;    &lt;span ng-repeat=&quot;entry in ctrl.filteredArray&quot;&gt;{{entry.name}} &lt;/span&gt;&${symbol_pound}10;  &lt;/div&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;FilterInControllerModule&${symbol_pound}39;, []).&${symbol_pound}10;controller(&${symbol_pound}39;FilterController&${symbol_pound}39;, [&${symbol_pound}39;filterFilter&${symbol_pound}39;, function(filterFilter) {&${symbol_pound}10;  this.array = [&${symbol_pound}10;    {name: &${symbol_pound}39;Tobias&${symbol_pound}39;},&${symbol_pound}10;    {name: &${symbol_pound}39;Jeff&${symbol_pound}39;},&${symbol_pound}10;    {name: &${symbol_pound}39;Brian&${symbol_pound}39;},&${symbol_pound}10;    {name: &${symbol_pound}39;Igor&${symbol_pound}39;},&${symbol_pound}10;    {name: &${symbol_pound}39;James&${symbol_pound}39;},&${symbol_pound}10;    {name: &${symbol_pound}39;Brad&${symbol_pound}39;}&${symbol_pound}10;  ];&${symbol_pound}10;  this.filteredArray = filterFilter(this.array, &${symbol_pound}39;a&${symbol_pound}39;);&${symbol_pound}10;}]);</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example28/index.html" name="example-example28"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h2 id="creating-custom-filters">Creating custom filters</h2>
+<p>Writing your own filter is very easy: just register a new filter factory function with
+your module. Internally, this uses the <a href="api/ng/provider/${symbol_dollar}filterProvider"><code>filterProvider</code></a>.
+This factory function should return a new filter function which takes the input value
+as the first argument. Any filter arguments are passed in as additional arguments to the filter
+function.</p>
+<p>The filter function should be a <a href="http://en.wikipedia.org/wiki/Pure_function">pure function</a>, which
+means that it should be stateless and idempotent. Angular relies on these properties and executes
+the filter only when the inputs to the function change.</p>
+<div class="alert alert-warning">
+<strong>Note:</strong> filter names must be valid angular expression identifiers, such as <code>uppercase</code> or <code>orderBy</code>.
+Names with special characters, such as hyphens and dots, are not allowed.
+</div>
+
+<p>The following sample filter reverses a text string. In addition, it conditionally makes the
+text upper-case.</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example29', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example29"
+      module="myReverseFilterApp">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;MyController&quot;&gt;&${symbol_pound}10;  &lt;input ng-model=&quot;greeting&quot; type=&quot;text&quot;&gt;&lt;br&gt;&${symbol_pound}10;  No filter: {{greeting}}&lt;br&gt;&${symbol_pound}10;  Reverse: {{greeting|reverse}}&lt;br&gt;&${symbol_pound}10;  Reverse + uppercase: {{greeting|reverse:true}}&lt;br&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;myReverseFilterApp&${symbol_pound}39;, [])&${symbol_pound}10;.filter(&${symbol_pound}39;reverse&${symbol_pound}39;, function() {&${symbol_pound}10;  return function(input, uppercase) {&${symbol_pound}10;    input = input || &${symbol_pound}39;&${symbol_pound}39;;&${symbol_pound}10;    var out = &quot;&quot;;&${symbol_pound}10;    for (var i = 0; i &lt; input.length; i++) {&${symbol_pound}10;      out = input.charAt(i) + out;&${symbol_pound}10;    }&${symbol_pound}10;    // conditional based on optional argument&${symbol_pound}10;    if (uppercase) {&${symbol_pound}10;      out = out.toUpperCase();&${symbol_pound}10;    }&${symbol_pound}10;    return out;&${symbol_pound}10;  };&${symbol_pound}10;})&${symbol_pound}10;.controller(&${symbol_pound}39;MyController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;  ${symbol_dollar}scope.greeting = &${symbol_pound}39;hello&${symbol_pound}39;;&${symbol_pound}10;}]);</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example29/index.html" name="example-example29"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h2 id="stateful-filters">Stateful filters</h2>
+<p>It is strongly discouraged to write filters that are stateful, because the execution of those can&${symbol_pound}39;t
+be optimized by Angular, which often leads to performance issues. Many stateful filters can be
+converted into stateless filters just by exposing the hidden state as a model and turning it into an
+argument for the filter.</p>
+<p>If you however do need to write a stateful filter, you have to mark the filter as <code>${symbol_dollar}stateful</code>, which
+means that it will be executed one or more times during the each <code>${symbol_dollar}digest</code> cycle.</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example30', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example30"
+      module="myStatefulFilterApp">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;MyController&quot;&gt;&${symbol_pound}10;  Input: &lt;input ng-model=&quot;greeting&quot; type=&quot;text&quot;&gt;&lt;br&gt;&${symbol_pound}10;  Decoration: &lt;input ng-model=&quot;decoration.symbol&quot; type=&quot;text&quot;&gt;&lt;br&gt;&${symbol_pound}10;  No filter: {{greeting}}&lt;br&gt;&${symbol_pound}10;  Decorated: {{greeting | decorate}}&lt;br&gt;&${symbol_pound}10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&${symbol_pound}39;myStatefulFilterApp&${symbol_pound}39;, [])&${symbol_pound}10;.filter(&${symbol_pound}39;decorate&${symbol_pound}39;, [&${symbol_pound}39;decoration&${symbol_pound}39;, function(decoration) {&${symbol_pound}10;&${symbol_pound}10;  function decorateFilter(input) {&${symbol_pound}10;    return decoration.symbol + input + decoration.symbol;&${symbol_pound}10;  }&${symbol_pound}10;  decorateFilter.${symbol_dollar}stateful = true;&${symbol_pound}10;&${symbol_pound}10;  return decorateFilter;&${symbol_pound}10;}])&${symbol_pound}10;.controller(&${symbol_pound}39;MyController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, &${symbol_pound}39;decoration&${symbol_pound}39;, function(${symbol_dollar}scope, decoration) {&${symbol_pound}10;  ${symbol_dollar}scope.greeting = &${symbol_pound}39;hello&${symbol_pound}39;;&${symbol_pound}10;  ${symbol_dollar}scope.decoration = decoration;&${symbol_pound}10;}])&${symbol_pound}10;.value(&${symbol_pound}39;decoration&${symbol_pound}39;, {symbol: &${symbol_pound}39;*&${symbol_pound}39;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example30/index.html" name="example-example30"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h2 id="testing-custom-filters">Testing custom filters</h2>
+<p>See the <a href="http://docs.angularjs.org/tutorial/step_09${symbol_pound}test">phonecat tutorial</a> for an example.</p>
+
+

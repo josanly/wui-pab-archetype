@@ -1,0 +1,56 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+
+<h1>Service components in <code>ngMock</code></h1>
+
+
+
+<div class="component-breakdown">
+  <div>
+    <table class="definition-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ngMock/service/${symbol_dollar}exceptionHandler">${symbol_dollar}exceptionHandler</a></td>
+        <td><p>Mock implementation of <a href="api/ng/service/${symbol_dollar}exceptionHandler"><code>${symbol_dollar}exceptionHandler</code></a> that rethrows or logs errors passed
+to it. See <a href="api/ngMock/provider/${symbol_dollar}exceptionHandlerProvider">${symbol_dollar}exceptionHandlerProvider</a> for configuration
+information.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ngMock/service/${symbol_dollar}log">${symbol_dollar}log</a></td>
+        <td><p>Mock implementation of <a href="api/ng/service/${symbol_dollar}log"><code>${symbol_dollar}log</code></a> that gathers all logged messages in arrays
+(one array per logging level). These arrays are exposed as <code>logs</code> property of each of the
+level-specific log function, e.g. for level <code>error</code> the array is exposed as <code>${symbol_dollar}log.error.logs</code>.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ngMock/service/${symbol_dollar}interval">${symbol_dollar}interval</a></td>
+        <td><p>Mock implementation of the ${symbol_dollar}interval service.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ngMock/service/${symbol_dollar}httpBackend">${symbol_dollar}httpBackend</a></td>
+        <td><p>Fake HTTP backend implementation suitable for unit testing applications that use the
+<a href="api/ng/service/${symbol_dollar}http">${symbol_dollar}http service</a>.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ngMock/service/${symbol_dollar}timeout">${symbol_dollar}timeout</a></td>
+        <td><p>This service is just a simple decorator for <a href="api/ng/service/${symbol_dollar}timeout">${symbol_dollar}timeout</a> service
+that adds a &quot;flush&quot; and &quot;verifyNoPendingTasks&quot; methods.</p>
+</td>
+      </tr>
+      
+    </table>
+  </div>
+</div>
+

@@ -1,0 +1,110 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+
+<h1>Provider components in <code>ng</code></h1>
+
+
+
+<div class="component-breakdown">
+  <div>
+    <table class="definition-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}anchorScrollProvider">${symbol_dollar}anchorScrollProvider</a></td>
+        <td><p>Use <code>${symbol_dollar}anchorScrollProvider</code> to disable automatic scrolling whenever
+<a href="api/ng/service/${symbol_dollar}location${symbol_pound}hash">${symbol_dollar}location.hash()</a> changes.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}animateProvider">${symbol_dollar}animateProvider</a></td>
+        <td><p>Default implementation of ${symbol_dollar}animate that doesn&${symbol_pound}39;t perform any animations, instead just
+synchronously performs DOM
+updates and calls done() callbacks.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}compileProvider">${symbol_dollar}compileProvider</a></td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}controllerProvider">${symbol_dollar}controllerProvider</a></td>
+        <td><p>The <a href="api/ng/service/${symbol_dollar}controller">${symbol_dollar}controller service</a> is used by Angular to create new
+controllers.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}filterProvider">${symbol_dollar}filterProvider</a></td>
+        <td><p>Filters are just functions which transform input to an output. However filters need to be
+Dependency Injected. To achieve this a filter definition consists of a factory function which is
+annotated with dependencies and is responsible for creating a filter function.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}httpProvider">${symbol_dollar}httpProvider</a></td>
+        <td><p>Use <code>${symbol_dollar}httpProvider</code> to change the default behavior of the <a href="api/ng/service/${symbol_dollar}http">${symbol_dollar}http</a> service.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}interpolateProvider">${symbol_dollar}interpolateProvider</a></td>
+        <td><p>Used for configuring the interpolation markup. Defaults to <code>{{</code> and <code>}}</code>.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}locationProvider">${symbol_dollar}locationProvider</a></td>
+        <td><p>Use the <code>${symbol_dollar}locationProvider</code> to configure how the application deep linking paths are stored.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}logProvider">${symbol_dollar}logProvider</a></td>
+        <td><p>Use the <code>${symbol_dollar}logProvider</code> to configure how the application logs messages</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}parseProvider">${symbol_dollar}parseProvider</a></td>
+        <td><p><code>${symbol_dollar}parseProvider</code> can be used for configuring the default behavior of the <a href="api/ng/service/${symbol_dollar}parse">${symbol_dollar}parse</a>
+ service.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}rootScopeProvider">${symbol_dollar}rootScopeProvider</a></td>
+        <td><p>Provider for the ${symbol_dollar}rootScope service.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}sceDelegateProvider">${symbol_dollar}sceDelegateProvider</a></td>
+        <td><p>The <code>${symbol_dollar}sceDelegateProvider</code> provider allows developers to configure the <a href="api/ng/service/${symbol_dollar}sceDelegate">${symbol_dollar}sceDelegate</a> service.  This allows one to get/set the whitelists and blacklists used to ensure
+that the URLs used for sourcing Angular templates are safe.  Refer <a href="api/ng/provider/${symbol_dollar}sceDelegateProvider${symbol_pound}resourceUrlWhitelist">${symbol_dollar}sceDelegateProvider.resourceUrlWhitelist</a> and
+<a href="api/ng/provider/${symbol_dollar}sceDelegateProvider${symbol_pound}resourceUrlBlacklist">${symbol_dollar}sceDelegateProvider.resourceUrlBlacklist</a></p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/provider/${symbol_dollar}sceProvider">${symbol_dollar}sceProvider</a></td>
+        <td><p>The ${symbol_dollar}sceProvider provider allows developers to configure the <a href="api/ng/service/${symbol_dollar}sce">${symbol_dollar}sce</a> service.</p>
+<ul>
+<li>enable/disable Strict Contextual Escaping (SCE) in a module</li>
+<li>override the default implementation with a custom delegate</li>
+</ul>
+</td>
+      </tr>
+      
+    </table>
+  </div>
+</div>
+

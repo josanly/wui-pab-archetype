@@ -1,0 +1,137 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(ngValue)%3A%20describe%20your%20change...${symbol_pound}L1548' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ng/directive/input.js${symbol_pound}L1548' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">ngValue</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+    <li>
+      - directive in module <a href="api/ng">ng</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>Binds the given expression to the value of <code>&lt;option&gt;</code> or <a href="api/ng/input/input[radio]"><code>input[radio]</code></a>,
+so that when the element is selected, the <a href="api/ng/directive/ngModel"><code>ngModel</code></a> of that element is set to
+the bound value.</p>
+<p><code>ngValue</code> is useful when dynamically generating lists of radio buttons using
+<a href="api/ng/directive/ngRepeat"><code>ngRepeat</code></a>, as shown below.</p>
+<p>Likewise, <code>ngValue</code> can be used to generate <code>&lt;option&gt;</code> elements for
+the <a href="api/ng/directive/select"><code>select</code></a> element. In that case however, only strings are supported
+for the <code>value</code>attribute, so the resulting <code>ngModel</code> will always be a string.
+Support for <code>select</code> models with non-string values is available via <code>ngOptions</code>.</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+  
+  <h2>Directive Info</h2>
+  <ul>
+    
+    <li>This directive executes at priority level 0.</li>
+  </ul>
+
+  
+  <h2 id="usage">Usage</h2>
+  <div class="usage">
+  
+    <ul>
+    <li>as attribute:
+        <pre><code>&lt;input&${symbol_pound}10;  [ng-value=&quot;&quot;]&gt;&${symbol_pound}10;...&${symbol_pound}10;&lt;/input&gt;</code></pre>
+      </li>
+    
+  </div>
+  
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        ngValue
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>angular expression, whose value will be bound to the <code>value</code> attribute
+  of the <code>input</code> element</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+  
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-ngValue-directive', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-ngValue-directive"
+      name="ngValue-directive"
+      module="valueExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;script&gt;&${symbol_pound}10;   angular.module(&${symbol_pound}39;valueExample&${symbol_pound}39;, [])&${symbol_pound}10;     .controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, function(${symbol_dollar}scope) {&${symbol_pound}10;       ${symbol_dollar}scope.names = [&${symbol_pound}39;pizza&${symbol_pound}39;, &${symbol_pound}39;unicorns&${symbol_pound}39;, &${symbol_pound}39;robots&${symbol_pound}39;];&${symbol_pound}10;       ${symbol_dollar}scope.my = { favorite: &${symbol_pound}39;unicorns&${symbol_pound}39; };&${symbol_pound}10;     }]);&${symbol_pound}10;&lt;/script&gt;&${symbol_pound}10; &lt;form ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;   &lt;h2&gt;Which is your favorite?&lt;/h2&gt;&${symbol_pound}10;     &lt;label ng-repeat=&quot;name in names&quot; for=&quot;{{name}}&quot;&gt;&${symbol_pound}10;       {{name}}&${symbol_pound}10;       &lt;input type=&quot;radio&quot;&${symbol_pound}10;              ng-model=&quot;my.favorite&quot;&${symbol_pound}10;              ng-value=&quot;name&quot;&${symbol_pound}10;              id=&quot;{{name}}&quot;&${symbol_pound}10;              name=&quot;favorite&quot;&gt;&${symbol_pound}10;     &lt;/label&gt;&${symbol_pound}10;   &lt;div&gt;You chose {{my.favorite}}&lt;/div&gt;&${symbol_pound}10; &lt;/form&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>var favorite = element(by.binding(&${symbol_pound}39;my.favorite&${symbol_pound}39;));&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should initialize to model&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(favorite.getText()).toContain(&${symbol_pound}39;unicorns&${symbol_pound}39;);&${symbol_pound}10;});&${symbol_pound}10;it(&${symbol_pound}39;should bind the values to the inputs&${symbol_pound}39;, function() {&${symbol_pound}10;  element.all(by.model(&${symbol_pound}39;my.favorite&${symbol_pound}39;)).get(0).click();&${symbol_pound}10;  expect(favorite.getText()).toContain(&${symbol_pound}39;pizza&${symbol_pound}39;);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-ngValue-directive/index.html" name="example-ngValue-directive"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

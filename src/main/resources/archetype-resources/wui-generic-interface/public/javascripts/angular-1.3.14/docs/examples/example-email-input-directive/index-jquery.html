@@ -1,0 +1,40 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-email-input-directive-jquery</title>
+  
+
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
+  <script src="../../../angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="emailExample">
+  <script>
+  angular.module('emailExample', [])
+    .controller('ExampleController', ['${symbol_dollar}scope', function(${symbol_dollar}scope) {
+      ${symbol_dollar}scope.email = {
+        text: 'me@example.com'
+      };
+    }]);
+</script>
+  <form name="myForm" ng-controller="ExampleController">
+    Email: <input type="email" name="input" ng-model="email.text" required>
+    <span class="error" ng-show="myForm.input.${symbol_dollar}error.required">
+      Required!</span>
+    <span class="error" ng-show="myForm.input.${symbol_dollar}error.email">
+      Not valid email!</span>
+    <tt>text = {{email.text}}</tt><br/>
+    <tt>myForm.input.${symbol_dollar}valid = {{myForm.input.${symbol_dollar}valid}}</tt><br/>
+    <tt>myForm.input.${symbol_dollar}error = {{myForm.input.${symbol_dollar}error}}</tt><br/>
+    <tt>myForm.${symbol_dollar}valid = {{myForm.${symbol_dollar}valid}}</tt><br/>
+    <tt>myForm.${symbol_dollar}error.required = {{!!myForm.${symbol_dollar}error.required}}</tt><br/>
+    <tt>myForm.${symbol_dollar}error.email = {{!!myForm.${symbol_dollar}error.email}}</tt><br/>
+  </form>
+</body>
+</html>

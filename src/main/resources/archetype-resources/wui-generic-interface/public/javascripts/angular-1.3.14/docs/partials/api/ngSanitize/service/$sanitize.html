@@ -1,0 +1,141 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngSanitize/sanitize.js?message=docs(${symbol_dollar}sanitize)%3A%20describe%20your%20change...${symbol_pound}L37' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+
+
+
+<a href='https://github.com/angular/angular.js/tree/v1.3.14/src/ngSanitize/sanitize.js${symbol_pound}L37' class='view-source pull-right btn btn-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<header class="api-profile-header">
+  <h1 class="api-profile-header-heading">${symbol_dollar}sanitize</h1>
+  <ol class="api-profile-header-structure naked-list step-list">
+    
+  
+
+    <li>
+      - service in module <a href="api/ngSanitize">ngSanitize</a>
+    </li>
+  </ol>
+</header>
+
+
+
+<div class="api-profile-description">
+  <p>The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are
+  then serialized back to properly escaped html string. This means that no unsafe input can make
+  it into the returned string, however, since our parser is more strict than a typical browser
+  parser, it&${symbol_pound}39;s possible that some obscure input, which would be recognized as valid HTML by a
+  browser, won&${symbol_pound}39;t make it through the sanitizer. The input may also contain SVG markup.
+  The whitelist is configured using the functions <code>aHrefSanitizationWhitelist</code> and
+  <code>imgSrcSanitizationWhitelist</code> of <a href="api/ng/provider/${symbol_dollar}compileProvider"><code>${symbol_dollar}compileProvider</code></a>.</p>
+
+</div>
+
+
+
+
+<div>
+  
+
+    
+
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>${symbol_dollar}sanitize(html);</code></p>
+
+
+    
+
+    
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        html
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>HTML input.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+    
+    <h3>Returns</h3>
+<table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-string">string</a></td>
+    <td><p>Sanitized HTML.</p>
+</td>
+  </tr>
+</table>
+
+  
+  
+  
+
+
+
+  
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example113', ${symbol_dollar}event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example113"
+      module="sanitizeExample"
+      deps="angular-sanitize.js">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>     &lt;script&gt;&${symbol_pound}10;         angular.module(&${symbol_pound}39;sanitizeExample&${symbol_pound}39;, [&${symbol_pound}39;ngSanitize&${symbol_pound}39;])&${symbol_pound}10;           .controller(&${symbol_pound}39;ExampleController&${symbol_pound}39;, [&${symbol_pound}39;${symbol_dollar}scope&${symbol_pound}39;, &${symbol_pound}39;${symbol_dollar}sce&${symbol_pound}39;, function(${symbol_dollar}scope, ${symbol_dollar}sce) {&${symbol_pound}10;             ${symbol_dollar}scope.snippet =&${symbol_pound}10;               &${symbol_pound}39;&lt;p style=&quot;color:blue&quot;&gt;an html${symbol_escape}n&${symbol_pound}39; +&${symbol_pound}10;               &${symbol_pound}39;&lt;em onmouseover=&quot;this.textContent=${symbol_escape}&${symbol_pound}39;PWN3D!${symbol_escape}&${symbol_pound}39;&quot;&gt;click here&lt;/em&gt;${symbol_escape}n&${symbol_pound}39; +&${symbol_pound}10;               &${symbol_pound}39;snippet&lt;/p&gt;&${symbol_pound}39;;&${symbol_pound}10;             ${symbol_dollar}scope.deliberatelyTrustDangerousSnippet = function() {&${symbol_pound}10;               return ${symbol_dollar}sce.trustAsHtml(${symbol_dollar}scope.snippet);&${symbol_pound}10;             };&${symbol_pound}10;           }]);&${symbol_pound}10;     &lt;/script&gt;&${symbol_pound}10;     &lt;div ng-controller=&quot;ExampleController&quot;&gt;&${symbol_pound}10;        Snippet: &lt;textarea ng-model=&quot;snippet&quot; cols=&quot;60&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;&${symbol_pound}10;       &lt;table&gt;&${symbol_pound}10;         &lt;tr&gt;&${symbol_pound}10;           &lt;td&gt;Directive&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;How&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;Source&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;Rendered&lt;/td&gt;&${symbol_pound}10;         &lt;/tr&gt;&${symbol_pound}10;         &lt;tr id=&quot;bind-html-with-sanitize&quot;&gt;&${symbol_pound}10;           &lt;td&gt;ng-bind-html&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;Automatically uses ${symbol_dollar}sanitize&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;&lt;pre&gt;&amp;lt;div ng-bind-html=&quot;snippet&quot;&amp;gt;&lt;br/&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;&lt;div ng-bind-html=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&${symbol_pound}10;         &lt;/tr&gt;&${symbol_pound}10;         &lt;tr id=&quot;bind-html-with-trust&quot;&gt;&${symbol_pound}10;           &lt;td&gt;ng-bind-html&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;Bypass ${symbol_dollar}sanitize by explicitly trusting the dangerous value&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;&${symbol_pound}10;           &lt;pre&gt;&amp;lt;div ng-bind-html=&quot;deliberatelyTrustDangerousSnippet()&quot;&amp;gt;&${symbol_pound}10;&amp;lt;/div&amp;gt;&lt;/pre&gt;&${symbol_pound}10;           &lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;&lt;div ng-bind-html=&quot;deliberatelyTrustDangerousSnippet()&quot;&gt;&lt;/div&gt;&lt;/td&gt;&${symbol_pound}10;         &lt;/tr&gt;&${symbol_pound}10;         &lt;tr id=&quot;bind-default&quot;&gt;&${symbol_pound}10;           &lt;td&gt;ng-bind&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;Automatically escapes&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;&lt;pre&gt;&amp;lt;div ng-bind=&quot;snippet&quot;&amp;gt;&lt;br/&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&${symbol_pound}10;           &lt;td&gt;&lt;div ng-bind=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&${symbol_pound}10;         &lt;/tr&gt;&${symbol_pound}10;       &lt;/table&gt;&${symbol_pound}10;       &lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>it(&${symbol_pound}39;should sanitize the html snippet by default&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(element(by.css(&${symbol_pound}39;${symbol_pound}bind-html-with-sanitize div&${symbol_pound}39;)).getInnerHtml()).&${symbol_pound}10;    toBe(&${symbol_pound}39;&lt;p&gt;an html${symbol_escape}n&lt;em&gt;click here&lt;/em&gt;${symbol_escape}nsnippet&lt;/p&gt;&${symbol_pound}39;);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should inline raw snippet if bound to a trusted value&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(element(by.css(&${symbol_pound}39;${symbol_pound}bind-html-with-trust div&${symbol_pound}39;)).getInnerHtml()).&${symbol_pound}10;    toBe(&quot;&lt;p style=${symbol_escape}&quot;color:blue${symbol_escape}&quot;&gt;an html${symbol_escape}n&quot; +&${symbol_pound}10;         &quot;&lt;em onmouseover=${symbol_escape}&quot;this.textContent=&${symbol_pound}39;PWN3D!&${symbol_pound}39;${symbol_escape}&quot;&gt;click here&lt;/em&gt;${symbol_escape}n&quot; +&${symbol_pound}10;         &quot;snippet&lt;/p&gt;&quot;);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should escape snippet without any filter&${symbol_pound}39;, function() {&${symbol_pound}10;  expect(element(by.css(&${symbol_pound}39;${symbol_pound}bind-default div&${symbol_pound}39;)).getInnerHtml()).&${symbol_pound}10;    toBe(&quot;&amp;lt;p style=${symbol_escape}&quot;color:blue${symbol_escape}&quot;&amp;gt;an html${symbol_escape}n&quot; +&${symbol_pound}10;         &quot;&amp;lt;em onmouseover=${symbol_escape}&quot;this.textContent=&${symbol_pound}39;PWN3D!&${symbol_pound}39;${symbol_escape}&quot;&amp;gt;click here&amp;lt;/em&amp;gt;${symbol_escape}n&quot; +&${symbol_pound}10;         &quot;snippet&amp;lt;/p&amp;gt;&quot;);&${symbol_pound}10;});&${symbol_pound}10;&${symbol_pound}10;it(&${symbol_pound}39;should update&${symbol_pound}39;, function() {&${symbol_pound}10;  element(by.model(&${symbol_pound}39;snippet&${symbol_pound}39;)).clear();&${symbol_pound}10;  element(by.model(&${symbol_pound}39;snippet&${symbol_pound}39;)).sendKeys(&${symbol_pound}39;new &lt;b onclick=&quot;alert(1)&quot;&gt;text&lt;/b&gt;&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.css(&${symbol_pound}39;${symbol_pound}bind-html-with-sanitize div&${symbol_pound}39;)).getInnerHtml()).&${symbol_pound}10;    toBe(&${symbol_pound}39;new &lt;b&gt;text&lt;/b&gt;&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.css(&${symbol_pound}39;${symbol_pound}bind-html-with-trust div&${symbol_pound}39;)).getInnerHtml()).toBe(&${symbol_pound}10;    &${symbol_pound}39;new &lt;b onclick=&quot;alert(1)&quot;&gt;text&lt;/b&gt;&${symbol_pound}39;);&${symbol_pound}10;  expect(element(by.css(&${symbol_pound}39;${symbol_pound}bind-default div&${symbol_pound}39;)).getInnerHtml()).toBe(&${symbol_pound}10;    &quot;new &amp;lt;b onclick=${symbol_escape}&quot;alert(1)${symbol_escape}&quot;&amp;gt;text&amp;lt;/b&amp;gt;&quot;);&${symbol_pound}10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example113/index.html" name="example-example113"></iframe>
+  </div>
+</div>
+
+
+</p>
+
+</div>
+
+

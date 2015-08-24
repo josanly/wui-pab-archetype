@@ -1,0 +1,40 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-${symbol_dollar}route-service-debug</title>
+  
+
+  <script src="../../../angular.js"></script>
+  <script src="../../../angular-route.js"></script>
+  <script src="script.js"></script>
+  
+
+  <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+  </script>
+</head>
+<body ng-app="ngRouteExample">
+  <div ng-controller="MainController">
+  Choose:
+  <a href="Book/Moby">Moby</a> |
+  <a href="Book/Moby/ch/1">Moby: Ch1</a> |
+  <a href="Book/Gatsby">Gatsby</a> |
+  <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
+  <a href="Book/Scarlet">Scarlet Letter</a><br/>
+
+  <div ng-view></div>
+
+  <hr />
+
+  <pre>${symbol_dollar}location.path() = {{${symbol_dollar}location.path()}}</pre>
+  <pre>${symbol_dollar}route.current.templateUrl = {{${symbol_dollar}route.current.templateUrl}}</pre>
+  <pre>${symbol_dollar}route.current.params = {{${symbol_dollar}route.current.params}}</pre>
+  <pre>${symbol_dollar}route.current.scope.name = {{${symbol_dollar}route.current.scope.name}}</pre>
+  <pre>${symbol_dollar}routeParams = {{${symbol_dollar}routeParams}}</pre>
+</div>
+</body>
+</html>
