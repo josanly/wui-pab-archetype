@@ -1,9 +1,11 @@
 # Play-AngularJS-Bootstrap Web User Interface project
 
-This project has been developped to give a simple maven archetype to build a Web User Interface using Java, Play, AngularJS and Bootstrap Frameworks.
+This project has been developed to give a simple maven archetype to build a Web User Interface using Java, Play, AngularJS and Bootstrap Frameworks.
 
 Look how easy it is to use:
 
+	# compilation 
+	mvn clean install
     # packaging archetype
     mvn archetype:jar 
     # install archetype in local maven archetype catalog
@@ -11,51 +13,44 @@ Look how easy it is to use:
     # create a new project form this archetype (interactive mode)
     mvn archetype:generate 
 
-To deploy your own RESTful API application:
-
-    unzip /path/to/<project-archive> /path/to/target/dir/.
-    /path/to/target/dir/<project-name>/start -Dhttp.port=1234 -Dhttp.address=127.0.0.1 -Dconfig.file=/opt/conf/prod.conf -Dlogger.file=/opt/prod/prod-logger.xml -Dpidfile.path=/var/run/play.pid
-
-For more details about the deployment of a play application, refer to the [Play official documentation](https://www.playframework.com/documentation/2.1.x/ProductionConfiguration)
-
 ## Features
 
-### Functionnalities
+### Functionalities
 
 - Maven archetype
 - Play Framework commands integrated in Maven lifecycle
+- Multi-module application (core and interface)
 
 
 ### Technical features
 
 - Using Play framework to generate an embedded web app with no dependency against OS
 - Using CSS Bootstrap framework for styling
-- Using AngularJS framework for interactivity
+- Using AngularJS framework for interactivity (single web page app)
 
 ## Archetype Installation
 
 Compile sources from scratch:
 
-    cd wui-play-angularjs-bootstrap-project/
     mvn clean install 
+    # packaging archetype
+    mvn archetype:jar 
+    # install archetype in local maven archetype catalog
+    mvn archetype:update-local-catalog 
+    # create a new project form this archetype (interactive mode)
+    mvn archetype:generate 
 
-Run the interface:
+Package archetype:
 
-    mvn play2:run -pl wui-generic
+    mvn archetype:jar
 
-Deploy the project:
+Deploy in local catalog:
 
-    mvn deploy
-
-Install the Web User Interface by running:
-
-    unzip wui-play-angularjs-bootstrap-project.zip
-    ./wui-play-angularjs-bootstrap-project/start 
-    firefox http://localhost:9000/
+    mvn archetype:update-local-catalog 
 
 ## Project generated from the archetype Installation
 
-    # create a new project form this archetype (interactive mode)
+    # create a new project from this archetype (interactive mode)
     mvn archetype:generate 
 
 Do some development :)
