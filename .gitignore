@@ -1,33 +1,13 @@
 # ignore all eclipse file
-wui-generic-core/.classpath
-wui-generic-core/.project
-wui-generic-core/target/
-
-# Ignore Play! working directory #
-wui-generic-interface/bin/
-wui-generic-interface/db
-wui-generic-interface/.eclipse
-wui-generic-interface/lib/
-wui-generic-interface/logs/
-wui-generic-interface/modules/
-wui-generic-interface/project/project/
-wui-generic-interface/project/target/
-wui-generic-interface/target/
-wui-generic-interface/tmp/
-wui-generic-interface/test-result/
-wui-generic-interface/server.pid
-wui-generic-interface/*.iml
-wui-generic-interface/*.eml
-wui-generic-interface/dist/
-wui-generic-interface/.cache
-wui-generic-interface/.history
-wui-generic-interface/.idea
-wui-generic-interface/out
-wui-generic-interface/.idea_modules
-wui-generic-interface/.classpath
-wui-generic-interface/.project
-wui-generic-interface/RUNNING_PID
-wui-generic-interface/.settings
+.eclipse
+target/
+.cache
+.history
+.idea
+.idea_modules
+.classpath
+.project
+.settings
 
 # exceptions
 
