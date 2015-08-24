@@ -10,9 +10,9 @@
   <name>wui-play-angular-bootstrap-archetype</name>
   
   <scm>
-    <connection>scm:git:git@github.com:josanly/rest-api-archetype.git</connection>
-    <url>scm:git:git@github.com:josanly/rest-api-archetype.git</url>
-    <developerConnection>scm:git:git@github.com:josanly/rest-api-archetype.git</developerConnection>
+    <connection>scm:git:git@github.com:josanly/wui-pab-archetype.git</connection>
+    <url>scm:git:git@github.com:josanly/wui-pab-archetype.git</url>
+    <developerConnection>scm:git:git@github.com:josanly/wui-pab-archetype.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   
